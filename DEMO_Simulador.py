@@ -7,7 +7,7 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# Ocultar SOLO el menú, NO el diseño
+# Ocultar menú de Streamlit
 hide_streamlit_style = """
             <style>
             #MainMenu {visibility: hidden;}
@@ -32,10 +32,9 @@ with col2:
     st.metric("Salario promedio", "$965.25")
     st.metric("Edad de retiro", "60 años")
 
-# Resultados
 st.divider()
 
-# Incremento (verde)
+# Incremento
 st.markdown(f"""
 <div style='background-color: #00a86b; padding: 20px; border-radius: 10px; text-align: center; color: white; margin-bottom: 20px;'>
     <h2 style='color: white; margin:0'>💰 INCREMENTO MENSUAL</h2>
@@ -44,7 +43,7 @@ st.markdown(f"""
 </div>
 """, unsafe_allow_html=True)
 
-# Comparativa (tarjetas originales)
+# Comparativa
 col_a, col_b = st.columns(2)
 
 with col_a:
@@ -79,26 +78,21 @@ with col_u2:
 with col_u3:
     st.metric("ROI", "2138%")
 
-# Versión completa
+# ===== VERSIÓN COMPLETA (CORREGIDA) =====
 st.divider()
 st.markdown("## 🔒 VERSIÓN COMPLETA")
 
-with st.container():
-    st.markdown("""
-    <div style='background-color: #f0f0f0; padding: 20px; border-radius: 10px; text-align: center'>
-        <p style='text-align: left; margin-top: 15px'>
-        ✅ Tus datos reales<br>
-        ✅ Modalidad 40 (6 a 48 meses)<br>
-        ✅ Recuperación exacta en meses<br>
-        ✅ Desglose técnico completo<br>
-        ✅ Comparativa de escenarios<br>
-        ✅ Archivo .exe listo para usar<br>
-        ✅ Manual incluido
-        </p>
-        <h2 style='color: #0066b3;'>$1,500 MXN</h2>
-        <p>Pago único · Sin instalaciones</p>
-    </div>
-    """, unsafe_allow_html=True)
+st.markdown("✅ Tus datos reales")
+st.markdown("✅ Modalidad 40 (6 a 48 meses)")
+st.markdown("✅ Recuperación exacta en meses")
+st.markdown("✅ Desglose técnico completo")
+st.markdown("✅ Comparativa de escenarios")
+st.markdown("✅ Archivo .exe listo para usar")
+st.markdown("✅ Manual incluido")
+
+st.markdown("")
+st.markdown("### **$1,500 MXN**")
+st.markdown("Pago único · Sin instalaciones")
 
 # Botón WhatsApp
 st.markdown("### 📲 ¿Interesado?")
