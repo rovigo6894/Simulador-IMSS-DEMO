@@ -7,19 +7,20 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# OCULTAR ABSOLUTAMENTE TODO (hasta el último botón)
+# OCULTAR ABSOLUTAMENTE TODO (INCLUYENDO "ADMINISTRAR APLICACIÓN")
 hide_streamlit_style = """
             <style>
             /* Ocultar menú principal */
             #MainMenu {visibility: hidden;}
             
-            /* Ocultar footer */
+            /* Ocultar footer completo */
             footer {visibility: hidden;}
+            footer:after {content: ''; display: none;}
             
-            /* Ocultar header completo */
+            /* Ocultar header */
             header {visibility: hidden;}
             
-            /* Ocultar toolbar superior */
+            /* Ocultar toolbar */
             .stApp header {display: none;}
             .stApp [data-testid="stToolbar"] {display: none;}
             .stApp [data-testid="baseButton-header"] {display: none;}
@@ -32,17 +33,30 @@ hide_streamlit_style = """
             /* Ocultar botón de pantalla completa */
             button[title="View in fullscreen"] {display: none;}
             
-            /* Ocultar cualquier badge de GitHub */
+            /* Ocultar cualquier badge */
             .viewerBadge_container__1QSob {display: none;}
             .viewerBadge_link__1S137 {display: none;}
             
-            /* Ocultar elementos flotantes */
+            /* Ocultar elementos específicos de Streamlit */
             .st-emotion-cache-18ni7ap {display: none;}
             .st-emotion-cache-1dp5vir {display: none;}
+            .st-emotion-cache-1aeihjq {display: none;}
+            .st-emotion-cache-1wmy9hl {display: none;}
+            .st-emotion-cache-1wbqy5l {display: none;}
+            .st-emotion-cache-14xtw13 {display: none;}
             
-            /* Forzar que no aparezca nada extra */
-            .stApp [data-testid="stDecoration"] {display: none;}
+            /* Ocultar el maldito "Administrar aplicación" */
             .stApp [data-testid="stStatus"] {display: none;}
+            .stApp [data-testid="stNotification"] {display: none;}
+            .stApp [data-testid="stBottom"] {display: none;}
+            .stApp [data-testid="stDecoration"] {display: none;}
+            
+            /* Forzar ocultamiento de cualquier texto de Streamlit */
+            .stText {visibility: visible;}
+            .stMarkdown {visibility: visible;}
+            
+            /* Asegurar que el contenido principal sea visible */
+            .main .block-container {padding-top: 2rem;}
             </style>
             """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
@@ -52,7 +66,7 @@ st.title("SIMULADOR IMSS LEY 73")
 st.markdown("**Versión DEMO - Muestra gratuita**")
 st.divider()
 
-# Datos fijos (con columnas para mejor distribución)
+# Datos fijos
 st.subheader("📋 Datos de ejemplo (fijos)")
 
 col1, col2 = st.columns(2)
@@ -157,6 +171,6 @@ with st.expander("💳 Métodos de pago aceptados"):
     - **OXXO** (generamos código al confirmar)
     """)
 
-# Pie
+# Pie (ahora sin nada extra)
 st.divider()
-st.caption("© Ing. Roberto Villarreal · Demo informativa · Versión completa: $1,500")
+st.markdown("© Ing. Roberto Villarreal · Demo informativa · Versión completa: $1,500")
