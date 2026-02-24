@@ -1,18 +1,17 @@
 import streamlit as st
 
-# Configuración de página (oculta sidebar)
+# Configuración
 st.set_page_config(
     page_title="IMSS Ley 73 - Demo", 
     layout="centered",
     initial_sidebar_state="collapsed"
 )
 
-# Ocultar menú de Streamlit
+# Ocultar SOLO el menú, NO el diseño
 hide_streamlit_style = """
             <style>
             #MainMenu {visibility: hidden;}
             footer {visibility: hidden;}
-            header {visibility: hidden;}
             </style>
             """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
@@ -23,69 +22,106 @@ st.markdown("**Versión DEMO - Muestra gratuita**")
 st.divider()
 
 # Datos fijos
-st.subheader("Datos de ejemplo (fijos)")
+st.subheader("📋 Datos de ejemplo (fijos)")
+
 col1, col2 = st.columns(2)
 with col1:
-    st.write("Edad actual: **55 años**")
-    st.write("Semanas cotizadas: **1315**")
+    st.metric("Edad actual", "55 años")
+    st.metric("Semanas cotizadas", "1315")
 with col2:
-    st.write("Salario promedio: **$965.25**")
-    st.write("Edad de retiro: **60 años**")
+    st.metric("Salario promedio", "$965.25")
+    st.metric("Edad de retiro", "60 años")
 
+# Resultados
 st.divider()
 
-# Incremento
-st.markdown("""
-<div style='background-color: #00a86b; padding: 20px; border-radius: 10px; text-align: center'>
-    <h2 style='color: white; margin:0'>INCREMENTO MENSUAL</h2>
+# Incremento (verde)
+st.markdown(f"""
+<div style='background-color: #00a86b; padding: 20px; border-radius: 10px; text-align: center; color: white; margin-bottom: 20px;'>
+    <h2 style='color: white; margin:0'>💰 INCREMENTO MENSUAL</h2>
     <h1 style='color: white; font-size: 48px; margin:10px'>$4,031.00</h1>
-    <p style='color: white'>Tu pensión aumenta con Modalidad 40</p>
+    <p style='color: #e0e0e0; margin:0'>Tu pensión aumenta con Modalidad 40</p>
 </div>
 """, unsafe_allow_html=True)
 
-# Comparativa
+# Comparativa (tarjetas originales)
 col_a, col_b = st.columns(2)
+
 with col_a:
-    st.markdown("### SIN Modalidad 40")
-    st.markdown("## $14,522")
-    st.caption("Escenario base")
+    st.markdown(f"""
+    <div style='background-color: #f5f5f5; padding: 15px; border-radius: 10px; text-align: center; border: 1px solid #ffcccc;'>
+        <h3 style='margin:0; color: #666'>SIN Modalidad 40</h3>
+        <h2 style='margin:10px; color: #333'>$14,522.00</h2>
+        <p style='margin:0; font-size: 12px; color: #999'>Escenario base</p>
+    </div>
+    """, unsafe_allow_html=True)
+
 with col_b:
-    st.markdown("### CON Modalidad 40")
-    st.markdown("## $18,553")
-    st.caption("Ejemplo ilustrativo")
+    st.markdown(f"""
+    <div style='background-color: #0066b3; padding: 15px; border-radius: 10px; text-align: center; color: white'>
+        <h3 style='color: white; margin:0'>CON Modalidad 40</h3>
+        <h2 style='color: white; margin:10px'>$18,553.00</h2>
+        <p style='color: #e0e0e0; margin:0; font-size: 12px;'>Ejemplo ilustrativo</p>
+    </div>
+    """, unsafe_allow_html=True)
 
 # Métricas
 st.divider()
-col_m1, col_m2, col_m3 = st.columns(3)
-with col_m1:
+col_u1, col_u2, col_u3 = st.columns(3)
+
+with col_u1:
     st.metric("Inversión total", "$90,305")
-with col_m2:
+
+with col_u2:
     st.metric("Utilidad 20 años", "$1,930,999")
-with col_m3:
+    st.caption("*Suponiendo 240 meses de cobro")
+
+with col_u3:
     st.metric("ROI", "2138%")
-st.caption("*Suponiendo 240 meses de cobro")
 
 # Versión completa
 st.divider()
-st.subheader("VERSIÓN COMPLETA")
-puntos = [
-    "✅ Tus datos reales",
-    "✅ Modalidad 40 (6 a 48 meses)",
-    "✅ Recuperación exacta en meses",
-    "✅ Desglose técnico completo",
-    "✅ Comparativa de escenarios",
-    "✅ Archivo .exe listo para usar",
-    "✅ Manual incluido"
-]
-for p in puntos:
-    st.write(p)
+st.markdown("## 🔒 VERSIÓN COMPLETA")
 
-st.markdown("## **$1,500 MXN**")
-st.caption("Pago único · Sin instalaciones")
+with st.container():
+    st.markdown("""
+    <div style='background-color: #f0f0f0; padding: 20px; border-radius: 10px; text-align: center'>
+        <p style='text-align: left; margin-top: 15px'>
+        ✅ Tus datos reales<br>
+        ✅ Modalidad 40 (6 a 48 meses)<br>
+        ✅ Recuperación exacta en meses<br>
+        ✅ Desglose técnico completo<br>
+        ✅ Comparativa de escenarios<br>
+        ✅ Archivo .exe listo para usar<br>
+        ✅ Manual incluido
+        </p>
+        <h2 style='color: #0066b3;'>$1,500 MXN</h2>
+        <p>Pago único · Sin instalaciones</p>
+    </div>
+    """, unsafe_allow_html=True)
 
 # Botón WhatsApp
-whatsapp = "https://wa.me/5218715791810?text=Quiero%20la%20versi%C3%B3n%20completa"
-st.markdown(f'<a href="{whatsapp}" target="_blank"><button style="background-color:#25D366; color:white; padding:15px; width:100%; border:none; border-radius:5px; font-size:18px; font-weight:bold">📲 CONTACTAR POR WHATSAPP</button></a>', unsafe_allow_html=True)
+st.markdown("### 📲 ¿Interesado?")
+whatsapp_link = "https://wa.me/5218715791810?text=Quiero%20la%20versi%C3%B3n%20completa%20del%20Simulador%20IMSS%20PRO"
+
+st.markdown(f"""
+<div style='text-align: center'>
+    <a href='{whatsapp_link}' target='_blank'>
+        <button style='background-color: #25D366; color: white; padding: 15px 30px; 
+                border: none; border-radius: 5px; font-size: 20px; font-weight: bold;
+                cursor: pointer; margin-bottom: 20px; width: 100%;'>
+            📲 CONTACTAR POR WHATSAPP
+        </button>
+    </a>
+</div>
+""", unsafe_allow_html=True)
+
+# Métodos de pago
+with st.expander("💳 Métodos de pago aceptados"):
+    st.markdown("""
+    - **Transferencia bancaria** (CLABE se proporciona al contactar)
+    - **OXXO** (generamos código al confirmar)
+    """)
 
 # Pie
 st.divider()
