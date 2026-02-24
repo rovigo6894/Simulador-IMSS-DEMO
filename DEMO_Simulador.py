@@ -18,8 +18,8 @@ hide_streamlit_style = """
             """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
-# Título
-st.title("SIMULADOR IMSS LEY 73")
+# Título CON DARDO a la izquierda
+st.markdown("# 🎯 SIMULADOR IMSS LEY 73")
 st.markdown("**Versión DEMO - Muestra gratuita**")
 st.divider()
 
