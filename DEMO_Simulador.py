@@ -7,20 +7,42 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# OCULTAR TODO (menú, footer, header, GitHub)
+# OCULTAR ABSOLUTAMENTE TODO (hasta el último botón)
 hide_streamlit_style = """
             <style>
+            /* Ocultar menú principal */
             #MainMenu {visibility: hidden;}
+            
+            /* Ocultar footer */
             footer {visibility: hidden;}
+            
+            /* Ocultar header completo */
             header {visibility: hidden;}
+            
+            /* Ocultar toolbar superior */
             .stApp header {display: none;}
             .stApp [data-testid="stToolbar"] {display: none;}
             .stApp [data-testid="baseButton-header"] {display: none;}
             .stApp [data-testid="stStatusWidget"] {display: none;}
-            .viewerBadge_container__1QSob {display: none;}
+            
+            /* Ocultar botón de deploy */
             .stDeployButton {display: none;}
             iframe[title="streamlit-deploy-button"] {display: none;}
+            
+            /* Ocultar botón de pantalla completa */
             button[title="View in fullscreen"] {display: none;}
+            
+            /* Ocultar cualquier badge de GitHub */
+            .viewerBadge_container__1QSob {display: none;}
+            .viewerBadge_link__1S137 {display: none;}
+            
+            /* Ocultar elementos flotantes */
+            .st-emotion-cache-18ni7ap {display: none;}
+            .st-emotion-cache-1dp5vir {display: none;}
+            
+            /* Forzar que no aparezca nada extra */
+            .stApp [data-testid="stDecoration"] {display: none;}
+            .stApp [data-testid="stStatus"] {display: none;}
             </style>
             """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
@@ -30,16 +52,22 @@ st.title("SIMULADOR IMSS LEY 73")
 st.markdown("**Versión DEMO - Muestra gratuita**")
 st.divider()
 
-# Datos fijos
+# Datos fijos (con columnas para mejor distribución)
 st.subheader("📋 Datos de ejemplo (fijos)")
 
 col1, col2 = st.columns(2)
 with col1:
-    st.metric("Edad actual", "55 años")
-    st.metric("Semanas cotizadas", "1315")
+    st.markdown("**Edad actual**")
+    st.markdown("# 55 años")
+    st.markdown("")
+    st.markdown("**Semanas cotizadas**")
+    st.markdown("# 1315")
 with col2:
-    st.metric("Salario promedio", "$965.25")
-    st.metric("Edad de retiro", "60 años")
+    st.markdown("**Salario promedio**")
+    st.markdown("# $965.25")
+    st.markdown("")
+    st.markdown("**Edad de retiro**")
+    st.markdown("# 60 años")
 
 st.divider()
 
@@ -78,14 +106,17 @@ st.divider()
 col_u1, col_u2, col_u3 = st.columns(3)
 
 with col_u1:
-    st.metric("Inversión total", "$90,305")
+    st.markdown("**Inversión total**")
+    st.markdown("# $90,305")
 
 with col_u2:
-    st.metric("Utilidad 20 años", "$1,930,999")
+    st.markdown("**Utilidad 20 años**")
+    st.markdown("# $1,930,999")
     st.caption("*Suponiendo 240 meses de cobro")
 
 with col_u3:
-    st.metric("ROI", "2138%")
+    st.markdown("**ROI**")
+    st.markdown("# 2138%")
 
 # Versión completa
 st.divider()
