@@ -1,4 +1,3 @@
-
 import streamlit as st
 
 # Configuración
@@ -8,7 +7,7 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# MATA TODO, ESPECIALMENTE "ADMINISTRAR APLICACIÓN"
+# QUEMAR TODO HASTA LOS CIMIENTOS
 hide_streamlit_style = """
             <style>
             /* Ocultar menú principal */
@@ -20,11 +19,42 @@ hide_streamlit_style = """
             /* Ocultar header */
             header {visibility: hidden;}
             
-            /* MATAR "ADMINISTRAR APLICACIÓN" - CLASE ESPECÍFICA */
-            .st-emotion-cache-1aeihjq {display: none !important;}
+            /* MATAR "ADMINISTRAR APLICACIÓN" CON TODAS SUS CLASES */
+            .st-emotion-cache-1aeihjq,
+            .st-emotion-cache-1wmy9hl,
+            .st-emotion-cache-14xtw13,
+            .st-emotion-cache-1dp5vir,
+            .st-emotion-cache-18ni7ap,
+            .st-emotion-cache-1wbqy5l,
+            .st-emotion-cache-1gwvy6v,
+            .st-emotion-cache-1f3w3xq,
+            .st-emotion-cache-1p1nwyz,
+            .st-emotion-cache-1r6slv0,
+            .st-bn, .st-bm, .st-bl,
+            [data-testid="stStatus"],
+            [data-testid="stNotification"],
+            [data-testid="stBottom"],
+            [class*="Manage"],
+            [class*="manage"],
+            [class*="Admin"],
+            [class*="admin"] {
+                display: none !important;
+                visibility: hidden !important;
+                opacity: 0 !important;
+                height: 0 !important;
+                width: 0 !important;
+                position: absolute !important;
+                top: -9999px !important;
+                left: -9999px !important;
+                pointer-events: none !important;
+            }
             
             /* Mantener el contenido visible */
-            .main .block-container {visibility: visible;}
+            .main .block-container {
+                visibility: visible !important;
+                max-width: 800px;
+                padding-top: 2rem;
+            }
             </style>
             """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
