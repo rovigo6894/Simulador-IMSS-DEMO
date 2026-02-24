@@ -1,3 +1,4 @@
+
 import streamlit as st
 
 # Configuración
@@ -7,56 +8,23 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# Deshabilitar Google Translate (por si acaso)
-st.markdown("""
-    <meta name="google" content="notranslate" />
-    <meta http-equiv="Content-Language" content="es">
-""", unsafe_allow_html=True)
-
-# OCULTAR ABSOLUTAMENTE TODO, INCLUYENDO EL PUTO "ADMINISTRAR APLICACIÓN"
+# MATA TODO, ESPECIALMENTE "ADMINISTRAR APLICACIÓN"
 hide_streamlit_style = """
             <style>
             /* Ocultar menú principal */
             #MainMenu {visibility: hidden;}
             
-            /* Ocultar footer completo */
+            /* Ocultar footer */
             footer {visibility: hidden;}
-            footer:after {content: ''; display: none;}
             
             /* Ocultar header */
             header {visibility: hidden;}
             
-            /* Ocultar toolbar */
-            .stApp header {display: none;}
-            .stApp [data-testid="stToolbar"] {display: none;}
-            .stApp [data-testid="baseButton-header"] {display: none;}
-            
-            /* Ocultar botón de deploy */
-            .stDeployButton {display: none;}
-            
-            /* DESTRUIR "ADMINISTRAR APLICACIÓN" - VERSIÓN NUCLEAR */
+            /* MATAR "ADMINISTRAR APLICACIÓN" - CLASE ESPECÍFICA */
             .st-emotion-cache-1aeihjq {display: none !important;}
-            .st-emotion-cache-1wmy9hl {display: none !important;}
-            .st-emotion-cache-14xtw13 {display: none !important;}
-            .st-emotion-cache-1dp5vir {display: none !important;}
-            .st-emotion-cache-18ni7ap {display: none !important;}
-            .st-emotion-cache-1wbqy5l {display: none !important;}
             
-            /* Ataque directo al texto */
-            div[data-testid="stStatus"] {display: none !important;}
-            div[data-testid="stNotification"] {display: none !important;}
-            div[data-testid="stBottom"] {display: none !important;}
-            
-            /* Matar cualquier cosa que tenga "Administrar" */
-            [class*="Manage"] {display: none !important;}
-            [class*="manage"] {display: none !important;}
-            [class*="admin"] {display: none !important;}
-            
-            /* Forzar que no aparezca nada de Streamlit */
-            .stApp [class*="st-emotion-cache"]:not(.main) {display: none !important;}
-            
-            /* Mantener solo el contenido principal */
-            .main .block-container {max-width: 800px; padding-top: 2rem;}
+            /* Mantener el contenido visible */
+            .main .block-container {visibility: visible;}
             </style>
             """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
@@ -171,6 +139,6 @@ with st.expander("💳 Métodos de pago aceptados"):
     - **OXXO** (generamos código al confirmar)
     """)
 
-# Pie (sin nada extra)
+# Pie
 st.divider()
 st.markdown("© Ing. Roberto Villarreal · Demo informativa · Versión completa: $1,500")
