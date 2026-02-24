@@ -7,11 +7,20 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# Ocultar menú de Streamlit
+# OCULTAR TODO (menú, footer, header, GitHub)
 hide_streamlit_style = """
             <style>
             #MainMenu {visibility: hidden;}
             footer {visibility: hidden;}
+            header {visibility: hidden;}
+            .stApp header {display: none;}
+            .stApp [data-testid="stToolbar"] {display: none;}
+            .stApp [data-testid="baseButton-header"] {display: none;}
+            .stApp [data-testid="stStatusWidget"] {display: none;}
+            .viewerBadge_container__1QSob {display: none;}
+            .stDeployButton {display: none;}
+            iframe[title="streamlit-deploy-button"] {display: none;}
+            button[title="View in fullscreen"] {display: none;}
             </style>
             """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
@@ -78,7 +87,7 @@ with col_u2:
 with col_u3:
     st.metric("ROI", "2138%")
 
-# ===== VERSIÓN COMPLETA (CORREGIDA) =====
+# Versión completa
 st.divider()
 st.markdown("## 🔒 VERSIÓN COMPLETA")
 
