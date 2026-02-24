@@ -7,56 +7,36 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# OCULTAR ABSOLUTAMENTE TODO (INCLUYENDO "ADMINISTRAR APLICACIÓN")
+# ATAQUE NUCLEAR - OCULTAR ABSOLUTAMENTE TODO
 hide_streamlit_style = """
             <style>
             /* Ocultar menú principal */
             #MainMenu {visibility: hidden;}
             
-            /* Ocultar footer completo */
+            /* Destruir footer por completo */
             footer {visibility: hidden;}
-            footer:after {content: ''; display: none;}
+            footer:after {display: none;}
+            .st-emotion-cache-1aeihjq {display: none !important;}
+            .st-emotion-cache-1wmy9hl {display: none !important;}
+            .st-emotion-cache-14xtw13 {display: none !important;}
             
-            /* Ocultar header */
-            header {visibility: hidden;}
+            /* Aniquilar el texto "Administrar aplicación" */
+            div[data-testid="stStatus"] {display: none !important;}
+            div[data-testid="stNotification"] {display: none !important;}
+            div[data-testid="stBottom"] {display: none !important;}
+            .st-bn {display: none !important;}
+            .st-bm {display: none !important;}
             
-            /* Ocultar toolbar */
-            .stApp header {display: none;}
-            .stApp [data-testid="stToolbar"] {display: none;}
-            .stApp [data-testid="baseButton-header"] {display: none;}
-            .stApp [data-testid="stStatusWidget"] {display: none;}
+            /* Eliminar cualquier elemento que contenga texto de Streamlit */
+            [class*="stStatus"] {display: none !important;}
+            [class*="stNotification"] {display: none !important;}
+            [class*="stBottom"] {display: none !important;}
             
-            /* Ocultar botón de deploy */
-            .stDeployButton {display: none;}
-            iframe[title="streamlit-deploy-button"] {display: none;}
+            /* Forzar que no aparezca nada de Streamlit */
+            .stApp [class*="st-emotion-cache"]:not(.main) {display: none !important;}
             
-            /* Ocultar botón de pantalla completa */
-            button[title="View in fullscreen"] {display: none;}
-            
-            /* Ocultar cualquier badge */
-            .viewerBadge_container__1QSob {display: none;}
-            .viewerBadge_link__1S137 {display: none;}
-            
-            /* Ocultar elementos específicos de Streamlit */
-            .st-emotion-cache-18ni7ap {display: none;}
-            .st-emotion-cache-1dp5vir {display: none;}
-            .st-emotion-cache-1aeihjq {display: none;}
-            .st-emotion-cache-1wmy9hl {display: none;}
-            .st-emotion-cache-1wbqy5l {display: none;}
-            .st-emotion-cache-14xtw13 {display: none;}
-            
-            /* Ocultar el maldito "Administrar aplicación" */
-            .stApp [data-testid="stStatus"] {display: none;}
-            .stApp [data-testid="stNotification"] {display: none;}
-            .stApp [data-testid="stBottom"] {display: none;}
-            .stApp [data-testid="stDecoration"] {display: none;}
-            
-            /* Forzar ocultamiento de cualquier texto de Streamlit */
-            .stText {visibility: visible;}
-            .stMarkdown {visibility: visible;}
-            
-            /* Asegurar que el contenido principal sea visible */
-            .main .block-container {padding-top: 2rem;}
+            /* Mantener solo el contenido principal */
+            .main .block-container {max-width: 800px; padding-top: 2rem;}
             </style>
             """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
@@ -171,6 +151,6 @@ with st.expander("💳 Métodos de pago aceptados"):
     - **OXXO** (generamos código al confirmar)
     """)
 
-# Pie (ahora sin nada extra)
+# Pie (sin nada extra)
 st.divider()
 st.markdown("© Ing. Roberto Villarreal · Demo informativa · Versión completa: $1,500")
