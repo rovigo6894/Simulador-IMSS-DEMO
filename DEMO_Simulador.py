@@ -88,7 +88,7 @@ with col_u3:
     st.markdown("**ROI**")
     st.markdown("# 2138%")
 
-# VERSIÓN COMPLETA (actualizada)
+# VERSIÓN COMPLETA
 st.divider()
 st.markdown("## 🔒 VERSIÓN COMPLETA")
 
@@ -126,6 +126,6 @@ with st.expander("💳 Métodos de pago aceptados"):
     - **OXXO** (generamos código al confirmar)
     """)
 
-# Pie
+# Pie (SIN "ILIMITADO")
 st.divider()
 st.caption("© Ing. Roberto Villarreal · Demo informativa · Versión completa: $1,500")
