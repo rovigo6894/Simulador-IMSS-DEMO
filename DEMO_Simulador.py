@@ -101,7 +101,7 @@ st.markdown("✅ Asesoría personalizada por 3 meses")
 
 st.markdown("")
 st.markdown("### **$1,500 MXN**")
-st.markdown("Pago único · Sin instalaciones")
+st.markdown("")
 
 # Botón WhatsApp
 st.markdown("### 📲 ¿Interesado?")
@@ -126,6 +126,6 @@ with st.expander("💳 Métodos de pago aceptados"):
     - **OXXO** (generamos código al confirmar)
     """)
 
-# Pie (SIN "ILIMITADO")
+# Pie
 st.divider()
 st.caption("© Ing. Roberto Villarreal · Demo informativa · Versión completa: $1,500")
