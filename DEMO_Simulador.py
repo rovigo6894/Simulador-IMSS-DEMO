@@ -1,4 +1,3 @@
-
 import streamlit as st
 
 # Configuración
@@ -18,7 +17,7 @@ hide_streamlit_style = """
             """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
-# Título CON DARDO a la izquierda
+# Título
 st.markdown("# 🎯 SIMULADOR IMSS LEY 73")
 st.markdown("**Versión DEMO - Muestra gratuita**")
 st.divider()
@@ -89,7 +88,7 @@ with col_u3:
     st.markdown("**ROI**")
     st.markdown("# 2138%")
 
-# Versión completa
+# VERSIÓN COMPLETA (actualizada)
 st.divider()
 st.markdown("## 🔒 VERSIÓN COMPLETA")
 
@@ -98,8 +97,7 @@ st.markdown("✅ Modalidad 40 (6 a 48 meses)")
 st.markdown("✅ Recuperación exacta en meses")
 st.markdown("✅ Desglose técnico completo")
 st.markdown("✅ Comparativa de escenarios")
-st.markdown("✅ Archivo .exe listo para usar")
-st.markdown("✅ Manual incluido")
+st.markdown("✅ Asesoría personalizada por 3 meses")
 
 st.markdown("")
 st.markdown("### **$1,500 MXN**")
@@ -130,4 +128,4 @@ with st.expander("💳 Métodos de pago aceptados"):
 
 # Pie
 st.divider()
-st.markdown("© Ing. Roberto Villarreal · Demo informativa · Versión completa: $1,500")
+st.caption("© Ing. Roberto Villarreal · Demo informativa · Versión completa: $1,500")
