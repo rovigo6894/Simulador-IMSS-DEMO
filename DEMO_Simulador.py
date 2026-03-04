@@ -116,7 +116,7 @@ with st.expander("📘 Glosario de términos"):
 st.divider()
 
 # ============================================
-# OFERTA COMERCIAL (sin precio fijo)
+# OFERTA COMERCIAL (sin "pago único" ni "acceso de por vida")
 # ============================================
 
 st.markdown("## 🔒 Versión Completa")
@@ -140,8 +140,6 @@ with col_pro2:
     ### Diferentes paquetes disponibles
     
     **Desde $1,500 MXN**
-    
-    *Pago único · Acceso de por vida*
     
     **Formas de pago:**
     - Transferencia bancaria
