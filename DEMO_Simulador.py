@@ -99,67 +99,65 @@ st.markdown(f"""
 st.divider()
 
 # ============================================
-# GLOSARIO PROFESIONAL
+# GLOSARIO DE TÉRMINOS
 # ============================================
 
 with st.expander("📘 Glosario de términos"):
     st.markdown("""
-    | Término | Descripción |
-    |---------|-------------|
-    | **Ley 73** | Régimen de pensiones para quienes cotizaron antes del 1 de julio de 1997 |
-    | **Factor por edad** | Porcentaje de la pensión según la edad de retiro (75% a 60 años, 80% a 61, etc.) |
-    | **Semanas cotizadas** | Mínimo 500 semanas para tener derecho a pensión |
-    | **Salario promedio** | Se calcula con las últimas 250 semanas cotizadas |
-    | **Modalidad 40** | Continuación voluntaria para aumentar el salario promedio |
+| Término | Descripción |
+|---------|-------------|
+| **Ley 73** | Régimen de pensiones para quienes cotizaron antes del 1 de julio de 1997 |
+| **Factor por edad** | Porcentaje de la pensión según la edad de retiro (75% a 60 años, 80% a 61, etc.) |
+| **Semanas cotizadas** | Mínimo 500 semanas para tener derecho a pensión |
+| **Salario promedio** | Se calcula con las últimas 250 semanas cotizadas |
+| **Modalidad 40** | Continuación voluntaria para aumentar el salario promedio |
     """)
 
 st.divider()
 
 # ============================================
-# OFERTA COMERCIAL (sin "pago único" ni "acceso de por vida")
+# OFERTA COMERCIAL (VERSIÓN COMPLETA) - TABLA ALINEADA
 # ============================================
 
 st.markdown("## 🔒 Versión Completa")
 
-col_pro1, col_pro2 = st.columns([3, 2])
+st.markdown("""
+### Obtén tu diagnóstico personalizado:
 
-with col_pro1:
-    st.markdown("""
-    ### Obtén tu diagnóstico personalizado:
-    
-    ✅ **Cálculo con tus datos reales** (semanas, salario, edad)
-    ✅ **Análisis de Modalidad 40** (ROI, recuperación, utilidad)
-    ✅ **Comparativa de escenarios** (60 vs 61...65 años)
-    ✅ **Proyección a 20 años** con ajuste inflacionario
-    ✅ **Recomendación estratégica personalizada**
-    ✅ **Asesoría post-diagnóstico**
-    """)
+| Beneficio | Descripción |
+|-----------|-------------|
+| ✅ **Cálculo con tus datos reales** | Semanas cotizadas, salario promedio y edad exacta |
+| ✅ **Análisis de Modalidad 40** | ROI, tiempo de recuperación y utilidad real |
+| ✅ **Comparativa de escenarios** | 60 vs 61...65 años — ¿cuánto ganas o pierdes? |
+| ✅ **Proyección a 20 años** | Con ajuste inflacionario incluido |
+| ✅ **Recomendación estratégica** | Hecha a tu medida, no genérica |
+| ✅ **Asesoría post-diagnóstico** | Resuelves dudas después de recibirlo |
 
-with col_pro2:
-    st.markdown("""
-    ### Diferentes paquetes disponibles
-    
-    **Desde $1,500 MXN**
-    
-    **Formas de pago:**
-    - Transferencia bancaria
-    - Mercado Pago
-    - OXXO
-    """)
-    
-    # Botón de WhatsApp profesional
-    whatsapp_link = "https://wa.me/5218715791810?text=Quiero%20información%20sobre%20los%20paquetes%20de%20OptiPensión%2073"
-    st.markdown(f"""
-    <div style='text-align: center; margin-top: 20px;'>
-        <a href='{whatsapp_link}' target='_blank'>
-            <button style='background-color: #25D366; color: white; padding: 12px 20px; 
-                    border: none; border-radius: 5px; font-size: 16px; font-weight: bold;
-                    cursor: pointer; width: 100%;'>
-                📲 SOLICITAR INFORMACIÓN
-            </button>
-        </a>
-    </div>
-    """, unsafe_allow_html=True)
+---
+
+### Diferentes paquetes disponibles
+
+💰 **Desde $1,500 MXN**
+
+**Formas de pago:**
+- Transferencia bancaria
+- Mercado Pago
+- OXXO
+""")
+
+# Botón de WhatsApp profesional
+whatsapp_link = "https://wa.me/5218715791810?text=Quiero%20información%20sobre%20los%20paquetes%20de%20OptiPensión%2073"
+st.markdown(f"""
+<div style='text-align: center; margin-top: 20px;'>
+    <a href='{whatsapp_link}' target='_blank'>
+        <button style='background-color: #25D366; color: white; padding: 12px 20px; 
+                border: none; border-radius: 5px; font-size: 16px; font-weight: bold;
+                cursor: pointer; width: 100%;'>
+            📲 SOLICITAR INFORMACIÓN
+        </button>
+    </a>
+</div>
+""", unsafe_allow_html=True)
 
 st.divider()
 
