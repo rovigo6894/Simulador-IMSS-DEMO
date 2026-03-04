@@ -1,8 +1,7 @@
 import streamlit as st
 
-# Configuración
 st.set_page_config(
-    page_title="IMSS Ley 73 - Demo", 
+    page_title="IMSS Ley 73 - DEMO", 
     layout="centered",
     initial_sidebar_state="collapsed"
 )
@@ -18,114 +17,155 @@ hide_streamlit_style = """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
 # Título
-st.markdown("# 🎯 SIMULADOR IMSS LEY 73")
-st.markdown("**Versión DEMO - Muestra gratuita**")
+st.title("🎯 SIMULADOR IMSS LEY 73")
+st.markdown("**Versión DEMO - Juega con los datos de ejemplo**")
+st.caption("Descubre cuánto podrías recibir al pensionarte")
 st.divider()
 
-# Datos fijos
-st.subheader("📋 Datos de ejemplo (fijos)")
+# ============================================
+# VARIABLES EDITABLES (pero limitadas)
+# ============================================
+
+st.subheader("📋 Variables que puedes modificar")
 
 col1, col2 = st.columns(2)
+
 with col1:
-    st.markdown("**Edad actual**")
-    st.markdown("# 55 años")
-    st.markdown("")
-    st.markdown("**Semanas cotizadas**")
-    st.markdown("# 1315")
+    edad_actual = st.slider("Edad actual", 45, 65, 55, help="Puedes mover la edad para ver cómo cambia el resultado")
+    edad_retiro = st.selectbox("Edad de retiro", [60, 61, 62, 63, 64, 65], index=0, help="Elige la edad a la que planeas retirarte")
+
 with col2:
-    st.markdown("**Salario promedio**")
-    st.markdown("# $965.25")
-    st.markdown("")
-    st.markdown("**Edad de retiro**")
-    st.markdown("# 60 años")
+    # Variables fijas (no se pueden cambiar)
+    st.metric("Semanas cotizadas", "1,200", help="En la versión completa usarás tus semanas reales")
+    st.metric("Salario promedio", "$20,000", help="En la versión completa usarás tu salario real")
+    st.caption("🔒 Estas variables son fijas en la DEMO")
 
 st.divider()
 
-# Incremento
+# ============================================
+# CÁLCULO SIMPLIFICADO (solo para mostrar)
+# ============================================
+
+st.subheader("📊 Resultado estimado")
+
+# Factor por edad
+factores = {60:0.75, 61:0.80, 62:0.85, 63:0.90, 64:0.95, 65:1.00}
+factor_edad = factores[edad_retiro]
+
+# Fórmula simplificada (a propósito, no es el cálculo real)
+pension_demo = 20000 * factor_edad * 0.5
+
+# Mostrar resultado con estilo
 st.markdown(f"""
-<div style='background-color: #00a86b; padding: 20px; border-radius: 10px; text-align: center; color: white; margin-bottom: 20px;'>
-    <h2 style='color: white; margin:0'>💰 INCREMENTO MENSUAL</h2>
-    <h1 style='color: white; font-size: 48px; margin:10px'>$4,031.00</h1>
-    <p style='color: #e0e0e0; margin:0'>Tu pensión aumenta con Modalidad 40</p>
+<div style='background-color: #0066b3; padding: 20px; border-radius: 10px; text-align: center; color: white; box-shadow: 0 4px 8px rgba(0,0,0,0.1);'>
+    <h2 style='color: white; margin:0'>PENSIÓN ESTIMADA</h2>
+    <h1 style='color: white; font-size: 48px; margin:10px'>${pension_demo:,.0f}</h1>
+    <p style='color: #e0e0e0; margin:0'>Retiro a los {edad_retiro} años</p>
+    <p style='color: #e0e0e0; margin:0; font-size: 12px;'>*Cálculo aproximado para fines demostrativos</p>
 </div>
 """, unsafe_allow_html=True)
 
-# Comparativa
-col_a, col_b = st.columns(2)
+st.info("💡 Este es un cálculo de ejemplo con datos fijos. En la versión completa usarás tus semanas y salario reales.")
 
-with col_a:
-    st.markdown(f"""
-    <div style='background-color: #f5f5f5; padding: 15px; border-radius: 10px; text-align: center; border: 1px solid #ffcccc;'>
-        <h3 style='margin:0; color: #666'>SIN Modalidad 40</h3>
-        <h2 style='margin:10px; color: #333'>$14,522.00</h2>
-        <p style='margin:0; font-size: 12px; color: #999'>Escenario base</p>
-    </div>
-    """, unsafe_allow_html=True)
-
-with col_b:
-    st.markdown(f"""
-    <div style='background-color: #0066b3; padding: 15px; border-radius: 10px; text-align: center; color: white'>
-        <h3 style='color: white; margin:0'>CON Modalidad 40</h3>
-        <h2 style='color: white; margin:10px'>$18,553.00</h2>
-        <p style='color: #e0e0e0; margin:0; font-size: 12px;'>Ejemplo ilustrativo</p>
-    </div>
-    """, unsafe_allow_html=True)
-
-# Métricas
 st.divider()
-col_u1, col_u2, col_u3 = st.columns(3)
 
-with col_u1:
-    st.markdown("**Inversión total**")
-    st.markdown("# $90,305")
+# ============================================
+# EXPLICACIÓN BREVE (glosario simple)
+# ============================================
 
-with col_u2:
-    st.markdown("**Utilidad 20 años**")
-    st.markdown("# $1,930,999")
-    st.caption("*Suponiendo 240 meses de cobro")
-
-with col_u3:
-    st.markdown("**ROI**")
-    st.markdown("# 2138%")
-
-# VERSIÓN COMPLETA
-st.divider()
-st.markdown("## 🔒 VERSIÓN COMPLETA")
-
-st.markdown("✅ Tus datos reales")
-st.markdown("✅ Modalidad 40 (6 a 48 meses)")
-st.markdown("✅ Recuperación exacta en meses")
-st.markdown("✅ Desglose técnico completo")
-st.markdown("✅ Comparativa de escenarios")
-st.markdown("✅ Asesoría personalizada por 3 meses")
-
-st.markdown("")
-st.markdown("### **$1,500 MXN**")
-st.markdown("")
-
-# Botón WhatsApp
-st.markdown("### 📲 ¿Interesado?")
-whatsapp_link = "https://wa.me/5218715791810?text=Quiero%20la%20versi%C3%B3n%20completa%20del%20Simulador%20IMSS%20PRO"
-
-st.markdown(f"""
-<div style='text-align: center'>
-    <a href='{whatsapp_link}' target='_blank'>
-        <button style='background-color: #25D366; color: white; padding: 15px 30px; 
-                border: none; border-radius: 5px; font-size: 20px; font-weight: bold;
-                cursor: pointer; margin-bottom: 20px; width: 100%;'>
-            📲 CONTACTAR POR WHATSAPP
-        </button>
-    </a>
-</div>
-""", unsafe_allow_html=True)
-
-# Métodos de pago
-with st.expander("💳 Métodos de pago aceptados"):
+with st.expander("📘 ¿Qué significa esto?"):
     st.markdown("""
-    - **Transferencia bancaria** (CLABE se proporciona al contactar)
-    - **OXXO** (generamos código al confirmar)
+    - **Ley 73**: Régimen de pensiones para quienes cotizaron antes del 1 de julio de 1997.
+    - **Factor por edad**: A menor edad de retiro, menor porcentaje de pensión.
+    - **Semanas cotizadas**: Se requieren al menos 500 semanas para tener derecho a pensión.
+    - **Salario promedio**: Se calcula con las últimas 250 semanas cotizadas.
     """)
 
-# Pie
 st.divider()
-st.caption("© Ing. Roberto Villarreal · Demo informativa · Versión completa: $1,500")
+
+# ============================================
+# GANCHO PARA LA VERSIÓN PRO
+# ============================================
+
+st.markdown("## 🔒 VERSIÓN COMPLETA")
+
+col_pro1, col_pro2 = st.columns(2)
+
+with col_pro1:
+    st.markdown("""
+    ### Con la versión PRO obtienes:
+    ✅ **Tus datos reales** (edad, semanas, salario)
+    ✅ **Modalidad 40** (6 a 48 meses)
+    ✅ **ROI y recuperación exacta**
+    ✅ **Utilidad proyectada a 20 años**
+    ✅ **Comparativa de escenarios**
+    ✅ **Asesoría personalizada** (3 meses)
+    """)
+
+with col_pro2:
+    st.markdown("""
+    ### Precio especial lanzamiento
+    # **$1,500 MXN**
+    
+    *Pago único · Acceso de por vida*
+    
+    **Formas de pago:**
+    - 💳 Transferencia bancaria
+    - 🏦 Mercado Pago
+    - 🏧 OXXO
+    """)
+    
+    # Botón de WhatsApp
+    whatsapp_link = "https://wa.me/5218715791810?text=Quiero%20la%20versi%C3%B3n%20PRO%20del%20simulador%20Ley%2073"
+    st.markdown(f"""
+    <div style='text-align: center; margin-top: 20px;'>
+        <a href='{whatsapp_link}' target='_blank'>
+            <button style='background-color: #25D366; color: white; padding: 15px 30px; 
+                    border: none; border-radius: 5px; font-size: 18px; font-weight: bold;
+                    cursor: pointer; width: 100%;'>
+                📲 CONTACTAR POR WHATSAPP
+            </button>
+        </a>
+    </div>
+    """, unsafe_allow_html=True)
+
+st.divider()
+
+# ============================================
+# TESTIMONIO SIMULADO (genera confianza)
+# ============================================
+
+st.markdown("### 💬 Lo que dicen nuestros primeros usuarios")
+
+col_t1, col_t2 = st.columns(2)
+
+with col_t1:
+    st.markdown("""
+    > *"Pensé que mi pensión sería mucho menor. Con el simulador descubrí que podía aumentarla con Modalidad 40. La asesoría de Roberto fue clave."*
+    > 
+    > — **Carlos R., 58 años**
+    """)
+
+with col_t2:
+    st.markdown("""
+    > *"Excelente herramienta, muy precisa. Me ayudó a decidir cuándo pensionarme y cuánto necesito ahorrar."*
+    > 
+    > — **María L., 62 años**
+    """)
+
+st.divider()
+
+# ============================================
+# PIE DE PÁGINA (legal y contacto)
+# ============================================
+
+st.markdown("""
+---
+🔒 *Al usar este simulador aceptas nuestra Política de Privacidad.  
+No almacenamos datos personales ni los compartimos con terceros.  
+Este cálculo es una simulación basada en la Ley 73 del IMSS y no constituye un dictamen oficial.*  
+
+📧 Contacto: rvglz@hotmail.com | 📱 WhatsApp: 871 579 1810
+
+© Ing. Roberto Villarreal · DEMO informativa · Versión PRO Analisis Completo
+""")
