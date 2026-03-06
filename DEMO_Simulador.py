@@ -2,160 +2,132 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-from datetime import datetime
+from PIL import Image
 
-# ---------------------------------------------------------
-# CONFIGURACIÓN DE PÁGINA
-# ---------------------------------------------------------
+# ------------------------------------------------
+# CONFIGURACIÓN DE LA PÁGINA
+# ------------------------------------------------
 
 st.set_page_config(
-    page_title="Optipensión 73 | Simulador Ley 73",
-    page_icon="https://raw.githubusercontent.com/rovigo6894/Simulador-IMSS-DEMO/main/imagen.jpg",
-    layout="centered"
+    page_title="Optipensión 73",
+    layout="wide"
 )
 
-# ---------------------------------------------------------
+# ------------------------------------------------
 # HEADER CON LOGO
-# ---------------------------------------------------------
+# ------------------------------------------------
 
-col1, col2 = st.columns([1,5], vertical_alignment="center")
+col1, col2 = st.columns([1,6])
 
 with col1:
-    st.image(
-        "https://raw.githubusercontent.com/rovigo6894/Simulador-IMSS-DEMO/main/imagen.jpg",
-        width=90
-    )
+    logo = Image.open("imagen.jpg")
+    st.image(logo, width=90)
 
 with col2:
-    st.markdown("""
-    <div>
-        <h1 style="color:#0f2b3d; margin:0;">OPTIPENSIÓN 73</h1>
-        <p style="color:#64748b; margin:0;">
-        Optimización de Pensiones · Ley 73
-        </p>
-    </div>
-    """, unsafe_allow_html=True)
-
-st.caption(f"Última actualización: {datetime.now().strftime('%d/%m/%Y')}")
+    st.title("OPTIPENSIÓN 73")
+    st.caption("Simulador DEMO · Optimización de Pensión IMSS Ley 73")
 
 st.divider()
 
-# ---------------------------------------------------------
-# INTRO
-# ---------------------------------------------------------
-
-st.markdown("""
-### Simulador preliminar de pensión IMSS (Ley 73)
-
-Este simulador permite estimar:
-
-- Pensión aproximada
-- Comparación con Modalidad 40
-- Escenario de optimización
-
-⚠️ **Resultados orientativos para fines educativos.**
-""")
-
-# ---------------------------------------------------------
-# INPUTS
-# ---------------------------------------------------------
+# ------------------------------------------------
+# DATOS DEL USUARIO
+# ------------------------------------------------
 
 st.subheader("Datos del trabajador")
 
-edad = st.number_input("Edad actual", 50, 65, 57)
-semanas = st.number_input("Semanas cotizadas", 500, 2000, 1300)
-sdi = st.number_input("Salario Diario Promedio ($)", 200.0, 2000.0, 965.0)
+col1, col2, col3 = st.columns(3)
 
-uma = 113.14
+with col1:
+    edad = st.number_input("Edad actual", 40, 65, 57)
 
-# ---------------------------------------------------------
-# CÁLCULOS
-# ---------------------------------------------------------
+with col2:
+    semanas = st.number_input("Semanas cotizadas", 500, 2500, 1315)
 
-salario_uma = sdi / uma
+with col3:
+    salario = st.number_input("Salario promedio diario ($)", 100.0, 5000.0, 965.25)
+
+edad_retiro = st.slider("Edad de retiro", 60, 65, 60)
+
+st.divider()
+
+# ------------------------------------------------
+# CALCULO DEMO SIMPLE
+# ------------------------------------------------
+
+UMA = 108.57
+
+veces_uma = salario / UMA
 
 cuantia_basica = 13
-incremento = 2.45 * ((semanas - 500) / 52)
+incremento_anual = 2.45
 
-porcentaje_total = cuantia_basica + incremento
+incremento_semanas = max((semanas - 500) // 52, 0)
 
-pension_mensual = sdi * 30 * porcentaje_total / 100
+porcentaje_total = cuantia_basica + (incremento_anual * incremento_semanas)
 
-# Escenario Modalidad 40 (estimación simple)
+pension_mensual = salario * porcentaje_total * 30 / 100
 
-sdi_mod40 = sdi * 1.3
-pension_mod40 = sdi_mod40 * 30 * porcentaje_total / 100
-
-# ---------------------------------------------------------
-# RESULTADOS
-# ---------------------------------------------------------
+# ------------------------------------------------
+# RESULTADO
+# ------------------------------------------------
 
 st.subheader("Resultado estimado")
 
-col1, col2 = st.columns(2)
+st.metric(
+    "Pensión mensual estimada",
+    f"${pension_mensual:,.0f}"
+)
 
-with col1:
-    st.metric(
-        "Pensión estimada",
-        f"${pension_mensual:,.0f} MXN / mes"
-    )
+st.caption("Resultado aproximado para fines demostrativos")
 
-with col2:
-    st.metric(
-        "Escenario con Modalidad 40",
-        f"${pension_mod40:,.0f} MXN / mes"
-    )
+st.divider()
 
-# ---------------------------------------------------------
-# GRÁFICA COMPARATIVA
-# ---------------------------------------------------------
+# ------------------------------------------------
+# MODALIDAD 40 DEMO
+# ------------------------------------------------
 
-st.subheader("Comparación de escenarios")
+st.subheader("Simulación Modalidad 40 (DEMO)")
 
-escenarios = ["Actual", "Modalidad 40"]
-valores = [pension_mensual, pension_mod40]
+salario_m40 = st.slider(
+    "Salario Modalidad 40",
+    300,
+    3000,
+    2500
+)
+
+meses = [12,24,36,48]
+
+resultados = []
+
+for m in meses:
+
+    incremento_salario = salario_m40 * (m/48)
+
+    pension = (salario + incremento_salario) * porcentaje_total * 30 / 100
+
+    resultados.append(pension)
+
+df = pd.DataFrame({
+    "Meses Modalidad 40": meses,
+    "Pensión estimada": resultados
+})
+
+st.dataframe(df)
+
+# ------------------------------------------------
+# GRAFICA
+# ------------------------------------------------
 
 fig, ax = plt.subplots()
 
-ax.bar(escenarios, valores)
+ax.bar(df["Meses Modalidad 40"], df["Pensión estimada"])
 
-ax.set_ylabel("Pensión mensual MXN")
-ax.set_title("Comparación de pensión estimada")
+ax.set_title("Impacto Modalidad 40")
+ax.set_xlabel("Meses")
+ax.set_ylabel("Pensión mensual")
 
 st.pyplot(fig)
 
-# ---------------------------------------------------------
-# CTA
-# ---------------------------------------------------------
-
 st.divider()
 
-st.markdown("""
-### Diagnóstico completo Optipensión 73
-
-Incluye:
-
-✔ cálculo exacto Ley 73  
-✔ análisis Modalidad 40  
-✔ ROI de inversión  
-✔ estrategia personalizada  
-
-""")
-
-if st.button("Solicitar diagnóstico completo"):
-    st.markdown(
-        "[Contactar por WhatsApp](https://wa.me/526311234567)"
-    )
-
-# ---------------------------------------------------------
-# FOOTER
-# ---------------------------------------------------------
-
-st.divider()
-
-st.caption("""
-Optipensión 73 · Simulador independiente
-
-Esta herramienta no está afiliada al IMSS.  
-Resultados estimados.
-""")
+st.info("Versión DEMO de Optipensión 73 · Para simulación profesional utilizar versión PRO")
