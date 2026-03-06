@@ -37,7 +37,7 @@ st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 col1, col2 = st.columns([1,5])
 
 with col1:
-    logo = Image.open("logo.png")
+    logo = Image.open("image.png")
     st.image(logo, width=120)
 
 with col2:
