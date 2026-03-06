@@ -56,6 +56,56 @@ hide_streamlit_style = """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
 # ============================================
+# BORRAR TODO LO QUE NO SEA LA APP
+# ============================================
+st.markdown("""
+<style>
+    /* Destruir todo */
+    #MainMenu, footer, header, .stApp header,
+    .stApp [data-testid="stToolbar"],
+    .stApp [data-testid="stDecoration"],
+    .stApp [data-testid="stStatusWidget"],
+    .stApp [data-testid="baseButton-header"],
+    .stApp [aria-label="Menu"],
+    .stApp button[kind="header"],
+    .stApp iframe,
+    a[href*="github"], a[href*="GitHub"],
+    button[title*="GitHub"], button[title*="github"],
+    [class*="github"], [class*="GitHub"],
+    [id*="github"], [id*="GitHub"] {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+        width: 0 !important;
+        height: 0 !important;
+        position: absolute !important;
+        top: -9999px !important;
+        left: -9999px !important;
+    }
+    
+    /* Forzar que la app sea lo único visible */
+    .main {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+    
+    .main .block-container {
+        max-width: 100% !important;
+        padding: 1rem !important;
+        margin: 0 !important;
+    }
+    
+    /* Ocultar cualquier elemento que pueda estar en móvil */
+    @media (max-width: 768px) {
+        .stApp > div:first-child > div:first-child > div:first-child {
+            display: none !important;
+        }
+    }
+</style>
+""", unsafe_allow_html=True)
+
+# ============================================
 # LOGO + TÍTULO
 # ============================================
 col1, col2 = st.columns([1, 5])
