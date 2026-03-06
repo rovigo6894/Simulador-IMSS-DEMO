@@ -34,7 +34,7 @@ with col2:
 st.divider()
 
 # ============================================
-# DATOS BÁSICOS
+# DATOS BÁSICOS (SOLO EDAD Y SALARIO)
 # ============================================
 st.subheader("📋 Datos básicos")
 
@@ -44,11 +44,14 @@ with col1:
     edad = st.number_input("Edad actual", min_value=40, max_value=65, value=57)
 
 with col2:
-    semanas = st.number_input("Semanas cotizadas", min_value=500, max_value=3000, value=1315)
+    salario = st.number_input("Salario diario (SDI)", min_value=200, max_value=2000, value=960)
 
-salario = st.number_input("Salario diario (SDI)", min_value=200, max_value=2000, value=960)
+# Valores fijos para demo
+semanas = 1315
+edad_retiro = 60
 
-edad_retiro = st.selectbox("Edad de retiro", [60, 61, 62, 63, 64, 65])
+# Mostrar valores de referencia (opcional)
+st.caption(f"⚡ Valores de referencia: {semanas} semanas cotizadas · Retiro a los {edad_retiro} años")
 
 # ============================================
 # BOTÓN
