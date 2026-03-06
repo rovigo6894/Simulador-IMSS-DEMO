@@ -8,7 +8,7 @@ st.set_page_config(page_title="Optipension 73 DEMO", layout="centered")
 col1, col2 = st.columns([1,5])
 
 with col1:
-    st.image("assets/logo.png", width=80)
+    st.image("image.jpg", width=80)
 
 with col2:
     st.title("Optipension 73")
