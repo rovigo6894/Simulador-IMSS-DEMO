@@ -1,5 +1,7 @@
 import streamlit as st
 from datetime import datetime
+from calculos import calcular_pension_demo, formatear_moneda, calcular_impacto
+from config import VERSION, EMAIL, WHATSAPP, WHATSAPP_NUMERO, SEMANAS_FIJAS, EDAD_RETIRO_FIJA
 
 # ============================================
 # CONFIGURACIÓN
@@ -25,7 +27,7 @@ st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 col1, col2 = st.columns([1, 5])
 
 with col1:
-    st.image("https://raw.githubusercontent.com/rovigo6894/Simulador-IMSS-DEMO/main/image.jpg", width=80)
+    st.image("https://raw.githubusercontent.com/rovigo6894/Simulador-IMSS-DEMO/main/imagen.jpg", width=80)
 
 with col2:
     st.title("Optipensión 73")
@@ -46,33 +48,29 @@ with col1:
 with col2:
     salario = st.number_input("Salario diario (SDI)", min_value=200, max_value=2000, value=960)
 
-# Valores fijos para demo
-semanas = 1315
-edad_retiro = 60
-
-st.caption(f"⚡ Valores de referencia: {semanas} semanas cotizadas · Retiro a los {edad_retiro} años")
+st.caption(f"⚡ Valores de referencia: {SEMANAS_FIJAS} semanas cotizadas · Retiro a los {EDAD_RETIRO_FIJA} años")
 
 # ============================================
 # BOTÓN
 # ============================================
 if st.button("🔮 Recalcular simulación", use_container_width=True):
     
-    # ========================================
-    # CÁLCULO SIMPLIFICADO PERO REALISTA
-    # ========================================
-    factores = {60:0.75, 61:0.80, 62:0.85, 63:0.90, 64:0.95, 65:1.00}
+    # Llamar a la función de cálculo desde calculos.py
+    pension = calcular_pension_demo(edad, salario, SEMANAS_FIJAS, EDAD_RETIRO_FIJA)
+    impacto = calcular_impacto(pension)
     
-    años_para_retiro = max(0, edad_retiro - edad)
-    semanas_totales = semanas + (52 * años_para_retiro)
-    
-    cuantia_basica = salario * 0.13 * 365
-    años_extra = max(0, (semanas_totales - 500) / 52)
-    incremento = salario * 0.0245 * 365 * años_extra
-    cuantia_total = (cuantia_basica + incremento) * 1.15 * 1.11 * 1.2166
-    pension_mensual = cuantia_total * factores[edad_retiro] / 12
-    
-    st.success(f"### Pensión estimada: ${pension_mensual:,.0f} MXN")
+    st.success(f"### Pensión estimada: {formatear_moneda(pension)}")
     st.caption("Una estrategia adecuada podría aumentar este monto.")
+    
+    # Mostrar impacto si quieres (opcional)
+    with st.expander("Ver impacto potencial"):
+        col1, col2, col3 = st.columns(3)
+        with col1:
+            st.metric("Pensión optimizada", formatear_moneda(impacto['optimizada']))
+        with col2:
+            st.metric("Diferencia mensual", formatear_moneda(impacto['diferencia']))
+        with col3:
+            st.metric("En 20 años", formatear_moneda(impacto['perdida_20']))
 
 st.divider()
 
@@ -93,16 +91,16 @@ La versión profesional incluye:
 
 st.link_button(
     "💎 Adquirir versión PRO",
-    "https://wa.me/528715791810?text=Hola%20quiero%20la%20versi%C3%B3n%20PRO%20de%20Optipensi%C3%B3n%2073",
+    WHATSAPP,
     use_container_width=True
 )
 
 # ============================================
-# FOOTER COMPLETO (TÉRMINOS, PRIVACIDAD, COPYRIGHT)
+# FOOTER COMPLETO
 # ============================================
 st.divider()
 
-st.markdown("""
+st.markdown(f"""
 <div style='text-align:center; font-size:12px; color:#666; line-height:1.6;'>
 
 ### 📌 TÉRMINOS Y CONDICIONES
@@ -137,8 +135,8 @@ El uso de este simulador implica la aceptación de los siguientes términos:
 
 ### 📞 CONTACTO
 
-📧 **Email**: contacto@optipension73.com  
-📱 **WhatsApp**: 871 579 1810  
+📧 **Email**: {EMAIL}  
+📱 **WhatsApp**: {WHATSAPP_NUMERO}  
 📍 **Oficina**: Torreón, Coahuila · México
 
 ---
@@ -146,5 +144,4 @@ El uso de este simulador implica la aceptación de los siguientes términos:
 </div>
 """, unsafe_allow_html=True)
 
-# Copyright al final (simple y claro)
-st.caption(f"© 2026 Optipensión 73 · Ing. Roberto Villarreal Glz. · Última actualización: {datetime.now().strftime('%d/%m/%Y')}")
+st.caption(f"© 2026 Optipensión 73 · Ing. Roberto Villarreal Glz. · Versión {VERSION} · Última actualización: {datetime.now().strftime('%d/%m/%Y')}")
