@@ -4,7 +4,7 @@
 # ============================================
 
 # Versión
-VERSION = "DEMO 1.0"
+VERSION = "DEMO"
 
 # Contacto
 EMAIL = "contacto@optipension73.com"
