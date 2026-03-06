@@ -43,12 +43,12 @@ with col2:
 st.markdown("---")
 
 # -------------------------
-# PARAMETROS MODIFICABLES
+# DATOS BASICOS
 # -------------------------
 
 st.header("Datos básicos")
 
-col1, col2, col3 = st.columns(3)
+col1, col2 = st.columns(2)
 
 with col1:
     edad = st.number_input(
@@ -59,14 +59,6 @@ with col1:
     )
 
 with col2:
-    semanas = st.number_input(
-        "Semanas cotizadas",
-        min_value=500,
-        max_value=2000,
-        value=1300
-    )
-
-with col3:
     salario = st.number_input(
         "Salario promedio diario (SDI)",
         min_value=200,
@@ -74,90 +66,86 @@ with col3:
         value=965
     )
 
-st.info("🔒 Estrategias avanzadas de optimización disponibles en la versión PRO")
-
 # -------------------------
-# CALCULO DEMO
+# BOTON RECALCULAR
 # -------------------------
 
+calcular = st.button("Recalcular pensión")
+
+# -------------------------
+# VARIABLES INTERNAS OCULTAS
+# -------------------------
+
+semanas_ocultas = 1300
 factor_demo = 0.30
 
-pension_normal = salario * 30 * factor_demo
-
-pension_mejorada = pension_normal * 1.35
-
 # -------------------------
-# CALCULOS ADICIONALES
+# CALCULO SOLO SI PRESIONAN BOTON
 # -------------------------
 
-diferencia = pension_mejorada - pension_normal
+if calcular:
 
-perdida_20_anios = diferencia * 12 * 20
+    pension_normal = salario * 30 * factor_demo
+    pension_mejorada = pension_normal * 1.35
 
-# -------------------------
-# RESULTADOS
-# -------------------------
+    diferencia = pension_mejorada - pension_normal
+    perdida_20_anios = diferencia * 12 * 20
 
-st.markdown("---")
+    st.markdown("---")
 
-st.header("Resultado estimado")
+    st.header("Resultado estimado")
 
-c1, c2, c3 = st.columns(3)
+    c1, c2, c3 = st.columns(3)
 
-with c1:
+    with c1:
+        st.metric(
+            "Pensión estimada normal",
+            f"${pension_normal:,.0f} MXN"
+        )
+
+    with c2:
+        st.metric(
+            "Pensión optimizada",
+            f"${pension_mejorada:,.0f} MXN"
+        )
+
+    with c3:
+        st.metric(
+            "Diferencia mensual",
+            f"${diferencia:,.0f} MXN"
+        )
+
+    st.markdown("---")
+
+    st.subheader("Impacto financiero")
+
     st.metric(
-        "Pensión estimada normal",
-        f"${pension_normal:,.0f} MXN"
+        "Dinero que podría perder en 20 años",
+        f"${perdida_20_anios:,.0f} MXN"
     )
 
-with c2:
-    st.metric(
-        "Pensión optimizada",
-        f"${pension_mejorada:,.0f} MXN"
+    st.warning(
+        "⚠️ Sin una estrategia adecuada podrías perder una cantidad importante de dinero en tu pensión."
     )
 
-with c3:
-    st.metric(
-        "Diferencia mensual",
-        f"${diferencia:,.0f} MXN"
-    )
+    # -------------------------
+    # GRAFICA
+    # -------------------------
 
-# -------------------------
-# IMPACTO FINANCIERO
-# -------------------------
+    st.markdown("---")
 
-st.markdown("---")
+    st.subheader("Comparativa de escenarios")
 
-st.subheader("Impacto financiero")
+    labels = ["Pensión Normal", "Pensión Optimizada"]
+    valores = [pension_normal, pension_mejorada]
 
-st.metric(
-    "Dinero que podría perder en 20 años",
-    f"${perdida_20_anios:,.0f} MXN"
-)
+    fig, ax = plt.subplots()
 
-st.warning(
-"⚠️ Sin una estrategia adecuada podrías perder una cantidad importante de dinero en tu pensión."
-)
+    ax.bar(labels, valores)
 
-# -------------------------
-# GRAFICA
-# -------------------------
+    ax.set_ylabel("Pensión mensual estimada")
 
-st.markdown("---")
-
-st.subheader("Comparativa de escenarios")
-
-labels = ["Pensión Normal", "Pensión Optimizada"]
-
-valores = [pension_normal, pension_mejorada]
-
-fig, ax = plt.subplots()
-
-ax.bar(labels, valores)
-
-ax.set_ylabel("Pensión mensual estimada")
-
-st.pyplot(fig)
+    st.pyplot(fig)
 
 # -------------------------
 # VERSION PRO
