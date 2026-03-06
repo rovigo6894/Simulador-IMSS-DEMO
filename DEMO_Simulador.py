@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from PIL import Image
 
 # -------------------------
-# CONFIGURACIÓN DE PÁGINA
+# CONFIGURACION DE PAGINA
 # -------------------------
 
 st.set_page_config(
@@ -12,7 +12,7 @@ st.set_page_config(
 )
 
 # -------------------------
-# OCULTAR ELEMENTOS STREAMLIT
+# OCULTAR MENU STREAMLIT
 # -------------------------
 
 hide_streamlit_style = """
@@ -21,9 +21,9 @@ hide_streamlit_style = """
 #MainMenu {visibility: hidden;}
 footer {visibility: hidden;}
 header {visibility: hidden;}
-[data-testid="stToolbar"] {display: none;}
-[data-testid="stDecoration"] {display: none;}
-[data-testid="stStatusWidget"] {display: none;}
+[data-testid="stToolbar"] {display:none;}
+[data-testid="stDecoration"] {display:none;}
+[data-testid="stStatusWidget"] {display:none;}
 
 </style>
 """
@@ -47,7 +47,7 @@ with col2:
 st.markdown("---")
 
 # -------------------------
-# ENTRADAS DEMO
+# PARAMETROS DEMO
 # -------------------------
 
 st.sidebar.header("Parámetros básicos")
@@ -69,12 +69,19 @@ semanas = st.sidebar.slider(
 st.sidebar.markdown("🔒 Otros parámetros disponibles en versión PRO")
 
 # -------------------------
-# SIMULACIÓN SIMPLE DEMO
+# SIMULACION DEMO SIMPLE
 # -------------------------
 
-# simulación simple solo para demo
 pension_normal = semanas * 10
 pension_mejorada = pension_normal * 1.35
+
+# -------------------------
+# CALCULOS ADICIONALES
+# -------------------------
+
+diferencia = pension_mejorada - pension_normal
+
+perdida_20_anios = diferencia * 12 * 20
 
 # -------------------------
 # RESULTADOS
@@ -82,7 +89,7 @@ pension_mejorada = pension_normal * 1.35
 
 st.header("Resultado estimado")
 
-col1, col2 = st.columns(2)
+col1, col2, col3 = st.columns(3)
 
 with col1:
     st.metric(
@@ -92,20 +99,38 @@ with col1:
 
 with col2:
     st.metric(
-        "Pensión optimizada (escenario mejorado)",
+        "Pensión optimizada",
         f"${pension_mejorada:,.0f} MXN"
+    )
+
+with col3:
+    st.metric(
+        "Diferencia mensual",
+        f"${diferencia:,.0f} MXN"
     )
 
 st.markdown("---")
 
+st.subheader("Impacto financiero")
+
+st.metric(
+    "Dinero que podría perder en 20 años si no optimiza su pensión",
+    f"${perdida_20_anios:,.0f} MXN"
+)
+
+st.warning(
+"⚠️ Sin una estrategia adecuada podrías perder una cantidad importante de dinero en tu pensión."
+)
+
 # -------------------------
-# GRÁFICA COMPARATIVA
+# GRAFICA COMPARATIVA
 # -------------------------
+
+st.markdown("---")
 
 st.subheader("Comparativa de escenarios")
 
 labels = ["Normal", "Optimizada"]
-
 valores = [pension_normal, pension_mejorada]
 
 fig, ax = plt.subplots()
@@ -117,7 +142,7 @@ ax.set_ylabel("Pensión mensual estimada")
 st.pyplot(fig)
 
 # -------------------------
-# BLOQUE PRO
+# BLOQUE VERSION PRO
 # -------------------------
 
 st.markdown("---")
@@ -132,8 +157,7 @@ La versión profesional de **Optipension 73** incluye:
 ✅ Simulación con inflación anual  
 ✅ Análisis ROI del plan de pensión  
 ✅ Comparativa de múltiples escenarios  
-✅ Reporte financiero completo  
-
+✅ Reporte financiero completo
 """)
 
 st.link_button(
@@ -142,7 +166,7 @@ st.link_button(
 )
 
 # -------------------------
-# FOOTER
+# PIE DE PAGINA
 # -------------------------
 
 st.markdown("---")
