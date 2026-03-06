@@ -11,106 +11,35 @@ st.set_page_config(
     layout="centered"
 )
 
-# ============================================
-# OCULTAR TODO DE STREAMLIT (INCLUYE MÓVIL)
-# ============================================
+# Ocultar elementos de Streamlit
 hide_streamlit_style = """
             <style>
-            /* Ocultar menú principal */
             #MainMenu {visibility: hidden;}
-            
-            /* Ocultar footer */
             footer {visibility: hidden;}
-            
-            /* Ocultar header */
             header {visibility: hidden;}
-            
-            /* Ocultar toolbar superior */
             .stApp header {display: none !important;}
             .stApp [data-testid="stToolbar"] {display: none !important;}
             .stApp [data-testid="stDecoration"] {display: none !important;}
+            .main .block-container {padding-top: 2rem !important;}
             
-            /* OCULTAR EL ENLACE DE GITHUB EN MÓVIL */
+            /* Ocultar cualquier elemento de GitHub */
             .stApp [data-testid="stStatusWidget"] {display: none !important;}
-            .stApp [data-testid="stSidebar"] button[kind="header"] {display: none !important;}
-            .stApp button[title="View source on GitHub"] {display: none !important;}
+            .stApp [data-testid="baseButton-header"] {display: none !important;}
+            a[href*="github"] {display: none !important;}
             
-            /* Ocultar cualquier elemento con clase de GitHub */
-            [class*="github"] {display: none !important;}
-            [class*="GitHub"] {display: none !important;}
-            
-            /* Forzar que todo el espacio sea para la app */
-            .main .block-container {
-                padding-top: 1rem !important;
-                max-width: 100% !important;
-            }
-            
-            /* Ajustes específicos para móvil */
-            @media (max-width: 640px) {
+            @media (max-width: 768px) {
                 .stApp [data-testid="stToolbar"] {display: none !important;}
-                .stApp [data-testid="baseButton-header"] {display: none !important;}
-                .stApp [aria-label="Menu"] {display: none !important;}
             }
             </style>
             """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
 # ============================================
-# BORRAR TODO LO QUE NO SEA LA APP
-# ============================================
-st.markdown("""
-<style>
-    /* Destruir todo */
-    #MainMenu, footer, header, .stApp header,
-    .stApp [data-testid="stToolbar"],
-    .stApp [data-testid="stDecoration"],
-    .stApp [data-testid="stStatusWidget"],
-    .stApp [data-testid="baseButton-header"],
-    .stApp [aria-label="Menu"],
-    .stApp button[kind="header"],
-    .stApp iframe,
-    a[href*="github"], a[href*="GitHub"],
-    button[title*="GitHub"], button[title*="github"],
-    [class*="github"], [class*="GitHub"],
-    [id*="github"], [id*="GitHub"] {
-        display: none !important;
-        visibility: hidden !important;
-        opacity: 0 !important;
-        pointer-events: none !important;
-        width: 0 !important;
-        height: 0 !important;
-        position: absolute !important;
-        top: -9999px !important;
-        left: -9999px !important;
-    }
-    
-    /* Forzar que la app sea lo único visible */
-    .main {
-        padding: 0 !important;
-        margin: 0 !important;
-    }
-    
-    .main .block-container {
-        max-width: 100% !important;
-        padding: 1rem !important;
-        margin: 0 !important;
-    }
-    
-    /* Ocultar cualquier elemento que pueda estar en móvil */
-    @media (max-width: 768px) {
-        .stApp > div:first-child > div:first-child > div:first-child {
-            display: none !important;
-        }
-    }
-</style>
-""", unsafe_allow_html=True)
-
-# ============================================
 # LOGO + TÍTULO
 # ============================================
 col1, col2 = st.columns([1, 5])
 with col1:
-    st.image("https://raw.githubusercontent.com/rovigo6894/Simulador-IMSS-DEMO/main/image.jpg", width=80)
+    st.image("https://raw.githubusercontent.com/rovigo6894/Simulador-IMSS-DEMO/main/imagen.jpg", width=80)
 with col2:
     st.title("Optipensión 73")
     st.caption("Simulador Estratégico de Pensión IMSS Ley 73")
@@ -151,7 +80,7 @@ if st.button("🔮 Recalcular simulación", use_container_width=True):
 st.divider()
 
 # ============================================
-# VERSIÓN PRO (CON BOTÓN)
+# VERSIÓN PRO
 # ============================================
 st.subheader("🔒 Versión Profesional")
 
@@ -164,7 +93,6 @@ st.markdown("""
 ✅ **Asesoría personalizada** vía WhatsApp
 """)
 
-# ===== BOTÓN PRO (AQUÍ ESTABA EL DETALLE) =====
 st.link_button(
     "📲 CONTACTAR PARA VERSIÓN PRO",
     WHATSAPP,
