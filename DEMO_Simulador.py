@@ -1,7 +1,7 @@
 import streamlit as st
 from datetime import datetime
-from calculos import calcular_pension_demo, formatear_moneda, calcular_impacto
-from config import VERSION, EMAIL, WHATSAPP, WHATSAPP_NUMERO, SEMANAS_FIJAS, EDAD_RETIRO_FIJA
+from calculo_demo import calcular_pension_demo, formatear_moneda, calcular_impacto
+from config_demo import VERSION, EMAIL, WHATSAPP, WHATSAPP_NUMERO, SEMANAS_FIJAS, EDAD_RETIRO_FIJA
 
 # ============================================
 # CONFIGURACIÓN
