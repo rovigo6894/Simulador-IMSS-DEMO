@@ -51,28 +51,27 @@ with col2:
 st.caption(f"⚡ Valores de referencia: {SEMANAS_FIJAS} semanas cotizadas · Retiro a los {EDAD_RETIRO_FIJA} años")
 
 # ============================================
-# BOTÓN
+# BOTÓN Y RESULTADOS
 # ============================================
 if st.button("🔮 Recalcular simulación", use_container_width=True):
     
-    # Llamar a la función de cálculo desde calculos.py
     pension = calcular_pension_demo(edad, salario, SEMANAS_FIJAS, EDAD_RETIRO_FIJA)
     impacto = calcular_impacto(pension)
     
+    # Pensión estimada
     st.success(f"### Pensión estimada: {formatear_moneda(pension)}")
     st.caption("Una estrategia adecuada podría aumentar este monto.")
     
-    # Mostrar impacto si quieres (opcional)
-    with st.expander("Ver impacto potencial"):
-        col1, col2, col3 = st.columns(3)
-        with col1:
-            st.metric("Pensión optimizada", formatear_moneda(impacto['optimizada']))
-        with col2:
-            st.metric("Diferencia mensual", formatear_moneda(impacto['diferencia']))
-        with col3:
-            st.metric("En 20 años", formatear_moneda(impacto['perdida_20']))
-
-st.divider()
+    # IMPACTO POTENCIAL DIRECTO
+    st.markdown("### 📊 Impacto potencial")
+    
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        st.metric("Pensión optimizada", formatear_moneda(impacto['optimizada']))
+    with col2:
+        st.metric("Diferencia mensual", formatear_moneda(impacto['diferencia']))
+    with col3:
+        st.metric("En 20 años", formatear_moneda(impacto['perdida_20']))
 
 # ============================================
 # VERSIÓN PRO (SOLO INFORMATIVO)
