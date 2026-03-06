@@ -1,8 +1,13 @@
 import streamlit as st
+import pandas as pd
 from datetime import datetime
 
+# ============================================
+# CONFIGURACIÓN INICIAL
+# ============================================
 st.set_page_config(
-    page_title="OptiPensión 73 - DEMO", 
+    page_title="OptiPensión 73 · DEMO Profesional",
+    page_icon="📊",
     layout="centered",
     initial_sidebar_state="collapsed"
 )
@@ -18,189 +23,483 @@ hide_streamlit_style = """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
 # ============================================
-# LOGO Y NOMBRE COMERCIAL
+# CSS DE LUJO (SOLO ESTÉTICA)
 # ============================================
-
-col_logo, col_titulo = st.columns([1, 4])
-
-with col_logo:
-    st.markdown("# 📊")  # Placeholder para logo profesional
-
-with col_titulo:
-    st.markdown("# OPTIPENSIÓN 73")
-    st.markdown("**Optimización Integral de Pensión · Ley 73**")
-
-st.divider()
-
-# ============================================
-# DESCRIPCIÓN PROFESIONAL
-# ============================================
-
 st.markdown("""
-### Simulador Estratégico - Versión DEMO
-
-*Esta es una muestra interactiva. Los cálculos son demostrativos y no constituyen un dictamen oficial del IMSS.*
-""")
-
-st.divider()
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+    
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    html, body, [class*="css"] {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    
+    /* Fondo elegante con gradiente sutil */
+    .stApp {
+        background: linear-gradient(145deg, #f8fafc 0%, #f1f5f9 100%);
+    }
+    
+    /* Contenedor principal con efecto de vidrio */
+    .main-card {
+        background: rgba(255,255,255,0.95);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-radius: 3rem;
+        padding: 2.5rem;
+        box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+        border: 1px solid rgba(255,255,255,0.5);
+        margin: 1rem 0;
+    }
+    
+    /* Título principal */
+    .title-section {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+    
+    .main-title {
+        font-size: 3.5rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, #0f2b3d, #1e4b6a);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 0.3rem;
+        letter-spacing: -0.02em;
+    }
+    
+    .sub-title {
+        color: #64748b;
+        font-size: 1rem;
+        font-weight: 400;
+        letter-spacing: 0.3px;
+    }
+    
+    /* Badge DEMO elegante */
+    .demo-badge {
+        background: linear-gradient(135deg, #f97316, #fb923c);
+        color: white;
+        padding: 0.3rem 1.2rem;
+        border-radius: 100px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        display: inline-block;
+        margin-bottom: 1rem;
+        box-shadow: 0 4px 10px -4px #f97316;
+        border: 1px solid rgba(255,255,255,0.3);
+    }
+    
+    /* Tarjetas de entrada */
+    .input-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+        margin: 2rem 0;
+    }
+    
+    .input-card {
+        background: white;
+        border-radius: 1.8rem;
+        padding: 1.5rem;
+        box-shadow: 0 15px 30px -15px #cbd5e1;
+        border: 1px solid #e9eef3;
+        transition: transform 0.2s;
+    }
+    
+    .input-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 20px 35px -15px #94a3b8;
+    }
+    
+    .input-label {
+        color: #334155;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+    }
+    
+    .input-value {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #0f2b3d;
+        line-height: 1.2;
+    }
+    
+    .input-unit {
+        font-size: 0.9rem;
+        color: #94a3b8;
+        font-weight: 400;
+        margin-left: 0.3rem;
+    }
+    
+    .input-slider {
+        margin-top: 1rem;
+    }
+    
+    /* Selector elegante */
+    .elegant-select {
+        background: #f8fafc;
+        border-radius: 1.5rem;
+        padding: 0.8rem 1.2rem;
+        border: 1px solid #e2e8f0;
+        color: #0f2b3d;
+        font-weight: 500;
+        width: 100%;
+    }
+    
+    /* Botón principal */
+    .primary-btn {
+        background: linear-gradient(135deg, #1e4b6a, #0f2b3d);
+        color: white;
+        border: none;
+        padding: 1rem 2rem;
+        border-radius: 3rem;
+        font-weight: 600;
+        font-size: 1.1rem;
+        width: 100%;
+        cursor: pointer;
+        transition: all 0.3s;
+        box-shadow: 0 10px 20px -8px #1e4b6a;
+        border: 1px solid rgba(255,255,255,0.2);
+        margin: 1rem 0;
+    }
+    
+    .primary-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 20px 30px -10px #0f2b3d;
+    }
+    
+    /* Tarjeta de resultado */
+    .result-card {
+        background: linear-gradient(135deg, #1e4b6a, #0f2b3d);
+        border-radius: 2.5rem;
+        padding: 2.5rem;
+        text-align: center;
+        margin: 2rem 0;
+        box-shadow: 0 30px 40px -20px #0f2b3d;
+        border: 1px solid rgba(255,255,255,0.2);
+    }
+    
+    .result-label {
+        color: rgba(255,255,255,0.7);
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 0.5rem;
+    }
+    
+    .result-number {
+        font-size: 4.5rem;
+        font-weight: 800;
+        color: white;
+        line-height: 1;
+        margin: 0.5rem 0;
+        text-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    
+    .result-detail {
+        color: rgba(255,255,255,0.6);
+        font-size: 1rem;
+        margin-top: 0.5rem;
+    }
+    
+    /* Separador */
+    .divider {
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #cbd5e1, transparent);
+        margin: 2rem 0;
+    }
+    
+    /* Glosario */
+    .glossary-card {
+        background: white;
+        border-radius: 2rem;
+        padding: 1.8rem;
+        margin: 2rem 0;
+        border: 1px solid #e9eef3;
+        box-shadow: 0 15px 30px -15px #cbd5e1;
+    }
+    
+    .glossary-title {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: #0f2b3d;
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    
+    .glossary-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.8rem 0;
+        border-bottom: 1px solid #f1f5f9;
+    }
+    
+    .glossary-item:last-child {
+        border-bottom: none;
+    }
+    
+    .glossary-term {
+        font-weight: 600;
+        color: #1e4b6a;
+    }
+    
+    .glossary-def {
+        color: #64748b;
+        text-align: right;
+    }
+    
+    /* Footer elegante */
+    .footer {
+        text-align: center;
+        color: #94a3b8;
+        font-size: 0.8rem;
+        margin-top: 3rem;
+        padding-top: 2rem;
+        border-top: 1px solid #e2e8f0;
+    }
+    
+    .footer-links {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        margin: 1rem 0;
+    }
+    
+    .footer-links a {
+        color: #64748b;
+        text-decoration: none;
+        font-size: 0.8rem;
+        transition: color 0.2s;
+    }
+    
+    .footer-links a:hover {
+        color: #1e4b6a;
+    }
+    
+    /* Responsive */
+    @media (max-width: 640px) {
+        .main-title { font-size: 2.5rem; }
+        .input-grid { grid-template-columns: 1fr; }
+        .result-number { font-size: 3rem; }
+    }
+</style>
+""", unsafe_allow_html=True)
 
 # ============================================
-# VARIABLES EDITABLES (con énfasis demostrativo)
+# ENCABEZADO
 # ============================================
+st.markdown("""
+<div class="title-section">
+    <span class="demo-badge">⚡ VERSIÓN DEMO</span>
+    <div class="main-title">OptiPensión 73</div>
+    <div class="sub-title">Optimización Integral de Pensión · Ley 73</div>
+</div>
+""", unsafe_allow_html=True)
 
-st.subheader("📋 Parámetros demostrativos")
+# ============================================
+# CONTENEDOR PRINCIPAL
+# ============================================
+st.markdown('<div class="main-card">', unsafe_allow_html=True)
+
+# ============================================
+# PARÁMETROS DEMOSTRATIVOS
+# ============================================
+st.markdown("""
+<div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+    <span style="background: #e9eef3; padding: 0.3rem 1rem; border-radius: 100px; font-size: 0.8rem; font-weight: 600; color: #1e4b6a;">📋 PARÁMETROS DEMOSTRATIVOS</span>
+</div>
+""", unsafe_allow_html=True)
 
 col1, col2 = st.columns(2)
 
 with col1:
-    edad_actual = st.slider("Edad actual", 45, 65, 55, 
-                           help="Puedes mover la edad para ver cómo cambia el resultado")
-    edad_retiro = st.selectbox("Edad de retiro", [60, 61, 62, 63, 64, 65], index=0,
-                               help="Elige la edad a la que planeas retirarte")
+    st.markdown("""
+    <div class="input-card">
+        <div class="input-label">📅 EDAD ACTUAL</div>
+        <div class="input-value">55 <span class="input-unit">años</span></div>
+        <div class="input-slider">
+    """, unsafe_allow_html=True)
+    edad = st.slider("", 40, 65, 55, label_visibility="collapsed")
+    st.markdown('</div></div>', unsafe_allow_html=True)
 
 with col2:
-    # Salario EDITABLE pero con advertencia
-    salario_demo = st.number_input("Salario promedio (demostrativo)", 
-                                   min_value=5000, max_value=50000, 
-                                   value=20000, step=1000,
-                                   help="💡 VALOR DEMOSTRATIVO - En la versión completa usarás tu salario real")
+    st.markdown("""
+    <div class="input-card">
+        <div class="input-label">🎯 EDAD DE RETIRO</div>
+    """, unsafe_allow_html=True)
+    retiro = st.selectbox("", [60, 61, 62, 63, 64, 65], index=0, label_visibility="collapsed")
+    st.markdown('</div>', unsafe_allow_html=True)
+
+col1, col2 = st.columns(2)
+
+with col1:
+    st.markdown("""
+    <div class="input-card">
+        <div class="input-label">💰 SALARIO PROMEDIO</div>
+        <div class="input-value">$20,000 <span class="input-unit">mensual</span></div>
+        <div class="input-slider">
+    """, unsafe_allow_html=True)
+    salario = st.slider(" ", 5000, 50000, 20000, step=1000, label_visibility="collapsed")
+    st.markdown('</div></div>', unsafe_allow_html=True)
+
+with col2:
+    st.markdown("""
+    <div class="input-card">
+        <div class="input-label">📊 SEMANAS COTIZADAS</div>
+        <div style="background: #f8fafc; border-radius: 1rem; padding: 1rem; text-align: center; margin-top: 0.5rem;">
+            <span style="font-size: 2rem; font-weight: 700; color: #1e4b6a;">1,200</span>
+            <span style="color: #94a3b8; display: block; font-size: 0.9rem;">valor fijo demo</span>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+
+# ============================================
+# BOTÓN DE CÁLCULO
+# ============================================
+st.markdown("""
+<style>
+    div.stButton > button:first-child {
+        background: linear-gradient(135deg, #1e4b6a, #0f2b3d);
+        color: white;
+        border: none;
+        padding: 1rem 2rem;
+        border-radius: 3rem;
+        font-weight: 600;
+        font-size: 1.1rem;
+        width: 100%;
+        transition: all 0.3s;
+        box-shadow: 0 10px 20px -8px #1e4b6a;
+        border: 1px solid rgba(255,255,255,0.2);
+        margin: 1rem 0;
+    }
+    div.stButton > button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 20px 30px -10px #0f2b3d;
+    }
+</style>
+""", unsafe_allow_html=True)
+
+if st.button("🔮 CALCULAR PENSIÓN DEMOSTRATIVA", use_container_width=True):
+    # Cálculo simplificado para demo
+    factores = {60:0.75, 61:0.80, 62:0.85, 63:0.90, 64:0.95, 65:1.00}
+    pension_demo = salario * 0.5 * factores[retiro]
     
-    # Semanas fijas (gancho)
-    st.metric("Semanas cotizadas", "1,200", 
-             help="En la versión completa usarás tus semanas reales")
-
-st.caption("⚠️ **Importante:** Este es un cálculo demostrativo con datos de ejemplo.")
-
-st.divider()
+    st.markdown(f"""
+    <div class="result-card">
+        <div class="result-label">PENSIÓN MENSUAL ESTIMADA</div>
+        <div class="result-number">${pension_demo:,.0f}</div>
+        <div class="result-detail">Retiro a los {retiro} años · Cálculo demostrativo</div>
+    </div>
+    """, unsafe_allow_html=True)
 
 # ============================================
-# CÁLCULO SIMPLIFICADO (demostrativo)
+# GLOSARIO PROFESIONAL
 # ============================================
-
-st.subheader("📊 Resultado demostrativo")
-
-# Factor por edad
-factores = {60:0.75, 61:0.80, 62:0.85, 63:0.90, 64:0.95, 65:1.00}
-factor_edad = factores[edad_retiro]
-
-# Fórmula simplificada (a propósito)
-pension_demo = salario_demo * factor_edad * 0.5
-
-# Mostrar resultado con estilo profesional
-st.markdown(f"""
-<div style='background-color: #f8f9fa; padding: 20px; border-radius: 10px; text-align: center; border: 1px solid #dee2e6;'>
-    <h2 style='color: #0066b3; margin:0'>PENSIÓN ESTIMADA</h2>
-    <h1 style='color: #0066b3; font-size: 48px; margin:10px'>${pension_demo:,.0f}</h1>
-    <p style='color: #6c757d; margin:0'>Retiro a los {edad_retiro} años</p>
-    <p style='color: #6c757d; margin:0; font-size: 12px;'>*Cálculo demostrativo con parámetros de ejemplo</p>
+st.markdown('<div class="glossary-card">', unsafe_allow_html=True)
+st.markdown("""
+<div class="glossary-title">
+    <span>📘</span> GLOSARIO DE TÉRMINOS
 </div>
 """, unsafe_allow_html=True)
 
-st.divider()
+glosario = [
+    ("Ley 73", "Régimen para quienes cotizaron antes del 1 de julio de 1997"),
+    ("Factor por edad", "75% (60 años) a 100% (65 años)"),
+    ("Semanas cotizadas", "Mínimo 500 semanas para pensión"),
+    ("Salario promedio", "Últimas 250 semanas cotizadas"),
+    ("Modalidad 40", "Continuación voluntaria para aumentar pensión"),
+]
+
+for term, definicion in glosario:
+    st.markdown(f"""
+    <div class="glossary-item">
+        <span class="glossary-term">{term}</span>
+        <span class="glossary-def">{definicion}</span>
+    </div>
+    """, unsafe_allow_html=True)
+
+st.markdown('</div>', unsafe_allow_html=True)
 
 # ============================================
-# GLOSARIO DE TÉRMINOS
+# DIVISOR
 # ============================================
-
-with st.expander("📘 Glosario de términos"):
-    st.markdown("""
-| Término | Descripción |
-|---------|-------------|
-| **Ley 73** | Régimen de pensiones para quienes cotizaron antes del 1 de julio de 1997 |
-| **Factor por edad** | Porcentaje de la pensión según la edad de retiro (75% a 60 años, 80% a 61, etc.) |
-| **Semanas cotizadas** | Mínimo 500 semanas para tener derecho a pensión |
-| **Salario promedio** | Se calcula con las últimas 250 semanas cotizadas |
-| **Modalidad 40** | Continuación voluntaria para aumentar el salario promedio |
-    """)
-
-st.divider()
+st.markdown('<div class="divider"></div>', unsafe_allow_html=True)
 
 # ============================================
-# OFERTA COMERCIAL (VERSIÓN COMPLETA) - TABLA ALINEADA
+# OFERTA VERSIÓN COMPLETA
 # ============================================
-
-st.markdown("## 🔒 Versión Completa")
-
 st.markdown("""
-### Obtén tu diagnóstico personalizado:
+<div style="text-align: center; margin: 2rem 0;">
+    <span style="background: #fee2e2; color: #b91c1c; padding: 0.3rem 1.2rem; border-radius: 100px; font-size: 0.8rem; font-weight: 600;">🔒 VERSIÓN COMPLETA</span>
+</div>
 
-| Beneficio | Descripción |
-|-----------|-------------|
-| ✅ **Cálculo con tus datos reales** | Semanas cotizadas, salario promedio y edad exacta |
-| ✅ **Análisis de Modalidad 40** | ROI, tiempo de recuperación y utilidad real |
-| ✅ **Comparativa de escenarios** | 60 vs 61...65 años — ¿cuánto ganas o pierdes? |
-| ✅ **Proyección a 20 años** | Con ajuste inflacionario incluido |
-| ✅ **Recomendación estratégica** | Hecha a tu medida, no genérica |
-| ✅ **Asesoría post-diagnóstico** | Resuelves dudas después de recibirlo |
+<div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 1.5rem 0;">
+    <div style="background: white; padding: 1rem; border-radius: 1rem; border: 1px solid #e9eef3;">
+        ✅ Cálculo con tus datos reales
+    </div>
+    <div style="background: white; padding: 1rem; border-radius: 1rem; border: 1px solid #e9eef3;">
+        ✅ Análisis de Modalidad 40
+    </div>
+    <div style="background: white; padding: 1rem; border-radius: 1rem; border: 1px solid #e9eef3;">
+        ✅ Comparativa 60 vs 65 años
+    </div>
+    <div style="background: white; padding: 1rem; border-radius: 1rem; border: 1px solid #e9eef3;">
+        ✅ Proyección a 20 años
+    </div>
+    <div style="background: white; padding: 1rem; border-radius: 1rem; border: 1px solid #e9eef3;">
+        ✅ Recomendación personalizada
+    </div>
+    <div style="background: white; padding: 1rem; border-radius: 1rem; border: 1px solid #e9eef3;">
+        ✅ Asesoría post-diagnóstico
+    </div>
+</div>
 
----
+<div style="text-align: center; margin: 2rem 0;">
+    <div style="font-size: 2rem; font-weight: 800; color: #0f2b3d;">Desde $1,500 MXN</div>
+    <div style="color: #64748b; margin: 0.5rem 0;">Transferencia · Mercado Pago · OXXO</div>
+</div>
 
-### Diferentes paquetes disponibles
-
-💰 **Desde $1,500 MXN**
-
-**Formas de pago:**
-- Transferencia bancaria
-- Mercado Pago
-- OXXO
-""")
-
-# Botón de WhatsApp profesional
-whatsapp_link = "https://wa.me/5218715791810?text=Quiero%20información%20sobre%20los%20paquetes%20de%20OptiPensión%2073"
-st.markdown(f"""
-<div style='text-align: center; margin-top: 20px;'>
-    <a href='{whatsapp_link}' target='_blank'>
-        <button style='background-color: #25D366; color: white; padding: 12px 20px; 
-                border: none; border-radius: 5px; font-size: 16px; font-weight: bold;
-                cursor: pointer; width: 100%;'>
+<div style="display: flex; justify-content: center; margin: 2rem 0;">
+    <a href="https://wa.me/5218715791810" target="_blank">
+        <button style="background: #25D366; color: white; border: none; padding: 1rem 3rem; border-radius: 3rem; font-weight: 600; font-size: 1.1rem; cursor: pointer; box-shadow: 0 10px 20px -8px #128C7E;">
             📲 SOLICITAR INFORMACIÓN
         </button>
     </a>
 </div>
 """, unsafe_allow_html=True)
 
-st.divider()
+# ============================================
+# CIERRE DEL CONTENEDOR PRINCIPAL
+# ============================================
+st.markdown('</div>', unsafe_allow_html=True)
 
 # ============================================
-# TESTIMONIOS (profesionales)
+# FOOTER
 # ============================================
-
-st.markdown("### 💬 Experiencias de usuarios")
-
-col_t1, col_t2 = st.columns(2)
-
-with col_t1:
-    st.markdown("""
-    > *"El análisis de Modalidad 40 me ayudó a decidir invertir en mi pensión. La recuperación estimada fue exacta."*
-    > 
-    > — **Carlos R., Ingeniero Industrial**
-    """)
-
-with col_t2:
-    st.markdown("""
-    > *"Pensé que me pensionaba a los 60, pero el simulador me mostró que esperar un año más aumentaba mi pensión en $1,500 mensuales."*
-    > 
-    > — **María L., Contadora**
-    """)
-
-st.divider()
-
-# ============================================
-# PIE DE PÁGINA PROFESIONAL
-# ============================================
-
 st.markdown("""
----
-🔒 *Al usar este simulador aceptas nuestros Términos y Condiciones.  
-No almacenamos datos personales ni los compartimos con terceros.  
-Este cálculo es una simulación demostrativa y no constituye un dictamen oficial del IMSS.*  
-
-📧 contacto@optipension73.com | 📱 WhatsApp: 871 579 1810
-
-**OptiPensión 73®** · Optimización Integral de Pensión  
-© 2026 · Todos los derechos reservados
-
-[Política de Privacidad](https://www.optipension73.com/privacidad) · [Términos de Servicio](https://www.optipension73.com/terminos)
-""")
+<div class="footer">
+    <div class="footer-links">
+        <a href="#">Inicio</a>
+        <a href="#">Aviso de Privacidad</a>
+        <a href="#">Términos</a>
+        <a href="#">Contacto</a>
+    </div>
+    <p>📧 contacto@optipension73.com · 📱 871 579 1810</p>
+    <p>⚡ Esta es una simulación demostrativa · No constituye dictamen oficial del IMSS</p>
+    <p>© 2026 · OptiPensión 73 · Optimización Integral</p>
+</div>
+""", unsafe_allow_html=True)
 
 st.caption(f"Última actualización: {datetime.now().strftime('%d/%m/%Y')}")
