@@ -43,7 +43,7 @@ with col2:
     semanas = st.number_input("Semanas cotizadas", 500, 2500, 1315)
 
 # ------------------------------------------------
-# PARAMETROS BLOQUEADOS (PRO)
+# PARAMETROS BLOQUEADOS
 # ------------------------------------------------
 
 st.divider()
@@ -66,12 +66,12 @@ edad_retiro = st.slider(
     disabled=True
 )
 
-st.info("🔒 Ajuste de salario, edad de retiro y optimización avanzada disponibles solo en versión PRO.")
+st.info("🔒 Ajustes avanzados disponibles solo en versión PRO")
 
 st.divider()
 
 # ------------------------------------------------
-# CALCULO DEMO BASICO
+# CALCULO DEMO
 # ------------------------------------------------
 
 UMA = 108.57
@@ -83,33 +83,70 @@ incremento_semanas = max((semanas - 500) // 52, 0)
 
 porcentaje_total = cuantia_basica + (incremento_anual * incremento_semanas)
 
-pension_mensual = salario * porcentaje_total * 30 / 100
+pension_normal = salario * porcentaje_total * 30 / 100
+
+# estimación optimizada (solo demostración)
+pension_optimizada = pension_normal * 1.35
 
 # ------------------------------------------------
-# RESULTADO
+# RESULTADOS
 # ------------------------------------------------
 
 st.subheader("Resultado estimado")
 
-st.metric(
-    "Pensión mensual estimada",
-    f"${pension_mensual:,.0f}"
-)
+col1, col2 = st.columns(2)
 
-st.caption("Resultado aproximado con fines demostrativos")
+with col1:
+    st.metric(
+        "Pensión estimada sin optimización",
+        f"${pension_normal:,.0f}"
+    )
+
+with col2:
+    st.metric(
+        "Pensión estimada optimizada",
+        f"${pension_optimizada:,.0f}"
+    )
 
 # ------------------------------------------------
-# GATILLO DE PERDIDA POTENCIAL
+# PERDIDA POTENCIAL
 # ------------------------------------------------
 
-pension_optimizada = pension_mensual * 1.35
-perdida = pension_optimizada - pension_mensual
+perdida_mensual = pension_optimizada - pension_normal
+
+perdida_20_anos = perdida_mensual * 12 * 20
 
 st.warning(
-    f"⚠️ Sin optimización de pensión podrías estar perdiendo aproximadamente **${perdida:,.0f} pesos mensuales**."
+    f"⚠️ Sin optimización podrías perder aproximadamente **${perdida_20_anos:,.0f} pesos** durante tu retiro."
 )
 
-st.caption("La optimización completa se calcula en la versión profesional.")
+st.divider()
+
+# ------------------------------------------------
+# GRAFICA COMPARATIVA
+# ------------------------------------------------
+
+st.subheader("Comparativa de pensión")
+
+labels = ["Pensión actual", "Pensión optimizada"]
+
+valores = [pension_normal, pension_optimizada]
+
+df = pd.DataFrame({
+    "Escenario": labels,
+    "Pensión Mensual": valores
+})
+
+fig, ax = plt.subplots()
+
+ax.bar(df["Escenario"], df["Pensión Mensual"])
+
+ax.set_title("Comparativa de pensión mensual")
+ax.set_ylabel("Monto mensual ($)")
+
+st.pyplot(fig)
+
+st.caption("Optimización calculada completamente en versión PRO")
 
 st.divider()
 
@@ -121,33 +158,7 @@ st.subheader("Simulación Modalidad 40")
 
 st.warning("🔒 Simulación completa disponible solo en versión PRO")
 
-meses = [12, 24, 36, 48]
-
-pensiones_demo = [
-    pension_mensual * 1.1,
-    pension_mensual * 1.2,
-    pension_mensual * 1.3,
-    pension_mensual * 1.4
-]
-
-df = pd.DataFrame({
-    "Meses Modalidad 40": meses,
-    "Pensión estimada": pensiones_demo
-})
-
-st.dataframe(df)
-
-fig, ax = plt.subplots()
-
-ax.bar(df["Meses Modalidad 40"], df["Pensión estimada"])
-
-ax.set_title("Impacto Modalidad 40 (Vista DEMO)")
-ax.set_xlabel("Meses")
-ax.set_ylabel("Pensión mensual")
-
-st.pyplot(fig)
-
-st.caption("Datos ilustrativos · cálculo real disponible en versión PRO")
+st.caption("La versión PRO permite calcular impacto real de Modalidad 40, ROI y escenarios de inversión.")
 
 # ------------------------------------------------
 # BOTON VERSION PRO
