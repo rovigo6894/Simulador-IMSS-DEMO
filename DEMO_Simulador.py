@@ -43,36 +43,25 @@ st.markdown("""
         background: linear-gradient(145deg, #f8fafc 0%, #f1f5f9 100%);
     }
     
-    /* Header con logo de texto */
-    .header-logo {
+    /* Header con logo */
+    .header-container {
         display: flex;
         align-items: center;
-        justify-content: center;
-        gap: 1rem;
+        gap: 1.5rem;
         margin-bottom: 2rem;
-        padding: 1.5rem;
+        padding: 1rem 2rem;
         background: white;
         border-radius: 3rem;
         box-shadow: 0 10px 25px -10px rgba(0,0,0,0.1);
         border: 1px solid #e9eef3;
     }
     
-    .logo-box {
-        width: 70px;
-        height: 70px;
-        background: linear-gradient(135deg, #1e4b6a, #0f2b3d);
-        border-radius: 18px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        font-size: 2rem;
-        font-weight: 800;
-        box-shadow: 0 10px 15px -5px #1e4b6a;
-    }
-    
-    .logo-text {
-        text-align: left;
+    .logo-img {
+        width: 80px;
+        height: 80px;
+        border-radius: 20px;
+        object-fit: cover;
+        box-shadow: 0 10px 20px -8px #1e4b6a;
     }
     
     .logo-text h1 {
@@ -183,6 +172,12 @@ st.markdown("""
         text-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
     
+    .result-detail {
+        color: rgba(255,255,255,0.6);
+        font-size: 1rem;
+        margin-top: 0.5rem;
+    }
+    
     .pro-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -217,6 +212,10 @@ st.markdown("""
         border-bottom: 1px solid #f1f5f9;
     }
     
+    .glossary-item:last-child {
+        border-bottom: none;
+    }
+    
     .glossary-term {
         font-weight: 600;
         color: #1e4b6a;
@@ -234,6 +233,23 @@ st.markdown("""
         margin-top: 3rem;
         padding-top: 2rem;
         border-top: 1px solid #e2e8f0;
+    }
+    
+    .footer-links {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        margin: 1rem 0;
+    }
+    
+    .footer-links a {
+        color: #64748b;
+        text-decoration: none;
+        font-size: 0.8rem;
+    }
+    
+    .footer-links a:hover {
+        color: #1e4b6a;
     }
     
     .stButton > button {
@@ -277,7 +293,7 @@ st.markdown("""
     }
     
     @media (max-width: 640px) {
-        .header-logo { flex-direction: column; text-align: center; }
+        .header-container { flex-direction: column; text-align: center; }
         .logo-text { text-align: center; }
         .input-grid { grid-template-columns: 1fr; }
         .result-number { font-size: 3rem; }
@@ -287,17 +303,21 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ============================================
-# HEADER CON LOGO (TEXTO)
+# HEADER CON LOGO (CORREGIDO)
 # ============================================
-st.markdown("""
-<div class="header-logo">
-    <div class="logo-box">73</div>
-    <div class="logo-text">
-        <h1>OPTIPENSIÓN 73</h1>
-        <p>Optimización de Pensiones · Ley 73</p>
+col1, col2 = st.columns([1, 3])
+
+with col1:
+    # LOGO DESDE GITHUB - NOMBRE CORRECTO: imagen.jpg
+    st.image("https://raw.githubusercontent.com/rovigo6894/Simulador-IMSS-DEMO/main/imagen.jpg", width=80)
+
+with col2:
+    st.markdown("""
+    <div style="margin-top: 10px;">
+        <h1 style="color: #0f2b3d; margin: 0;">OPTIPENSIÓN 73</h1>
+        <p style="color: #64748b; margin: 0;">Optimización de Pensiones · Ley 73</p>
     </div>
-</div>
-""", unsafe_allow_html=True)
+    """, unsafe_allow_html=True)
 
 # ============================================
 # BADGE DEMO
@@ -314,7 +334,7 @@ st.markdown("""
 st.markdown('<div class="main-card">', unsafe_allow_html=True)
 
 # ============================================
-# PARÁMETROS
+# PARÁMETROS DEMOSTRATIVOS
 # ============================================
 st.markdown("""
 <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
@@ -366,7 +386,7 @@ with col2:
     """, unsafe_allow_html=True)
 
 # ============================================
-# BOTÓN
+# BOTÓN DE CÁLCULO
 # ============================================
 if st.button("🔮 CALCULAR PENSIÓN DEMOSTRATIVA", use_container_width=True):
     factores = {60:0.75, 61:0.80, 62:0.85, 63:0.90, 64:0.95, 65:1.00}
@@ -381,7 +401,7 @@ if st.button("🔮 CALCULAR PENSIÓN DEMOSTRATIVA", use_container_width=True):
     """, unsafe_allow_html=True)
 
 # ============================================
-# GLOSARIO
+# GLOSARIO DE TÉRMINOS
 # ============================================
 st.markdown('<div class="glossary-card">', unsafe_allow_html=True)
 st.markdown("""
@@ -410,7 +430,7 @@ for term, definicion in glosario:
 st.markdown('</div>', unsafe_allow_html=True)
 
 # ============================================
-# OFERTA PRO (CORREGIDA Y VISIBLE)
+# OFERTA VERSIÓN COMPLETA
 # ============================================
 st.markdown("""
 <div style="text-align: center; margin: 2rem 0;">
@@ -439,7 +459,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ============================================
-# CIERRE DEL CONTENEDOR
+# CIERRE DEL CONTENEDOR PRINCIPAL
 # ============================================
 st.markdown('</div>', unsafe_allow_html=True)
 
@@ -448,11 +468,11 @@ st.markdown('</div>', unsafe_allow_html=True)
 # ============================================
 st.markdown("""
 <div class="footer">
-    <div style="display: flex; justify-content: center; gap: 1.5rem; margin: 1rem 0;">
-        <a href="#" style="color: #64748b; text-decoration: none;">Inicio</a>
-        <a href="#" style="color: #64748b; text-decoration: none;">Aviso de Privacidad</a>
-        <a href="#" style="color: #64748b; text-decoration: none;">Términos</a>
-        <a href="#" style="color: #64748b; text-decoration: none;">Contacto</a>
+    <div class="footer-links">
+        <a href="#">Inicio</a>
+        <a href="#">Aviso de Privacidad</a>
+        <a href="#">Términos</a>
+        <a href="#">Contacto</a>
     </div>
     <p>📧 contacto@optipension73.com · 📱 871 579 1810</p>
     <p>⚡ Simulación demostrativa · No constituye dictamen oficial del IMSS</p>
