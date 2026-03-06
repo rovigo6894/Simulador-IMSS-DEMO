@@ -7,11 +7,12 @@ from config_demo import VERSION, EMAIL, WHATSAPP, WHATSAPP_NUMERO, SEMANAS_FIJAS
 # CONFIGURACIÓN
 # ============================================
 st.set_page_config(
-    page_title="Optipensión 73 DEMO",
+    page_title="Optipensión 73 · DEMO",
+    page_icon="📊",
     layout="centered"
 )
 
-# Ocultar menús (esto es seguro)
+# Ocultar menús de Streamlit (básico)
 hide_streamlit_style = """
             <style>
             #MainMenu {visibility: hidden;}
@@ -22,12 +23,78 @@ hide_streamlit_style = """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
 # ============================================
+# CSS PROFESIONAL (FONDO ELEGANTE)
+# ============================================
+st.markdown("""
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    
+    * {
+        font-family: 'Inter', sans-serif;
+    }
+    
+    .stApp {
+        background: linear-gradient(145deg, #f8fafc 0%, #f1f5f9 100%);
+    }
+    
+    /* Footer profesional */
+    .footer {
+        text-align: center;
+        color: #64748b;
+        font-size: 0.8rem;
+        margin-top: 3rem;
+        padding-top: 2rem;
+        border-top: 1px solid #e2e8f0;
+    }
+    
+    .footer a {
+        color: #64748b;
+        text-decoration: none;
+    }
+    
+    .footer a:hover {
+        color: #1e4b6a;
+    }
+    
+    /* Tarjetas de métricas */
+    div[data-testid="metric-container"] {
+        background: white;
+        border-radius: 1rem;
+        padding: 1rem;
+        box-shadow: 0 4px 12px -6px #cbd5e1;
+        border: 1px solid #e9eef3;
+    }
+    
+    /* Badge PRO */
+    .pro-badge {
+        background: linear-gradient(135deg, #f97316, #fb923c);
+        color: white;
+        padding: 0.2rem 1rem;
+        border-radius: 2rem;
+        font-size: 0.7rem;
+        font-weight: 600;
+        display: inline-block;
+        margin-bottom: 0.5rem;
+    }
+    
+    /* Botón PRO */
+    .stLinkButton > button {
+        background: linear-gradient(135deg, #f97316, #fb923c) !important;
+        color: white !important;
+        border: none !important;
+        border-radius: 2rem !important;
+        font-weight: 600 !important;
+    }
+</style>
+""", unsafe_allow_html=True)
+
+# ============================================
 # LOGO + TÍTULO
 # ============================================
 col1, col2 = st.columns([1, 5])
 
 with col1:
-    st.image("https://raw.githubusercontent.com/rovigo6894/Simulador-IMSS-DEMO/main/image.jpg", width=80)
+    st.image("https://raw.githubusercontent.com/rovigo6894/Simulador-IMSS-DEMO/main/imagen.jpg", width=80)
 
 with col2:
     st.title("Optipensión 73")
@@ -51,7 +118,7 @@ with col2:
 st.caption(f"⚡ Valores de referencia: {SEMANAS_FIJAS} semanas · Retiro a los {EDAD_RETIRO_FIJA} años")
 
 # ============================================
-# BOTÓN
+# BOTÓN Y RESULTADOS
 # ============================================
 if st.button("🔮 Recalcular simulación", use_container_width=True):
     
@@ -73,15 +140,21 @@ st.divider()
 # ============================================
 # VERSIÓN PRO
 # ============================================
-st.subheader("🔒 Versión PRO")
+st.markdown("""
+<div style='text-align: center;'>
+    <span class="pro-badge">🔒 VERSIÓN PRO</span>
+</div>
+""", unsafe_allow_html=True)
 
 st.markdown("""
-✅ **Modalidad 40** - Cálculo exacto de inversión y ROI  
-✅ **Comparativa de edades** - 60 vs 65 años  
-✅ **Proyección con inflación** - Valor real futuro  
-✅ **Reporte PDF** - Listo para presentar  
-✅ **Asesoría personalizada** - Vía WhatsApp
-""")
+<div style='background: white; border-radius: 1rem; padding: 1.5rem; border: 1px solid #e9eef3; margin: 1rem 0;'>
+    <p>✅ <strong>Modalidad 40</strong> - Cálculo exacto de inversión y ROI</p>
+    <p>✅ <strong>Comparativa de edades</strong> - 60 vs 65 años</p>
+    <p>✅ <strong>Proyección con inflación</strong> - Valor real futuro</p>
+    <p>✅ <strong>Reporte PDF</strong> - Listo para presentar</p>
+    <p>✅ <strong>Asesoría personalizada</strong> - Vía WhatsApp</p>
+</div>
+""", unsafe_allow_html=True)
 
 st.link_button(
     "💎 Adquirir versión PRO",
@@ -92,16 +165,17 @@ st.link_button(
 st.divider()
 
 # ============================================
-# FOOTER SIMPLE
+# FOOTER PROFESIONAL
 # ============================================
 st.markdown(f"""
-<div style='text-align:center; font-size:12px; color:#666;'>
-
-**Términos y Condiciones** · **Aviso de Privacidad** · **Legal**
-
-📧 {EMAIL} · 📱 {WHATSAPP_NUMERO} · 📍 Torreón, Coahuila
-
-© 2026 Optipensión 73 · Versión {VERSION} · {datetime.now().strftime('%d/%m/%Y')}
-
+<div class="footer">
+    <div style="display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 1rem;">
+        <a href="#">Términos y Condiciones</a>
+        <a href="#">Aviso de Privacidad</a>
+        <a href="#">Legal</a>
+    </div>
+    <p>📧 {EMAIL} · 📱 {WHATSAPP_NUMERO} · 📍 Torreón, Coahuila</p>
+    <p>© 2026 Optipensión 73 · Versión {VERSION}</p>
+    <p style="font-size:0.7rem;">Última actualización: {datetime.now().strftime('%d/%m/%Y')}</p>
 </div>
 """, unsafe_allow_html=True)
