@@ -20,7 +20,7 @@ st.set_page_config(
 col1, col2 = st.columns([1,6])
 
 with col1:
-    logo = Image.open("imagen.jpg")
+    logo = Image.open("image.jpg")
     st.image(logo, width=90)
 
 with col2:
