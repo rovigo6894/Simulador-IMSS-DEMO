@@ -43,24 +43,36 @@ st.markdown("""
         background: linear-gradient(145deg, #f8fafc 0%, #f1f5f9 100%);
     }
     
-    /* Header con logo */
-    .header-container {
+    /* Header con logo de texto */
+    .header-logo {
         display: flex;
         align-items: center;
-        gap: 1.5rem;
+        justify-content: center;
+        gap: 1rem;
         margin-bottom: 2rem;
-        padding: 1rem 2rem;
+        padding: 1.5rem;
         background: white;
         border-radius: 3rem;
         box-shadow: 0 10px 25px -10px rgba(0,0,0,0.1);
         border: 1px solid #e9eef3;
     }
     
-    .logo-img {
-        width: 80px;
-        height: 80px;
-        border-radius: 20px;
-        object-fit: cover;
+    .logo-box {
+        width: 70px;
+        height: 70px;
+        background: linear-gradient(135deg, #1e4b6a, #0f2b3d);
+        border-radius: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 2rem;
+        font-weight: 800;
+        box-shadow: 0 10px 15px -5px #1e4b6a;
+    }
+    
+    .logo-text {
+        text-align: left;
     }
     
     .logo-text h1 {
@@ -77,7 +89,6 @@ st.markdown("""
         color: #64748b;
         font-size: 0.9rem;
         margin: 0;
-        letter-spacing: 0.5px;
     }
     
     .demo-badge {
@@ -172,6 +183,24 @@ st.markdown("""
         text-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
     
+    .pro-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        margin: 1.5rem 0;
+    }
+    
+    .pro-item {
+        background: white;
+        padding: 1rem;
+        border-radius: 1rem;
+        border: 1px solid #e9eef3;
+        text-align: center;
+        font-weight: 500;
+        color: #1e4b6a;
+        box-shadow: 0 5px 15px -8px #cbd5e1;
+    }
+    
     .glossary-card {
         background: white;
         border-radius: 2rem;
@@ -179,6 +208,23 @@ st.markdown("""
         margin: 2rem 0;
         border: 1px solid #e9eef3;
         box-shadow: 0 15px 30px -15px #cbd5e1;
+    }
+    
+    .glossary-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.8rem 0;
+        border-bottom: 1px solid #f1f5f9;
+    }
+    
+    .glossary-term {
+        font-weight: 600;
+        color: #1e4b6a;
+    }
+    
+    .glossary-def {
+        color: #64748b;
+        text-align: right;
     }
     
     .footer {
@@ -208,31 +254,50 @@ st.markdown("""
         box-shadow: 0 20px 30px -10px #0f2b3d !important;
     }
     
+    .whatsapp-btn {
+        background: #25D366;
+        color: white;
+        border: none;
+        padding: 1rem 3rem;
+        border-radius: 3rem;
+        font-weight: 600;
+        font-size: 1.1rem;
+        cursor: pointer;
+        width: 100%;
+        box-shadow: 0 10px 20px -8px #128C7E;
+        transition: all 0.3s;
+        text-align: center;
+        display: inline-block;
+        text-decoration: none;
+    }
+    
+    .whatsapp-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 20px 30px -10px #0d7a6b;
+    }
+    
     @media (max-width: 640px) {
-        .header-container { flex-direction: column; text-align: center; }
+        .header-logo { flex-direction: column; text-align: center; }
         .logo-text { text-align: center; }
         .input-grid { grid-template-columns: 1fr; }
         .result-number { font-size: 3rem; }
+        .pro-grid { grid-template-columns: 1fr; }
     }
 </style>
 """, unsafe_allow_html=True)
 
 # ============================================
-# HEADER CON LOGO (DESDE GITHUB)
+# HEADER CON LOGO (TEXTO)
 # ============================================
-col1, col2 = st.columns([1, 3])
-
-with col1:
-    # El logo está en GitHub, lo cargamos directamente
-    st.image("https://raw.githubusercontent.com/rovigo6894/Simulador-IMSS-DEMO/main/image.png", width=80)
-
-with col2:
-    st.markdown("""
-    <div style="margin-top: 10px;">
-        <h1 style="color: #0f2b3d; margin: 0;">OPTIPENSIÓN 73</h1>
-        <p style="color: #64748b; margin: 0;">Optimización de Pensiones · Ley 73</p>
+st.markdown("""
+<div class="header-logo">
+    <div class="logo-box">73</div>
+    <div class="logo-text">
+        <h1>OPTIPENSIÓN 73</h1>
+        <p>Optimización de Pensiones · Ley 73</p>
     </div>
-    """, unsafe_allow_html=True)
+</div>
+""", unsafe_allow_html=True)
 
 # ============================================
 # BADGE DEMO
@@ -331,44 +396,44 @@ glosario = [
     ("Factor por edad", "75% (60 años) a 100% (65 años)"),
     ("Semanas cotizadas", "Mínimo 500 semanas para pensión"),
     ("Salario promedio", "Últimas 250 semanas cotizadas"),
-    ("Modalidad 40", "Continuación voluntaria"),
+    ("Modalidad 40", "Continuación voluntaria para aumentar pensión"),
 ]
 
 for term, definicion in glosario:
     st.markdown(f"""
-    <div style="display: flex; justify-content: space-between; padding: 0.8rem 0; border-bottom: 1px solid #f1f5f9;">
-        <span style="font-weight: 600; color: #1e4b6a;">{term}</span>
-        <span style="color: #64748b;">{definicion}</span>
+    <div class="glossary-item">
+        <span class="glossary-term">{term}</span>
+        <span class="glossary-def">{definicion}</span>
     </div>
     """, unsafe_allow_html=True)
 
 st.markdown('</div>', unsafe_allow_html=True)
 
 # ============================================
-# OFERTA PRO
+# OFERTA PRO (CORREGIDA Y VISIBLE)
 # ============================================
 st.markdown("""
 <div style="text-align: center; margin: 2rem 0;">
     <span style="background: #fee2e2; color: #b91c1c; padding: 0.3rem 1.2rem; border-radius: 100px; font-size: 0.8rem; font-weight: 600;">🔒 VERSIÓN COMPLETA</span>
 </div>
 
-<div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 1.5rem 0;">
-    <div style="background: white; padding: 1rem; border-radius: 1rem; border: 1px solid #e9eef3;">✅ Cálculo con datos reales</div>
-    <div style="background: white; padding: 1rem; border-radius: 1rem; border: 1px solid #e9eef3;">✅ Análisis de Modalidad 40</div>
-    <div style="background: white; padding: 1rem; border-radius: 1rem; border: 1px solid #e9eef3;">✅ Comparativa 60 vs 65 años</div>
-    <div style="background: white; padding: 1rem; border-radius: 1rem; border: 1px solid #e9eef3;">✅ Proyección a 20 años</div>
+<div class="pro-grid">
+    <div class="pro-item">✅ Cálculo con tus datos reales</div>
+    <div class="pro-item">✅ Análisis de Modalidad 40</div>
+    <div class="pro-item">✅ Comparativa 60 vs 65 años</div>
+    <div class="pro-item">✅ Proyección a 20 años</div>
+    <div class="pro-item">✅ Recomendación personalizada</div>
+    <div class="pro-item">✅ Asesoría post-diagnóstico</div>
 </div>
 
 <div style="text-align: center; margin: 2rem 0;">
     <div style="font-size: 2rem; font-weight: 800; color: #0f2b3d;">Desde $1,500 MXN</div>
-    <div style="color: #64748b;">Transferencia · Mercado Pago · OXXO</div>
+    <div style="color: #64748b; margin: 0.5rem 0;">Transferencia · Mercado Pago · OXXO</div>
 </div>
 
-<div style="display: flex; justify-content: center;">
-    <a href="https://wa.me/5218715791810" target="_blank">
-        <button style="background: #25D366; color: white; border: none; padding: 1rem 3rem; border-radius: 3rem; font-weight: 600; font-size: 1.1rem; cursor: pointer; box-shadow: 0 10px 20px -8px #128C7E;">
-            📲 SOLICITAR INFORMACIÓN
-        </button>
+<div style="display: flex; justify-content: center; margin: 2rem 0;">
+    <a href="https://wa.me/5218715791810" target="_blank" class="whatsapp-btn">
+        📲 SOLICITAR INFORMACIÓN
     </a>
 </div>
 """, unsafe_allow_html=True)
