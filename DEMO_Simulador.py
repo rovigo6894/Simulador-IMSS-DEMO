@@ -50,7 +50,6 @@ with col2:
 semanas = 1315
 edad_retiro = 60
 
-# Mostrar valores de referencia (opcional)
 st.caption(f"⚡ Valores de referencia: {semanas} semanas cotizadas · Retiro a los {edad_retiro} años")
 
 # ============================================
@@ -61,69 +60,25 @@ if st.button("🔮 Recalcular simulación", use_container_width=True):
     # ========================================
     # CÁLCULO SIMPLIFICADO PERO REALISTA
     # ========================================
-    # Factores Ley 73
     factores = {60:0.75, 61:0.80, 62:0.85, 63:0.90, 64:0.95, 65:1.00}
     
-    # Años hasta retiro
     años_para_retiro = max(0, edad_retiro - edad)
-    
-    # Semanas totales al retiro
     semanas_totales = semanas + (52 * años_para_retiro)
     
-    # Cálculo de cuantía básica (simplificado)
     cuantia_basica = salario * 0.13 * 365
-    
-    # Incremento por semanas extra
     años_extra = max(0, (semanas_totales - 500) / 52)
     incremento = salario * 0.0245 * 365 * años_extra
+    cuantia_total = (cuantia_basica + incremento) * 1.15 * 1.11 * 1.2166
+    pension_mensual = cuantia_total * factores[edad_retiro] / 12
     
-    # Cuantía total
-    cuantia_total = cuantia_basica + incremento
-    
-    # Asignación por esposa (fijo 15% para demo)
-    cuantia_total *= 1.15
-    
-    # Decreto Fox
-    cuantia_total *= 1.11
-    
-    # Ajuste final
-    cuantia_total *= 1.2166
-    
-    # Aplicar factor por edad
-    pension_anual = cuantia_total * factores[edad_retiro]
-    pension_mensual = pension_anual / 12
-    
-    # Pensión optimizada (simulación de estrategia)
-    pension_optimizada = pension_mensual * 1.15
-    
-    diferencia = pension_optimizada - pension_mensual
-    perdida_20 = diferencia * 12 * 20
-    
-    # ========================================
-    # MOSTRAR RESULTADOS
-    # ========================================
-    st.divider()
-    st.subheader("Resultado estimado")
-    
-    col1, col2, col3 = st.columns(3)
-    
-    with col1:
-        st.metric("Pensión estimada", f"${pension_mensual:,.0f} MXN")
-    
-    with col2:
-        st.metric("Pensión optimizada", f"${pension_optimizada:,.0f} MXN", 
-                  delta=f"+${diferencia:,.0f}")
-    
-    with col3:
-        st.metric("En 20 años podrías perder", f"${perdida_20:,.0f} MXN")
-    
-    # Mensaje de advertencia
-    st.warning("⚠️ Una estrategia adecuada podría aumentar tu pensión significativamente.")
+    st.success(f"### Pensión estimada: ${pension_mensual:,.0f} MXN")
+    st.caption("Una estrategia adecuada podría aumentar este monto.")
+
+st.divider()
 
 # ============================================
-# VERSIÓN PRO
+# VERSIÓN PRO (SOLO INFORMATIVO)
 # ============================================
-st.divider()
 st.subheader("🔒 Versión PRO")
 
 st.markdown("""
@@ -143,8 +98,53 @@ st.link_button(
 )
 
 # ============================================
-# FOOTER
+# FOOTER COMPLETO (TÉRMINOS, PRIVACIDAD, COPYRIGHT)
 # ============================================
 st.divider()
-st.caption("⚠️ Simulación demostrativa · No constituye dictamen oficial del IMSS")
-st.caption(f"© 2026 · Última actualización: {datetime.now().strftime('%d/%m/%Y')}")
+
+st.markdown("""
+<div style='text-align:center; font-size:12px; color:#666; line-height:1.6;'>
+
+### 📌 TÉRMINOS Y CONDICIONES
+
+El uso de este simulador implica la aceptación de los siguientes términos:
+
+• **Naturaleza del servicio**: Este simulador proporciona estimaciones basadas en modelos matemáticos y la Ley 73 del IMSS. Los resultados son aproximados y no constituyen un dictamen oficial ni una garantía de pago.
+
+• **Limitación de responsabilidad**: Optipensión 73 no se hace responsable por decisiones tomadas basadas exclusivamente en los resultados de esta demo. Se recomienda consultar con un asesor certificado.
+
+• **Uso personal**: Esta herramienta es para uso informativo personal. No debe utilizarse como asesoría financiera profesional.
+
+---
+
+### 🔒 AVISO DE PRIVACIDAD
+
+**Protección de datos**: Esta aplicación DEMO **NO almacena, guarda ni comparte** ningún dato personal ingresado por el usuario. Todos los cálculos se realizan en tiempo real y los datos se descartan al cerrar la sesión.
+
+**Cookies**: No utilizamos cookies de rastreo ni almacenamos información de navegación.
+
+**Enlaces a terceros**: El botón de WhatsApp dirige a un canal externo. Una vez que abandonas esta app, la privacidad ya no está bajo nuestro control.
+
+---
+
+### ⚖️ LEGAL
+
+**Propiedad intelectual**: El código, diseño y contenido de Optipensión 73 son propiedad del Ing. Roberto Villarreal Glz. © 2026. Todos los derechos reservados.
+
+**Legislación aplicable**: Este servicio se rige por las leyes de los Estados Unidos Mexicanos.
+
+---
+
+### 📞 CONTACTO
+
+📧 **Email**: contacto@optipension73.com  
+📱 **WhatsApp**: 871 579 1810  
+📍 **Oficina**: Torreón, Coahuila · México
+
+---
+
+</div>
+""", unsafe_allow_html=True)
+
+# Copyright al final (simple y claro)
+st.caption(f"© 2026 Optipensión 73 · Ing. Roberto Villarreal Glz. · Última actualización: {datetime.now().strftime('%d/%m/%Y')}")
