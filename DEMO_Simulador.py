@@ -11,16 +11,46 @@ st.set_page_config(
     layout="centered"
 )
 
-# Ocultar elementos de Streamlit
+# ============================================
+# OCULTAR TODO DE STREAMLIT (INCLUYE MÓVIL)
+# ============================================
 hide_streamlit_style = """
             <style>
+            /* Ocultar menú principal */
             #MainMenu {visibility: hidden;}
+            
+            /* Ocultar footer */
             footer {visibility: hidden;}
+            
+            /* Ocultar header */
             header {visibility: hidden;}
+            
+            /* Ocultar toolbar superior */
             .stApp header {display: none !important;}
             .stApp [data-testid="stToolbar"] {display: none !important;}
             .stApp [data-testid="stDecoration"] {display: none !important;}
-            .main .block-container {padding-top: 2rem !important;}
+            
+            /* OCULTAR EL ENLACE DE GITHUB EN MÓVIL */
+            .stApp [data-testid="stStatusWidget"] {display: none !important;}
+            .stApp [data-testid="stSidebar"] button[kind="header"] {display: none !important;}
+            .stApp button[title="View source on GitHub"] {display: none !important;}
+            
+            /* Ocultar cualquier elemento con clase de GitHub */
+            [class*="github"] {display: none !important;}
+            [class*="GitHub"] {display: none !important;}
+            
+            /* Forzar que todo el espacio sea para la app */
+            .main .block-container {
+                padding-top: 1rem !important;
+                max-width: 100% !important;
+            }
+            
+            /* Ajustes específicos para móvil */
+            @media (max-width: 640px) {
+                .stApp [data-testid="stToolbar"] {display: none !important;}
+                .stApp [data-testid="baseButton-header"] {display: none !important;}
+                .stApp [aria-label="Menu"] {display: none !important;}
+            }
             </style>
             """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
