@@ -67,29 +67,37 @@ with col2:
     )
 
 # -------------------------
-# BOTON RECALCULAR
+# BOTON
 # -------------------------
 
 calcular = st.button("Recalcular pensión")
 
 # -------------------------
-# VARIABLES INTERNAS OCULTAS
+# VARIABLES INTERNAS
 # -------------------------
 
-semanas_ocultas = 1300
-factor_demo = 0.30
+factor_base = 0.30
+
+# ajuste simple por edad (solo para demo)
+factor_edad = 1 + ((edad - 60) * 0.04)
 
 # -------------------------
-# CALCULO SOLO SI PRESIONAN BOTON
+# CALCULO
 # -------------------------
 
 if calcular:
 
-    pension_normal = salario * 30 * factor_demo
-    pension_mejorada = pension_normal * 1.35
+    pension_normal = salario * 30 * factor_base
+
+    pension_mejorada = pension_normal * factor_edad * 1.25
 
     diferencia = pension_mejorada - pension_normal
+
     perdida_20_anios = diferencia * 12 * 20
+
+    # -------------------------
+    # RESULTADOS
+    # -------------------------
 
     st.markdown("---")
 
@@ -114,6 +122,10 @@ if calcular:
             "Diferencia mensual",
             f"${diferencia:,.0f} MXN"
         )
+
+    # -------------------------
+    # IMPACTO
+    # -------------------------
 
     st.markdown("---")
 
