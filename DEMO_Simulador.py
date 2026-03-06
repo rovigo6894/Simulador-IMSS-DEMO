@@ -8,21 +8,24 @@ from PIL import Image
 
 st.set_page_config(
     page_title="Optipension 73",
-    layout="wide"
+    layout="wide",
+    initial_sidebar_state="expanded"
 )
 
 # -------------------------
-# OCULTAR MENU STREAMLIT
+# OCULTAR BOTONES STREAMLIT
 # -------------------------
 
 hide_streamlit_style = """
 <style>
+
 #MainMenu {visibility:hidden;}
 footer {visibility:hidden;}
-header {visibility:hidden;}
+
 [data-testid="stToolbar"] {display:none;}
 [data-testid="stDecoration"] {display:none;}
 [data-testid="stStatusWidget"] {display:none;}
+
 </style>
 """
 
@@ -45,7 +48,7 @@ with col2:
 st.markdown("---")
 
 # -------------------------
-# PARAMETROS DEMO
+# SIDEBAR PARAMETROS
 # -------------------------
 
 st.sidebar.header("Datos básicos")
@@ -74,13 +77,12 @@ salario = st.sidebar.number_input(
 st.sidebar.markdown("🔒 Optimización avanzada disponible en versión PRO")
 
 # -------------------------
-# CALCULO DEMO SIMPLIFICADO
+# CALCULO DEMO
 # -------------------------
 
 factor_demo = 0.30
 
 pension_normal = salario * 30 * factor_demo
-
 pension_mejorada = pension_normal * 1.35
 
 # -------------------------
@@ -88,7 +90,6 @@ pension_mejorada = pension_normal * 1.35
 # -------------------------
 
 diferencia = pension_mejorada - pension_normal
-
 perdida_20_anios = diferencia * 12 * 20
 
 # -------------------------
@@ -139,7 +140,6 @@ st.markdown("---")
 st.subheader("Comparativa de escenarios")
 
 labels = ["Normal", "Optimizada"]
-
 valores = [pension_normal, pension_mejorada]
 
 fig, ax = plt.subplots()
