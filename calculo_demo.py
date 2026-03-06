@@ -20,10 +20,10 @@ def calcular_pension_demo(edad, salario, semanas=1315, edad_retiro=60):
     # Total antes de ajustes
     total = cuantia_basica + incremento
     
-    # Ajustes calibrados para dar ~14,500 con edad=57, salario=965
+    # Ajustes calibrados
     total = total * 1.15   # Asignación esposa
     total = total * 1.11    # Decreto Fox
-    total = total * 1.08    # Factor de ajuste final (reducido de 1.10 a 1.08)
+    total = total * 1.08    # Factor de ajuste final
     
     # Aplicar factor por edad
     pension_anual = total * factores[edad_retiro]
@@ -32,8 +32,8 @@ def calcular_pension_demo(edad, salario, semanas=1315, edad_retiro=60):
     return round(pension_mensual, 2)
 
 def formatear_moneda(valor):
-    """Formatea números a moneda MXN"""
-    return f"${valor:,.0f} MXN"
+    """Formatea números a moneda MXN - SIN símbolo $ para compatibilidad"""
+    return f"{valor:,.0f} MXN"
 
 def calcular_impacto(pension_base):
     """Calcula impacto financiero aproximado"""
