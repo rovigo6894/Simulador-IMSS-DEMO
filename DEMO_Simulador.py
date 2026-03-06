@@ -7,12 +7,11 @@ from config_demo import VERSION, EMAIL, WHATSAPP, WHATSAPP_NUMERO, SEMANAS_FIJAS
 # CONFIGURACIÓN
 # ============================================
 st.set_page_config(
-    page_title="Optipensión 73 · DEMO Profesional",
-    page_icon="📊",
+    page_title="Optipensión 73 DEMO",
     layout="centered"
 )
 
-# Ocultar menús de Streamlit
+# Ocultar menús (esto es seguro)
 hide_streamlit_style = """
             <style>
             #MainMenu {visibility: hidden;}
@@ -23,184 +22,23 @@ hide_streamlit_style = """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
 # ============================================
-# CSS PROFESIONAL (con letras más oscuras)
-# ============================================
-st.markdown("""
-<style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-    
-    * {
-        font-family: 'Inter', sans-serif;
-    }
-    
-    .stApp {
-        background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-    }
-    
-    /* Títulos y textos más oscuros */
-    h1, h2, h3, h4, h5, h6 {
-        color: #0f172a !important;
-        font-weight: 600;
-    }
-    
-    p, li, .stCaption {
-        color: #1e293b !important;
-    }
-    
-    /* Labels de inputs más oscuros */
-    .stNumberInput label, .stSelectbox label {
-        color: #0f172a !important;
-        font-weight: 500;
-    }
-    
-    /* Valores de inputs */
-    .stNumberInput input, .stSelectbox select {
-        color: #0f172a !important;
-        background: white !important;
-        border: 1px solid #cbd5e1 !important;
-    }
-    
-    /* Tarjetas de métricas */
-    div[data-testid="metric-container"] {
-        background: white;
-        border-radius: 1.5rem;
-        padding: 1.2rem;
-        box-shadow: 0 10px 25px -10px rgba(0,0,0,0.1);
-        border: 1px solid #e9eef3;
-        transition: transform 0.2s;
-    }
-    
-    div[data-testid="metric-container"] label {
-        color: #475569 !important;
-    }
-    
-    div[data-testid="metric-container"] div {
-        color: #0f172a !important;
-        font-weight: 700;
-    }
-    
-    div[data-testid="metric-container"]:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 15px 30px -12px rgba(0,0,0,0.15);
-    }
-    
-    /* Tarjeta de pensión */
-    .result-card {
-        background: linear-gradient(135deg, #1e4b6a, #0f2b3d);
-        border-radius: 2rem;
-        padding: 2rem;
-        text-align: center;
-        margin: 1.5rem 0;
-        box-shadow: 0 20px 30px -15px #0f2b3d;
-    }
-    
-    .result-label {
-        color: rgba(255,255,255,0.7) !important;
-        font-size: 0.9rem;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-    }
-    
-    .result-number {
-        color: white !important;
-        font-size: 3.5rem;
-        font-weight: 700;
-        line-height: 1.2;
-        margin: 0.5rem 0;
-    }
-    
-    /* Badge PRO */
-    .pro-badge {
-        background: linear-gradient(135deg, #f97316, #fb923c);
-        color: white;
-        padding: 0.2rem 1rem;
-        border-radius: 2rem;
-        font-size: 0.7rem;
-        font-weight: 600;
-        display: inline-block;
-        margin-left: 0.5rem;
-    }
-    
-    /* Separador elegante */
-    .divider {
-        height: 2px;
-        background: linear-gradient(90deg, transparent, #cbd5e1, transparent);
-        margin: 2rem 0;
-    }
-    
-    /* Footer */
-    .footer-text {
-        text-align: center;
-        color: #475569 !important;
-        font-size: 0.75rem;
-        line-height: 1.6;
-    }
-    
-    .footer-text a {
-        color: #1e4b6a !important;
-        text-decoration: none;
-    }
-    
-    .footer-text a:hover {
-        color: #0f2b3d !important;
-        text-decoration: underline;
-    }
-    
-    /* Botón principal */
-    .stButton > button {
-        background: linear-gradient(135deg, #1e4b6a, #0f2b3d) !important;
-        color: white !important;
-        border: none !important;
-        border-radius: 2rem !important;
-        padding: 0.8rem 2rem !important;
-        font-weight: 600 !important;
-        transition: all 0.3s !important;
-    }
-    
-    .stButton > button:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 20px -8px #0f2b3d !important;
-    }
-    
-    /* Botón PRO */
-    .stLinkButton > button {
-        background: linear-gradient(135deg, #f97316, #fb923c) !important;
-        color: white !important;
-        border: none !important;
-        border-radius: 2rem !important;
-        padding: 0.8rem 2rem !important;
-        font-weight: 600 !important;
-    }
-    
-    /* Caption más oscuro */
-    .stCaption {
-        color: #475569 !important;
-    }
-</style>
-""", unsafe_allow_html=True)
-
-# ============================================
 # LOGO + TÍTULO
 # ============================================
 col1, col2 = st.columns([1, 5])
 
 with col1:
-    st.image("https://raw.githubusercontent.com/rovigo6894/Simulador-IMSS-DEMO/main/image.jpg", width=90)
+    st.image("https://raw.githubusercontent.com/rovigo6894/Simulador-IMSS-DEMO/main/imagen.jpg", width=80)
 
 with col2:
-    st.markdown("""
-    <div style='margin-top: 10px;'>
-        <h1 style='margin-bottom: 0;'>Optipensión 73</h1>
-        <p style='color: #1e293b;'>Simulador Estratégico de Pensión IMSS Ley 73</p>
-    </div>
-    """, unsafe_allow_html=True)
+    st.title("Optipensión 73")
+    st.caption("Simulador Estratégico de Pensión IMSS Ley 73")
 
-st.markdown('<div class="divider"></div>', unsafe_allow_html=True)
+st.divider()
 
 # ============================================
 # DATOS BÁSICOS
 # ============================================
-st.markdown("### 📋 Datos básicos")
+st.subheader("📋 Datos básicos")
 
 col1, col2 = st.columns(2)
 
@@ -213,67 +51,37 @@ with col2:
 st.caption(f"⚡ Valores de referencia: {SEMANAS_FIJAS} semanas · Retiro a los {EDAD_RETIRO_FIJA} años")
 
 # ============================================
-# CSS CORREGIDO (solo la parte del botón)
+# BOTÓN
 # ============================================
-st.markdown("""
-<style>
-    /* ===== BOTÓN PRINCIPAL - VISIBLE ===== */
-    div.stButton > button {
-        background: linear-gradient(135deg, #1e4b6a, #0f2b3d) !important;
-        color: white !important;
-        font-weight: 600 !important;
-        font-size: 1.1rem !important;
-        padding: 0.8rem 2rem !important;
-        border: none !important;
-        border-radius: 2rem !important;
-        box-shadow: 0 4px 12px -6px #0f2b3d !important;
-        transition: all 0.3s !important;
-        opacity: 1 !important;
-        text-shadow: 0 1px 2px rgba(0,0,0,0.2) !important;
-        letter-spacing: 0.5px !important;
-    }
+if st.button("🔮 Recalcular simulación", use_container_width=True):
     
-    div.stButton > button:hover {
-        transform: translateY(-2px) !important;
-        box-shadow: 0 8px 20px -8px #0f2b3d !important;
-        background: linear-gradient(135deg, #2563eb, #1e4b6a) !important;
-    }
+    pension = calcular_pension_demo(edad, salario, SEMANAS_FIJAS, EDAD_RETIRO_FIJA)
+    impacto = calcular_impacto(pension)
     
-    div.stButton > button:active {
-        transform: translateY(0px) !important;
-    }
+    st.success(f"### Pensión estimada: {formatear_moneda(pension)}")
     
-    div.stButton > button p {
-        color: white !important;
-        font-size: 1.1rem !important;
-    }
-    
-    /* Texto dentro del botón */
-    div.stButton > button span {
-        color: white !important;
-        font-weight: 600 !important;
-    }
-</style>
-""", unsafe_allow_html=True)
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        st.metric("Pensión optimizada", formatear_moneda(impacto['optimizada']))
+    with col2:
+        st.metric("Diferencia mensual", formatear_moneda(impacto['diferencia']))
+    with col3:
+        st.metric("En 20 años", formatear_moneda(impacto['perdida_20']))
+
+st.divider()
 
 # ============================================
 # VERSIÓN PRO
 # ============================================
-st.markdown("""
-<div style='text-align: center; margin: 1rem 0;'>
-    <span class="pro-badge">🔒 VERSIÓN PRO</span>
-</div>
-""", unsafe_allow_html=True)
+st.subheader("🔒 Versión PRO")
 
 st.markdown("""
-<div style='background: white; border-radius: 1.5rem; padding: 1.5rem; border: 1px solid #e9eef3; margin: 1rem 0;'>
-    <p style='margin: 0.5rem 0; color: #0f172a;'>✅ <strong>Modalidad 40</strong> - Cálculo exacto de inversión y ROI</p>
-    <p style='margin: 0.5rem 0; color: #0f172a;'>✅ <strong>Comparativa de edades</strong> - 60 vs 65 años</p>
-    <p style='margin: 0.5rem 0; color: #0f172a;'>✅ <strong>Proyección con inflación</strong> - Valor real futuro</p>
-    <p style='margin: 0.5rem 0; color: #0f172a;'>✅ <strong>Reporte PDF</strong> - Listo para presentar</p>
-    <p style='margin: 0.5rem 0; color: #0f172a;'>✅ <strong>Asesoría personalizada</strong> - Vía WhatsApp</p>
-</div>
-""", unsafe_allow_html=True)
+✅ **Modalidad 40** - Cálculo exacto de inversión y ROI  
+✅ **Comparativa de edades** - 60 vs 65 años  
+✅ **Proyección con inflación** - Valor real futuro  
+✅ **Reporte PDF** - Listo para presentar  
+✅ **Asesoría personalizada** - Vía WhatsApp
+""")
 
 st.link_button(
     "💎 Adquirir versión PRO",
@@ -281,51 +89,19 @@ st.link_button(
     use_container_width=True
 )
 
-st.markdown('<div class="divider"></div>', unsafe_allow_html=True)
+st.divider()
 
 # ============================================
-# FOOTER COMPLETO
+# FOOTER SIMPLE
 # ============================================
 st.markdown(f"""
-<div class="footer-text">
+<div style='text-align:center; font-size:12px; color:#666;'>
 
-### 📌 TÉRMINOS Y CONDICIONES
+**Términos y Condiciones** · **Aviso de Privacidad** · **Legal**
 
-El uso de este simulador implica la aceptación de los siguientes términos:
+📧 {EMAIL} · 📱 {WHATSAPP_NUMERO} · 📍 Torreón, Coahuila
 
-• **Naturaleza del servicio**: Este simulador proporciona estimaciones basadas en modelos matemáticos y la Ley 73 del IMSS. Los resultados son aproximados y no constituyen un dictamen oficial ni una garantía de pago.
-
-• **Limitación de responsabilidad**: Optipensión 73 no se hace responsable por decisiones tomadas basadas exclusivamente en los resultados de esta demo. Se recomienda consultar con un asesor certificado.
-
-• **Uso personal**: Esta herramienta es para uso informativo personal. No debe utilizarse como asesoría financiera profesional.
-
----
-
-### 🔒 AVISO DE PRIVACIDAD
-
-**Protección de datos**: Esta aplicación DEMO **NO almacena, guarda ni comparte** ningún dato personal ingresado por el usuario. Todos los cálculos se realizan en tiempo real y los datos se descartan al cerrar la sesión.
-
-**Cookies**: No utilizamos cookies de rastreo ni almacenamos información de navegación.
-
-**Enlaces a terceros**: El botón de WhatsApp dirige a un canal externo. Una vez que abandonas esta app, la privacidad ya no está bajo nuestro control.
-
----
-
-### ⚖️ LEGAL
-
-**Propiedad intelectual**: El código, diseño y contenido de Optipensión 73 son propiedad del Ing. Roberto Villarreal Glz. © 2026. Todos los derechos reservados.
-
----
-
-### 📞 CONTACTO
-
-📧 **Email**: {EMAIL}  
-📱 **WhatsApp**: {WHATSAPP_NUMERO}  
-📍 **Oficina**: Torreón, Coahuila · México
-
----
-
-© 2026 Optipensión 73 · Versión {VERSION} · Última actualización: {datetime.now().strftime('%d/%m/%Y')}
+© 2026 Optipensión 73 · Versión {VERSION} · {datetime.now().strftime('%d/%m/%Y')}
 
 </div>
 """, unsafe_allow_html=True)
