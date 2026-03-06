@@ -158,7 +158,9 @@ st.subheader("Simulación Modalidad 40")
 
 st.warning("🔒 Simulación completa disponible solo en versión PRO")
 
-st.caption("La versión PRO permite calcular impacto real de Modalidad 40, ROI y escenarios de inversión.")
+st.caption(
+"La versión PRO permite calcular impacto real de Modalidad 40, ROI y escenarios financieros."
+)
 
 # ------------------------------------------------
 # BOTON VERSION PRO
@@ -192,5 +194,5 @@ st.link_button(
 st.divider()
 
 st.caption(
-"Optipensión 73 · Simulador DEMO | Optimización de pensiones IMSS Ley 73"
+"Optipensión 73 · Simulador DEMO | © Ing. Roberto Villarreal Glz."
 )
