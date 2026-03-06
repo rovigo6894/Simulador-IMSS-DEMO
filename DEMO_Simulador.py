@@ -11,37 +11,26 @@ st.set_page_config(
     layout="centered"
 )
 
-# ============================================
-# OCULTAR TODO DE STREAMLIT (también la derecha)
-# ============================================
+# Ocultar elementos de Streamlit
 hide_streamlit_style = """
             <style>
             #MainMenu {visibility: hidden;}
             footer {visibility: hidden;}
             header {visibility: hidden;}
-            
-            /* Ocultar elementos de la derecha */
             .stApp header {display: none !important;}
             .stApp [data-testid="stToolbar"] {display: none !important;}
             .stApp [data-testid="stDecoration"] {display: none !important;}
-            .stApp [data-testid="baseButton-header"] {display: none !important;}
-            .stApp [aria-label="Menu"] {display: none !important;}
-            
-            /* Forzar que todo el espacio sea para la app */
-            .main .block-container {
-                padding-top: 2rem !important;
-                max-width: 800px !important;
-            }
+            .main .block-container {padding-top: 2rem !important;}
             </style>
             """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
 # ============================================
-# TÍTULO Y LOGO
+# LOGO + TÍTULO
 # ============================================
 col1, col2 = st.columns([1, 5])
 with col1:
-    st.image("https://raw.githubusercontent.com/rovigo6894/Simulador-IMSS-DEMO/main/image.jpg", width=80)
+    st.image("https://raw.githubusercontent.com/rovigo6894/Simulador-IMSS-DEMO/main/imagen.jpg", width=80)
 with col2:
     st.title("Optipensión 73")
     st.caption("Simulador Estratégico de Pensión IMSS Ley 73")
@@ -82,13 +71,11 @@ if st.button("🔮 Recalcular simulación", use_container_width=True):
 st.divider()
 
 # ============================================
-# VERSIÓN PRO (SIN PRECIOS)
+# VERSIÓN PRO (CON BOTÓN)
 # ============================================
 st.subheader("🔒 Versión Profesional")
 
 st.markdown("""
-La versión profesional incluye:
-
 ✅ **Diagnóstico personalizado** con tus datos reales  
 ✅ **Modalidad 40** - Cálculo exacto de inversión y ROI  
 ✅ **Comparativa de edades** - 60 vs 61...65 años  
@@ -97,11 +84,18 @@ La versión profesional incluye:
 ✅ **Asesoría personalizada** vía WhatsApp
 """)
 
+# ===== BOTÓN PRO (AQUÍ ESTABA EL DETALLE) =====
+st.link_button(
+    "📲 CONTACTAR PARA VERSIÓN PRO",
+    WHATSAPP,
+    use_container_width=True
+)
+
+st.divider()
+
 # ============================================
 # FOOTER SIMPLE (SIN ERRORES)
 # ============================================
-st.divider()
-
 st.markdown("### 📌 TÉRMINOS Y CONDICIONES")
 st.markdown("""
 El uso de este simulador implica la aceptación de los siguientes términos:
