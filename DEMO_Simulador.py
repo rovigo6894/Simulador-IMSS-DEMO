@@ -187,12 +187,28 @@ st.link_button(
 "https://wa.me/528715791810?text=Hola%20quiero%20informacion%20de%20Optipension%2073%20PRO"
 )
 
-# ------------------------------------------------
-# FOOTER
-# ------------------------------------------------
+# -------------------------
+# PIE DE PAGINA LEGAL
+# -------------------------
 
-st.divider()
+st.markdown("---")
 
-st.caption(
-"Optipensión 73 · Simulador DEMO | © Ing. Roberto Villarreal Glz."
-)
+st.markdown("""
+<div style='text-align: center; font-size: 13px; color: gray;'>
+
+<b>Optipension 73 - Simulador DEMO</b><br><br>
+
+Este simulador tiene fines exclusivamente informativos y educativos.  
+Los resultados mostrados son estimaciones basadas en modelos matemáticos y no constituyen asesoría financiera, legal o previsional.  
+Las pensiones reales pueden variar conforme a la legislación vigente del IMSS, reformas futuras y condiciones individuales del asegurado.<br><br>
+
+<b>Términos y Condiciones:</b> El uso de este simulador implica la aceptación de que los cálculos presentados son aproximaciones y no garantizan resultados finales en la pensión otorgada por las instituciones correspondientes.<br><br>
+
+<b>Privacidad de Datos:</b> Este simulador DEMO no almacena ni comparte información personal de los usuarios. Los datos ingresados son utilizados únicamente para realizar los cálculos en tiempo real dentro de la aplicación.<br><br>
+
+© 2026 <b>Ing. Roberto Villarreal Glz.</b><br>
+Derechos Reservados.<br>
+Propiedad intelectual del modelo matemático y simulador <b>Optipension 73</b>.
+
+</div>
+""", unsafe_allow_html=True)
