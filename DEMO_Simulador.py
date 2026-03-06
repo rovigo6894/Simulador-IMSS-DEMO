@@ -82,67 +82,26 @@ if st.button("🔮 Recalcular simulación", use_container_width=True):
 st.divider()
 
 # ============================================
-# VERSIÓN PRO
+# VERSIÓN PRO (SIN PRECIOS)
 # ============================================
-st.subheader("🔒 Versión PRO")
+st.subheader("🔒 Versión Profesional")
 
 st.markdown("""
+La versión profesional incluye:
+
+✅ **Diagnóstico personalizado** con tus datos reales  
 ✅ **Modalidad 40** - Cálculo exacto de inversión y ROI  
-✅ **Comparativa de edades** - 60 vs 65 años  
-✅ **Proyección con inflación** - Valor real futuro  
-✅ **Reporte PDF** - Listo para presentar  
-✅ **Asesoría personalizada** - Vía WhatsApp
+✅ **Comparativa de edades** - 60 vs 61...65 años  
+✅ **Proyección a 20 años** con ajuste inflacionario  
+✅ **Reporte PDF** listo para presentar  
+✅ **Asesoría personalizada** vía WhatsApp
 """)
 
 st.link_button(
-    "💎 Adquirir versión PRO",
-    WHATSAPP,
+    "📲 CONTACTAR PARA VERSIÓN PRO",
+    "https://wa.me/528715791810?text=Hola%2C%20quiero%20información%20sobre%20la%20versión%20PRO%20de%20Optipensión%2073",
     use_container_width=True
 )
-
-st.divider()
-
-# ============================================
-# FOOTER COMPLETO
-# ============================================
-st.markdown(f"""
-<div style='text-align:center; font-size:12px; color:#666; line-height:1.8;'>
-
-### 📌 TÉRMINOS Y CONDICIONES
-
-El uso de este simulador implica la aceptación de los siguientes términos:
-
-• **Naturaleza del servicio**: Este simulador proporciona estimaciones basadas en modelos matemáticos y la Ley 73 del IMSS. Los resultados son aproximados y no constituyen un dictamen oficial ni una garantía de pago.
-
-• **Limitación de responsabilidad**: Optipensión 73 no se hace responsable por decisiones tomadas basadas exclusivamente en los resultados de esta demo. Se recomienda consultar con un asesor certificado.
-
-• **Uso personal**: Esta herramienta es para uso informativo personal. No debe utilizarse como asesoría financiera profesional.
-
----
-
-### 🔒 AVISO DE PRIVACIDAD
-
-**Protección de datos**: Esta aplicación DEMO **NO almacena, guarda ni comparte** ningún dato personal ingresado por el usuario. Todos los cálculos se realizan en tiempo real y los datos se descartan al cerrar la sesión.
-
-**Cookies**: No utilizamos cookies de rastreo ni almacenamos información de navegación.
-
-**Enlaces a terceros**: El botón de WhatsApp dirige a un canal externo. Una vez que abandonas esta app, la privacidad ya no está bajo nuestro control.
-
----
-
-### ⚖️ LEGAL
-
-**Propiedad intelectual**: El código, diseño y contenido de Optipensión 73 son propiedad del Ing. Roberto Villarreal Glz. © 2026. Todos los derechos reservados.
-
----
-
-### 📞 CONTACTO
-
-📧 **Email**: {EMAIL}  
-📱 **WhatsApp**: {WHATSAPP_NUMERO}  
-📍 **Oficina**: Torreón, Coahuila · México
-
----
 
 © 2026 Optipensión 73 · Versión {VERSION} · Última actualización: {datetime.now().strftime('%d/%m/%Y')}
 
