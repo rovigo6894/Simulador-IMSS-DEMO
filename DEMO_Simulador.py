@@ -44,35 +44,23 @@ st.markdown("""
     }
     
     /* Header con logo */
-    .header-logo {
+    .header-container {
         display: flex;
         align-items: center;
-        justify-content: center;
         gap: 1.5rem;
         margin-bottom: 2rem;
-        padding: 1rem;
+        padding: 1rem 2rem;
         background: white;
         border-radius: 3rem;
         box-shadow: 0 10px 25px -10px rgba(0,0,0,0.1);
         border: 1px solid #e9eef3;
     }
     
-    .logo-image {
+    .logo-img {
         width: 80px;
         height: 80px;
-        background: linear-gradient(135deg, #1e4b6a, #0f2b3d);
         border-radius: 20px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        font-size: 2rem;
-        font-weight: 800;
-        box-shadow: 0 10px 20px -8px #1e4b6a;
-    }
-    
-    .logo-text {
-        text-align: left;
+        object-fit: cover;
     }
     
     .logo-text h1 {
@@ -221,7 +209,7 @@ st.markdown("""
     }
     
     @media (max-width: 640px) {
-        .header-logo { flex-direction: column; text-align: center; }
+        .header-container { flex-direction: column; text-align: center; }
         .logo-text { text-align: center; }
         .input-grid { grid-template-columns: 1fr; }
         .result-number { font-size: 3rem; }
@@ -230,15 +218,28 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ============================================
-# HEADER CON LOGO
+# HEADER CON LOGO (DESDE GITHUB)
+# ============================================
+col1, col2 = st.columns([1, 3])
+
+with col1:
+    # El logo está en GitHub, lo cargamos directamente
+    st.image("https://raw.githubusercontent.com/rovigo6894/Simulador-IMSS-DEMO/main/image.png", width=80)
+
+with col2:
+    st.markdown("""
+    <div style="margin-top: 10px;">
+        <h1 style="color: #0f2b3d; margin: 0;">OPTIPENSIÓN 73</h1>
+        <p style="color: #64748b; margin: 0;">Optimización de Pensiones · Ley 73</p>
+    </div>
+    """, unsafe_allow_html=True)
+
+# ============================================
+# BADGE DEMO
 # ============================================
 st.markdown("""
-<div class="header-logo">
-    <div class="logo-image">73</div>
-    <div class="logo-text">
-        <h1>OPTIPENSIÓN 73</h1>
-        <p>Optimización de Pensiones · Ley 73</p>
-    </div>
+<div style="text-align: center; margin: 1rem 0;">
+    <span class="demo-badge">⚡ VERSIÓN DEMO</span>
 </div>
 """, unsafe_allow_html=True)
 
@@ -246,15 +247,6 @@ st.markdown("""
 # CONTENEDOR PRINCIPAL
 # ============================================
 st.markdown('<div class="main-card">', unsafe_allow_html=True)
-
-# ============================================
-# BADGE DEMO
-# ============================================
-st.markdown("""
-<div style="text-align: center; margin-bottom: 1rem;">
-    <span class="demo-badge">⚡ VERSIÓN DEMO</span>
-</div>
-""", unsafe_allow_html=True)
 
 # ============================================
 # PARÁMETROS
@@ -382,7 +374,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ============================================
-# CIERRE
+# CIERRE DEL CONTENEDOR
 # ============================================
 st.markdown('</div>', unsafe_allow_html=True)
 
