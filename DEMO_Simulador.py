@@ -23,101 +23,58 @@ hide_streamlit_style = """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
 # ============================================
-# CSS MÁXIMO CONTRASTE
+# CSS CORREGIDO - BOTONES VISIBLES
 # ============================================
 st.markdown("""
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-    
-    * {
-        font-family: 'Inter', sans-serif;
-    }
-    
-    /* Fondo blanco puro - máximo contraste */
-    .stApp {
-        background: white !important;
-    }
-    
-    /* Todo el texto en negro */
-    h1, h2, h3, h4, h5, h6, p, li, span, div {
-        color: #000000 !important;
-    }
-    
-    /* Inputs con borde negro */
-    .stNumberInput input, .stSelectbox select {
-        border: 2px solid #000000 !important;
-        color: #000000 !important;
-        background: white !important;
-    }
-    
-    /* Labels en negro */
-    .stNumberInput label, .stSelectbox label {
-        color: #000000 !important;
-        font-weight: 600 !important;
-    }
-    
-    /* Botón principal - azul oscuro con texto blanco */
-    .stButton > button {
+    /* ===== BOTÓN PRINCIPAL ===== */
+    div.stButton > button {
         background: #1e4b6a !important;
-        color: white !important;
+        color: WHITE !important;
         font-weight: 700 !important;
-        font-size: 1.1rem !important;
-        border: 2px solid #000000 !important;
-    }
-    
-    /* Métricas con borde negro */
-    div[data-testid="metric-container"] {
-        background: #f8fafc !important;
-        border: 2px solid #000000 !important;
+        font-size: 1.2rem !important;
+        padding: 0.8rem 2rem !important;
+        border: 3px solid #000000 !important;
         border-radius: 0.5rem !important;
-        padding: 1rem !important;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2) !important;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.5) !important;
     }
     
-    div[data-testid="metric-container"] label {
-        color: #000000 !important;
-        font-weight: 600 !important;
-    }
-    
-    div[data-testid="metric-container"] div {
-        color: #000000 !important;
-        font-weight: 700 !important;
-        font-size: 1.3rem !important;
-    }
-    
-    /* Badge PRO - naranja con texto blanco */
-    .pro-badge {
-        background: #f97316 !important;
+    div.stButton > button:hover {
+        background: #0f2b3d !important;
         color: white !important;
-        padding: 0.2rem 1rem;
-        border-radius: 2rem;
-        font-weight: 700;
-        border: 2px solid #000000;
+        border: 3px solid #000000 !important;
     }
     
-    /* Footer con texto negro */
-    .footer {
-        text-align: center;
-        color: #000000 !important;
-        font-size: 0.8rem;
-        margin-top: 3rem;
-        padding-top: 2rem;
-        border-top: 2px solid #000000;
+    div.stButton > button p, 
+    div.stButton > button span {
+        color: WHITE !important;
+        font-weight: 700 !important;
     }
     
-    .footer a {
-        color: #000000 !important;
-        text-decoration: underline;
-        font-weight: 500;
+    /* ===== BOTÓN DE LINK (VERSIÓN PRO) ===== */
+    .stLinkButton > button {
+        background: #f97316 !important;
+        color: WHITE !important;
+        font-weight: 700 !important;
+        font-size: 1.2rem !important;
+        padding: 0.8rem 2rem !important;
+        border: 3px solid #000000 !important;
+        border-radius: 0.5rem !important;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2) !important;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.5) !important;
     }
     
-    /* Caption en negro */
-    .stCaption {
-        color: #000000 !important;
+    .stLinkButton > button:hover {
+        background: #e07b39 !important;
+        color: white !important;
+        border: 3px solid #000000 !important;
     }
     
-    /* Línea divisora negra */
-    hr {
-        border: 1px solid #000000 !important;
+    .stLinkButton > button p,
+    .stLinkButton > button span {
+        color: WHITE !important;
+        font-weight: 700 !important;
     }
 </style>
 """, unsafe_allow_html=True)
