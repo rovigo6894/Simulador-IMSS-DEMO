@@ -213,38 +213,48 @@ with col2:
 st.caption(f"⚡ Valores de referencia: {SEMANAS_FIJAS} semanas · Retiro a los {EDAD_RETIRO_FIJA} años")
 
 # ============================================
-# BOTÓN Y RESULTADOS
+# CSS CORREGIDO (solo la parte del botón)
 # ============================================
-if st.button("🔮 Recalcular simulación", use_container_width=True):
+st.markdown("""
+<style>
+    /* ===== BOTÓN PRINCIPAL - VISIBLE ===== */
+    div.stButton > button {
+        background: linear-gradient(135deg, #1e4b6a, #0f2b3d) !important;
+        color: white !important;
+        font-weight: 600 !important;
+        font-size: 1.1rem !important;
+        padding: 0.8rem 2rem !important;
+        border: none !important;
+        border-radius: 2rem !important;
+        box-shadow: 0 4px 12px -6px #0f2b3d !important;
+        transition: all 0.3s !important;
+        opacity: 1 !important;
+        text-shadow: 0 1px 2px rgba(0,0,0,0.2) !important;
+        letter-spacing: 0.5px !important;
+    }
     
-    pension = calcular_pension_demo(edad, salario, SEMANAS_FIJAS, EDAD_RETIRO_FIJA)
-    impacto = calcular_impacto(pension)
+    div.stButton > button:hover {
+        transform: translateY(-2px) !important;
+        box-shadow: 0 8px 20px -8px #0f2b3d !important;
+        background: linear-gradient(135deg, #2563eb, #1e4b6a) !important;
+    }
     
-    # Tarjeta de pensión
-    st.markdown(f"""
-    <div class="result-card">
-        <div class="result-label">PENSIÓN ESTIMADA</div>
-        <div class="result-number">{formatear_moneda(pension)}</div>
-    </div>
-    """, unsafe_allow_html=True)
+    div.stButton > button:active {
+        transform: translateY(0px) !important;
+    }
     
-    st.caption("💡 Una estrategia adecuada podría aumentar este monto.")
+    div.stButton > button p {
+        color: white !important;
+        font-size: 1.1rem !important;
+    }
     
-    # Impacto potencial en tarjetas
-    st.markdown("### 📊 Impacto potencial")
-    
-    col1, col2, col3 = st.columns(3)
-    
-    with col1:
-        st.metric("Pensión optimizada", formatear_moneda(impacto['optimizada']))
-    
-    with col2:
-        st.metric("Diferencia mensual", formatear_moneda(impacto['diferencia']))
-    
-    with col3:
-        st.metric("En 20 años", formatear_moneda(impacto['perdida_20']))
-
-st.markdown('<div class="divider"></div>', unsafe_allow_html=True)
+    /* Texto dentro del botón */
+    div.stButton > button span {
+        color: white !important;
+        font-weight: 600 !important;
+    }
+</style>
+""", unsafe_allow_html=True)
 
 # ============================================
 # VERSIÓN PRO
