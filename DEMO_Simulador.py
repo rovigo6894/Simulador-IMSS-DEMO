@@ -23,7 +23,7 @@ hide_streamlit_style = """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
 # ============================================
-# CSS DE LUJO (SOLO ESTÉTICA)
+# CSS DE LUJO
 # ============================================
 st.markdown("""
 <style>
@@ -39,47 +39,59 @@ st.markdown("""
         font-family: 'Plus Jakarta Sans', sans-serif;
     }
     
-    /* Fondo elegante con gradiente sutil */
     .stApp {
         background: linear-gradient(145deg, #f8fafc 0%, #f1f5f9 100%);
     }
     
-    /* Contenedor principal con efecto de vidrio */
-    .main-card {
-        background: rgba(255,255,255,0.95);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        border-radius: 3rem;
-        padding: 2.5rem;
-        box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
-        border: 1px solid rgba(255,255,255,0.5);
-        margin: 1rem 0;
-    }
-    
-    /* Título principal */
-    .title-section {
-        text-align: center;
+    /* Header con logo */
+    .header-logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1.5rem;
         margin-bottom: 2rem;
+        padding: 1rem;
+        background: white;
+        border-radius: 3rem;
+        box-shadow: 0 10px 25px -10px rgba(0,0,0,0.1);
+        border: 1px solid #e9eef3;
     }
     
-    .main-title {
-        font-size: 3.5rem;
+    .logo-image {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, #1e4b6a, #0f2b3d);
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 2rem;
+        font-weight: 800;
+        box-shadow: 0 10px 20px -8px #1e4b6a;
+    }
+    
+    .logo-text {
+        text-align: left;
+    }
+    
+    .logo-text h1 {
+        font-size: 2.2rem;
         font-weight: 800;
         background: linear-gradient(135deg, #0f2b3d, #1e4b6a);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        margin-bottom: 0.3rem;
-        letter-spacing: -0.02em;
+        margin: 0;
+        line-height: 1.2;
     }
     
-    .sub-title {
+    .logo-text p {
         color: #64748b;
-        font-size: 1rem;
-        font-weight: 400;
-        letter-spacing: 0.3px;
+        font-size: 0.9rem;
+        margin: 0;
+        letter-spacing: 0.5px;
     }
     
-    /* Badge DEMO elegante */
     .demo-badge {
         background: linear-gradient(135deg, #f97316, #fb923c);
         color: white;
@@ -90,10 +102,18 @@ st.markdown("""
         display: inline-block;
         margin-bottom: 1rem;
         box-shadow: 0 4px 10px -4px #f97316;
-        border: 1px solid rgba(255,255,255,0.3);
     }
     
-    /* Tarjetas de entrada */
+    .main-card {
+        background: rgba(255,255,255,0.95);
+        backdrop-filter: blur(10px);
+        border-radius: 3rem;
+        padding: 2.5rem;
+        box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+        border: 1px solid rgba(255,255,255,0.5);
+        margin: 1rem 0;
+    }
+    
     .input-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -122,9 +142,6 @@ st.markdown("""
         letter-spacing: 0.5px;
         font-weight: 600;
         margin-bottom: 0.5rem;
-        display: flex;
-        align-items: center;
-        gap: 0.3rem;
     }
     
     .input-value {
@@ -141,44 +158,6 @@ st.markdown("""
         margin-left: 0.3rem;
     }
     
-    .input-slider {
-        margin-top: 1rem;
-    }
-    
-    /* Selector elegante */
-    .elegant-select {
-        background: #f8fafc;
-        border-radius: 1.5rem;
-        padding: 0.8rem 1.2rem;
-        border: 1px solid #e2e8f0;
-        color: #0f2b3d;
-        font-weight: 500;
-        width: 100%;
-    }
-    
-    /* Botón principal */
-    .primary-btn {
-        background: linear-gradient(135deg, #1e4b6a, #0f2b3d);
-        color: white;
-        border: none;
-        padding: 1rem 2rem;
-        border-radius: 3rem;
-        font-weight: 600;
-        font-size: 1.1rem;
-        width: 100%;
-        cursor: pointer;
-        transition: all 0.3s;
-        box-shadow: 0 10px 20px -8px #1e4b6a;
-        border: 1px solid rgba(255,255,255,0.2);
-        margin: 1rem 0;
-    }
-    
-    .primary-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 20px 30px -10px #0f2b3d;
-    }
-    
-    /* Tarjeta de resultado */
     .result-card {
         background: linear-gradient(135deg, #1e4b6a, #0f2b3d);
         border-radius: 2.5rem;
@@ -194,7 +173,6 @@ st.markdown("""
         font-size: 0.9rem;
         text-transform: uppercase;
         letter-spacing: 2px;
-        margin-bottom: 0.5rem;
     }
     
     .result-number {
@@ -206,20 +184,6 @@ st.markdown("""
         text-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
     
-    .result-detail {
-        color: rgba(255,255,255,0.6);
-        font-size: 1rem;
-        margin-top: 0.5rem;
-    }
-    
-    /* Separador */
-    .divider {
-        height: 2px;
-        background: linear-gradient(90deg, transparent, #cbd5e1, transparent);
-        margin: 2rem 0;
-    }
-    
-    /* Glosario */
     .glossary-card {
         background: white;
         border-radius: 2rem;
@@ -229,38 +193,6 @@ st.markdown("""
         box-shadow: 0 15px 30px -15px #cbd5e1;
     }
     
-    .glossary-title {
-        font-size: 1.3rem;
-        font-weight: 700;
-        color: #0f2b3d;
-        margin-bottom: 1.5rem;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-    }
-    
-    .glossary-item {
-        display: flex;
-        justify-content: space-between;
-        padding: 0.8rem 0;
-        border-bottom: 1px solid #f1f5f9;
-    }
-    
-    .glossary-item:last-child {
-        border-bottom: none;
-    }
-    
-    .glossary-term {
-        font-weight: 600;
-        color: #1e4b6a;
-    }
-    
-    .glossary-def {
-        color: #64748b;
-        text-align: right;
-    }
-    
-    /* Footer elegante */
     .footer {
         text-align: center;
         color: #94a3b8;
@@ -270,27 +202,27 @@ st.markdown("""
         border-top: 1px solid #e2e8f0;
     }
     
-    .footer-links {
-        display: flex;
-        justify-content: center;
-        gap: 1.5rem;
-        margin: 1rem 0;
+    .stButton > button {
+        background: linear-gradient(135deg, #1e4b6a, #0f2b3d) !important;
+        color: white !important;
+        border: none !important;
+        padding: 1rem 2rem !important;
+        border-radius: 3rem !important;
+        font-weight: 600 !important;
+        font-size: 1.1rem !important;
+        width: 100% !important;
+        transition: all 0.3s !important;
+        box-shadow: 0 10px 20px -8px #1e4b6a !important;
     }
     
-    .footer-links a {
-        color: #64748b;
-        text-decoration: none;
-        font-size: 0.8rem;
-        transition: color 0.2s;
+    .stButton > button:hover {
+        transform: translateY(-2px) !important;
+        box-shadow: 0 20px 30px -10px #0f2b3d !important;
     }
     
-    .footer-links a:hover {
-        color: #1e4b6a;
-    }
-    
-    /* Responsive */
     @media (max-width: 640px) {
-        .main-title { font-size: 2.5rem; }
+        .header-logo { flex-direction: column; text-align: center; }
+        .logo-text { text-align: center; }
         .input-grid { grid-template-columns: 1fr; }
         .result-number { font-size: 3rem; }
     }
@@ -298,13 +230,15 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ============================================
-# ENCABEZADO
+# HEADER CON LOGO
 # ============================================
 st.markdown("""
-<div class="title-section">
-    <span class="demo-badge">⚡ VERSIÓN DEMO</span>
-    <div class="main-title">OptiPensión 73</div>
-    <div class="sub-title">Optimización Integral de Pensión · Ley 73</div>
+<div class="header-logo">
+    <div class="logo-image">73</div>
+    <div class="logo-text">
+        <h1>OPTIPENSIÓN 73</h1>
+        <p>Optimización de Pensiones · Ley 73</p>
+    </div>
 </div>
 """, unsafe_allow_html=True)
 
@@ -314,7 +248,16 @@ st.markdown("""
 st.markdown('<div class="main-card">', unsafe_allow_html=True)
 
 # ============================================
-# PARÁMETROS DEMOSTRATIVOS
+# BADGE DEMO
+# ============================================
+st.markdown("""
+<div style="text-align: center; margin-bottom: 1rem;">
+    <span class="demo-badge">⚡ VERSIÓN DEMO</span>
+</div>
+""", unsafe_allow_html=True)
+
+# ============================================
+# PARÁMETROS
 # ============================================
 st.markdown("""
 <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
@@ -366,33 +309,9 @@ with col2:
     """, unsafe_allow_html=True)
 
 # ============================================
-# BOTÓN DE CÁLCULO
+# BOTÓN
 # ============================================
-st.markdown("""
-<style>
-    div.stButton > button:first-child {
-        background: linear-gradient(135deg, #1e4b6a, #0f2b3d);
-        color: white;
-        border: none;
-        padding: 1rem 2rem;
-        border-radius: 3rem;
-        font-weight: 600;
-        font-size: 1.1rem;
-        width: 100%;
-        transition: all 0.3s;
-        box-shadow: 0 10px 20px -8px #1e4b6a;
-        border: 1px solid rgba(255,255,255,0.2);
-        margin: 1rem 0;
-    }
-    div.stButton > button:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 20px 30px -10px #0f2b3d;
-    }
-</style>
-""", unsafe_allow_html=True)
-
 if st.button("🔮 CALCULAR PENSIÓN DEMOSTRATIVA", use_container_width=True):
-    # Cálculo simplificado para demo
     factores = {60:0.75, 61:0.80, 62:0.85, 63:0.90, 64:0.95, 65:1.00}
     pension_demo = salario * 0.5 * factores[retiro]
     
@@ -405,12 +324,13 @@ if st.button("🔮 CALCULAR PENSIÓN DEMOSTRATIVA", use_container_width=True):
     """, unsafe_allow_html=True)
 
 # ============================================
-# GLOSARIO PROFESIONAL
+# GLOSARIO
 # ============================================
 st.markdown('<div class="glossary-card">', unsafe_allow_html=True)
 st.markdown("""
-<div class="glossary-title">
-    <span>📘</span> GLOSARIO DE TÉRMINOS
+<div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.5rem;">
+    <span style="font-size: 1.5rem;">📘</span>
+    <span style="font-size: 1.2rem; font-weight: 700; color: #0f2b3d;">GLOSARIO DE TÉRMINOS</span>
 </div>
 """, unsafe_allow_html=True)
 
@@ -419,26 +339,21 @@ glosario = [
     ("Factor por edad", "75% (60 años) a 100% (65 años)"),
     ("Semanas cotizadas", "Mínimo 500 semanas para pensión"),
     ("Salario promedio", "Últimas 250 semanas cotizadas"),
-    ("Modalidad 40", "Continuación voluntaria para aumentar pensión"),
+    ("Modalidad 40", "Continuación voluntaria"),
 ]
 
 for term, definicion in glosario:
     st.markdown(f"""
-    <div class="glossary-item">
-        <span class="glossary-term">{term}</span>
-        <span class="glossary-def">{definicion}</span>
+    <div style="display: flex; justify-content: space-between; padding: 0.8rem 0; border-bottom: 1px solid #f1f5f9;">
+        <span style="font-weight: 600; color: #1e4b6a;">{term}</span>
+        <span style="color: #64748b;">{definicion}</span>
     </div>
     """, unsafe_allow_html=True)
 
 st.markdown('</div>', unsafe_allow_html=True)
 
 # ============================================
-# DIVISOR
-# ============================================
-st.markdown('<div class="divider"></div>', unsafe_allow_html=True)
-
-# ============================================
-# OFERTA VERSIÓN COMPLETA
+# OFERTA PRO
 # ============================================
 st.markdown("""
 <div style="text-align: center; margin: 2rem 0;">
@@ -446,32 +361,18 @@ st.markdown("""
 </div>
 
 <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 1.5rem 0;">
-    <div style="background: white; padding: 1rem; border-radius: 1rem; border: 1px solid #e9eef3;">
-        ✅ Cálculo con tus datos reales
-    </div>
-    <div style="background: white; padding: 1rem; border-radius: 1rem; border: 1px solid #e9eef3;">
-        ✅ Análisis de Modalidad 40
-    </div>
-    <div style="background: white; padding: 1rem; border-radius: 1rem; border: 1px solid #e9eef3;">
-        ✅ Comparativa 60 vs 65 años
-    </div>
-    <div style="background: white; padding: 1rem; border-radius: 1rem; border: 1px solid #e9eef3;">
-        ✅ Proyección a 20 años
-    </div>
-    <div style="background: white; padding: 1rem; border-radius: 1rem; border: 1px solid #e9eef3;">
-        ✅ Recomendación personalizada
-    </div>
-    <div style="background: white; padding: 1rem; border-radius: 1rem; border: 1px solid #e9eef3;">
-        ✅ Asesoría post-diagnóstico
-    </div>
+    <div style="background: white; padding: 1rem; border-radius: 1rem; border: 1px solid #e9eef3;">✅ Cálculo con datos reales</div>
+    <div style="background: white; padding: 1rem; border-radius: 1rem; border: 1px solid #e9eef3;">✅ Análisis de Modalidad 40</div>
+    <div style="background: white; padding: 1rem; border-radius: 1rem; border: 1px solid #e9eef3;">✅ Comparativa 60 vs 65 años</div>
+    <div style="background: white; padding: 1rem; border-radius: 1rem; border: 1px solid #e9eef3;">✅ Proyección a 20 años</div>
 </div>
 
 <div style="text-align: center; margin: 2rem 0;">
     <div style="font-size: 2rem; font-weight: 800; color: #0f2b3d;">Desde $1,500 MXN</div>
-    <div style="color: #64748b; margin: 0.5rem 0;">Transferencia · Mercado Pago · OXXO</div>
+    <div style="color: #64748b;">Transferencia · Mercado Pago · OXXO</div>
 </div>
 
-<div style="display: flex; justify-content: center; margin: 2rem 0;">
+<div style="display: flex; justify-content: center;">
     <a href="https://wa.me/5218715791810" target="_blank">
         <button style="background: #25D366; color: white; border: none; padding: 1rem 3rem; border-radius: 3rem; font-weight: 600; font-size: 1.1rem; cursor: pointer; box-shadow: 0 10px 20px -8px #128C7E;">
             📲 SOLICITAR INFORMACIÓN
@@ -481,7 +382,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ============================================
-# CIERRE DEL CONTENEDOR PRINCIPAL
+# CIERRE
 # ============================================
 st.markdown('</div>', unsafe_allow_html=True)
 
@@ -490,15 +391,15 @@ st.markdown('</div>', unsafe_allow_html=True)
 # ============================================
 st.markdown("""
 <div class="footer">
-    <div class="footer-links">
-        <a href="#">Inicio</a>
-        <a href="#">Aviso de Privacidad</a>
-        <a href="#">Términos</a>
-        <a href="#">Contacto</a>
+    <div style="display: flex; justify-content: center; gap: 1.5rem; margin: 1rem 0;">
+        <a href="#" style="color: #64748b; text-decoration: none;">Inicio</a>
+        <a href="#" style="color: #64748b; text-decoration: none;">Aviso de Privacidad</a>
+        <a href="#" style="color: #64748b; text-decoration: none;">Términos</a>
+        <a href="#" style="color: #64748b; text-decoration: none;">Contacto</a>
     </div>
     <p>📧 contacto@optipension73.com · 📱 871 579 1810</p>
-    <p>⚡ Esta es una simulación demostrativa · No constituye dictamen oficial del IMSS</p>
-    <p>© 2026 · OptiPensión 73 · Optimización Integral</p>
+    <p>⚡ Simulación demostrativa · No constituye dictamen oficial del IMSS</p>
+    <p>© 2026 · OptiPensión 73</p>
 </div>
 """, unsafe_allow_html=True)
 
