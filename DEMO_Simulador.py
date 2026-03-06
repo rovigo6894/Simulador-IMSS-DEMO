@@ -3,36 +3,31 @@ import matplotlib.pyplot as plt
 from PIL import Image
 
 # -------------------------
-# CONFIGURACION DE PAGINA
+# CONFIGURACION PAGINA
 # -------------------------
 
 st.set_page_config(
     page_title="Optipension 73",
-    layout="wide",
-    initial_sidebar_state="expanded"
+    layout="wide"
 )
 
 # -------------------------
-# OCULTAR BOTONES STREAMLIT
+# OCULTAR MENU STREAMLIT
 # -------------------------
 
-hide_streamlit_style = """
+hide_streamlit = """
 <style>
-
 #MainMenu {visibility:hidden;}
 footer {visibility:hidden;}
-
 [data-testid="stToolbar"] {display:none;}
 [data-testid="stDecoration"] {display:none;}
-[data-testid="stStatusWidget"] {display:none;}
-
 </style>
 """
 
-st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+st.markdown(hide_streamlit, unsafe_allow_html=True)
 
 # -------------------------
-# HEADER CON LOGO
+# HEADER
 # -------------------------
 
 col1, col2 = st.columns([1,5])
@@ -48,33 +43,38 @@ with col2:
 st.markdown("---")
 
 # -------------------------
-# SIDEBAR PARAMETROS
+# PARAMETROS MODIFICABLES
 # -------------------------
 
-st.sidebar.header("Datos básicos")
+st.header("Datos básicos")
 
-edad = st.sidebar.slider(
-    "Edad actual",
-    55,
-    65,
-    60
-)
+col1, col2, col3 = st.columns(3)
 
-semanas = st.sidebar.slider(
-    "Semanas cotizadas",
-    500,
-    2000,
-    1300
-)
+with col1:
+    edad = st.number_input(
+        "Edad actual",
+        min_value=55,
+        max_value=65,
+        value=60
+    )
 
-salario = st.sidebar.number_input(
-    "Salario promedio diario (SDI)",
-    200,
-    2000,
-    965
-)
+with col2:
+    semanas = st.number_input(
+        "Semanas cotizadas",
+        min_value=500,
+        max_value=2000,
+        value=1300
+    )
 
-st.sidebar.markdown("🔒 Optimización avanzada disponible en versión PRO")
+with col3:
+    salario = st.number_input(
+        "Salario promedio diario (SDI)",
+        min_value=200,
+        max_value=2000,
+        value=965
+    )
+
+st.info("🔒 Estrategias avanzadas de optimización disponibles en la versión PRO")
 
 # -------------------------
 # CALCULO DEMO
@@ -83,6 +83,7 @@ st.sidebar.markdown("🔒 Optimización avanzada disponible en versión PRO")
 factor_demo = 0.30
 
 pension_normal = salario * 30 * factor_demo
+
 pension_mejorada = pension_normal * 1.35
 
 # -------------------------
@@ -90,33 +91,40 @@ pension_mejorada = pension_normal * 1.35
 # -------------------------
 
 diferencia = pension_mejorada - pension_normal
+
 perdida_20_anios = diferencia * 12 * 20
 
 # -------------------------
 # RESULTADOS
 # -------------------------
 
+st.markdown("---")
+
 st.header("Resultado estimado")
 
-col1, col2, col3 = st.columns(3)
+c1, c2, c3 = st.columns(3)
 
-with col1:
+with c1:
     st.metric(
         "Pensión estimada normal",
         f"${pension_normal:,.0f} MXN"
     )
 
-with col2:
+with c2:
     st.metric(
         "Pensión optimizada",
         f"${pension_mejorada:,.0f} MXN"
     )
 
-with col3:
+with c3:
     st.metric(
         "Diferencia mensual",
         f"${diferencia:,.0f} MXN"
     )
+
+# -------------------------
+# IMPACTO FINANCIERO
+# -------------------------
 
 st.markdown("---")
 
@@ -139,7 +147,8 @@ st.markdown("---")
 
 st.subheader("Comparativa de escenarios")
 
-labels = ["Normal", "Optimizada"]
+labels = ["Pensión Normal", "Pensión Optimizada"]
+
 valores = [pension_normal, pension_mejorada]
 
 fig, ax = plt.subplots()
@@ -156,15 +165,17 @@ st.pyplot(fig)
 
 st.markdown("---")
 
-st.markdown("""
-### 🔒 Funciones disponibles en versión PRO
+st.header("Versión PRO")
 
-✔ Optimización Modalidad 40  
-✔ Estrategia de pensión óptima  
-✔ Simulación con inflación  
-✔ ROI del plan de pensión  
-✔ Comparativa de múltiples escenarios  
-✔ Reporte financiero completo
+st.markdown("""
+La versión profesional de **Optipension 73** incluye:
+
+✅ Optimización Modalidad 40  
+✅ Estrategia de pensión óptima  
+✅ Simulación con inflación  
+✅ ROI del plan de pensión  
+✅ Comparativa de múltiples escenarios  
+✅ Reporte financiero completo
 """)
 
 st.link_button(
@@ -173,18 +184,18 @@ st.link_button(
 )
 
 # -------------------------
-# PIE DE PAGINA
+# FOOTER
 # -------------------------
 
 st.markdown("---")
 
 st.markdown("""
-<div style='text-align: center; font-size: 13px; color: gray;'>
+<div style='text-align:center;font-size:13px;color:gray;'>
 
 <b>Optipension 73 - Simulador DEMO</b><br><br>
 
-Este simulador tiene fines exclusivamente informativos y educativos.  
-Los resultados mostrados son estimaciones basadas en modelos matemáticos y no constituyen asesoría financiera ni legal.<br><br>
+Este simulador tiene fines informativos y educativos.  
+Los resultados mostrados son estimaciones basadas en modelos matemáticos.<br><br>
 
 Las pensiones reales pueden variar conforme a la legislación vigente del IMSS y condiciones individuales del asegurado.<br><br>
 
@@ -193,8 +204,8 @@ Las pensiones reales pueden variar conforme a la legislación vigente del IMSS y
 <b>Privacidad de Datos:</b> Esta aplicación DEMO no almacena información personal.<br><br>
 
 © 2026 <b>Ing. Roberto Villarreal Glz.</b><br>
-Derechos Reservados.<br>
-Propiedad intelectual del simulador <b>Optipension 73</b>.
+Derechos Reservados<br>
+Optipension 73
 
 </div>
 """, unsafe_allow_html=True)
