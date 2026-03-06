@@ -39,7 +39,7 @@ st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 # ============================================
 col1, col2 = st.columns([1, 5])
 with col1:
-    st.image("https://raw.githubusercontent.com/rovigo6894/Simulador-IMSS-DEMO/main/image.jpg", width=80)
+    st.image("https://raw.githubusercontent.com/rovigo6894/Simulador-IMSS-DEMO/main/imagen.jpg", width=80)
 with col2:
     st.title("Optipensión 73")
     st.caption("Simulador Estratégico de Pensión IMSS Ley 73")
