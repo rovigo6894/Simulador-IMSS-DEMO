@@ -98,42 +98,35 @@ La versión profesional incluye:
 """)
 
 # ============================================
-# FOOTER COMPLETO (CORREGIDO)
+# FOOTER SIMPLE (SIN ERRORES)
 # ============================================
 st.divider()
 
-footer_text = """
-<div style='text-align:center; font-size:12px; color:#666; line-height:1.8;'>
-
-### 📌 TÉRMINOS Y CONDICIONES
-
+st.markdown("### 📌 TÉRMINOS Y CONDICIONES")
+st.markdown("""
 El uso de este simulador implica la aceptación de los siguientes términos:
 
 • **Naturaleza del servicio**: Este simulador proporciona estimaciones basadas en modelos matemáticos y la Ley 73 del IMSS. Los resultados son aproximados y no constituyen un dictamen oficial ni una garantía de pago.
 
 • **Limitación de responsabilidad**: Optipensión 73 no se hace responsable por decisiones tomadas basadas exclusivamente en los resultados de esta demo. Se recomienda consultar con un asesor certificado.
 
-• **Uso personal**: Esta herramienta es para uso informativo personal. No debe utilizarse como asesoría financiera profesional.
+• **Uso personal**: Esta herramienta es para uso informativo personal.
+""")
 
----
+st.divider()
 
-### 🔒 AVISO DE PRIVACIDAD
-
+st.markdown("### 🔒 AVISO DE PRIVACIDAD")
+st.markdown("""
 **Protección de datos**: Esta aplicación DEMO **NO almacena, guarda ni comparte** ningún dato personal ingresado por el usuario. Todos los cálculos se realizan en tiempo real y los datos se descartan al cerrar la sesión.
 
 **Cookies**: No utilizamos cookies de rastreo ni almacenamos información de navegación.
+""")
 
-**Enlaces a terceros**: El botón de WhatsApp dirige a un canal externo. Una vez que abandonas esta app, la privacidad ya no está bajo nuestro control.
+st.divider()
 
----
-
-### ⚖️ LEGAL
-
+st.markdown("### ⚖️ LEGAL")
+st.markdown(f"""
 **Propiedad intelectual**: El código, diseño y contenido de Optipensión 73 son propiedad del Ing. Roberto Villarreal Glz. © 2026. Todos los derechos reservados.
-
----
-
-### 📞 CONTACTO
 
 📧 **Email**: {EMAIL}  
 📱 **WhatsApp**: {WHATSAPP_NUMERO}  
@@ -142,15 +135,4 @@ El uso de este simulador implica la aceptación de los siguientes términos:
 ---
 
 © 2026 Optipensión 73 · Versión {VERSION} · Última actualización: {datetime.now().strftime('%d/%m/%Y')}
-
-</div>
-"""
-
-st.markdown(footer_text, unsafe_allow_html=True)
-
-st.link_button(
-    "📲 CONTACTAR PARA VERSIÓN PRO",
-    "https://wa.me/528715791810?text=Hola%2C%20quiero%20información%20sobre%20la%20versión%20PRO%20de%20Optipensión%2073",
-    use_container_width=True
-)
-""", unsafe_allow_html=True)
+""")
