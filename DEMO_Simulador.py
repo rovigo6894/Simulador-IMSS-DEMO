@@ -17,14 +17,12 @@ st.set_page_config(
 
 hide_streamlit_style = """
 <style>
-
-#MainMenu {visibility: hidden;}
-footer {visibility: hidden;}
-header {visibility: hidden;}
+#MainMenu {visibility:hidden;}
+footer {visibility:hidden;}
+header {visibility:hidden;}
 [data-testid="stToolbar"] {display:none;}
 [data-testid="stDecoration"] {display:none;}
 [data-testid="stStatusWidget"] {display:none;}
-
 </style>
 """
 
@@ -38,7 +36,7 @@ col1, col2 = st.columns([1,5])
 
 with col1:
     logo = Image.open("image.jpg")
-    st.image(logo, width=120)
+    st.image(logo, width=110)
 
 with col2:
     st.title("Optipension 73")
@@ -50,7 +48,7 @@ st.markdown("---")
 # PARAMETROS DEMO
 # -------------------------
 
-st.sidebar.header("Parámetros básicos")
+st.sidebar.header("Datos básicos")
 
 edad = st.sidebar.slider(
     "Edad actual",
@@ -66,13 +64,23 @@ semanas = st.sidebar.slider(
     1300
 )
 
-st.sidebar.markdown("🔒 Otros parámetros disponibles en versión PRO")
+salario = st.sidebar.number_input(
+    "Salario promedio diario (SDI)",
+    200,
+    2000,
+    965
+)
+
+st.sidebar.markdown("🔒 Optimización avanzada disponible en versión PRO")
 
 # -------------------------
-# SIMULACION DEMO SIMPLE
+# CALCULO DEMO SIMPLIFICADO
 # -------------------------
 
-pension_normal = semanas * 10
+factor_demo = 0.30
+
+pension_normal = salario * 30 * factor_demo
+
 pension_mejorada = pension_normal * 1.35
 
 # -------------------------
@@ -114,7 +122,7 @@ st.markdown("---")
 st.subheader("Impacto financiero")
 
 st.metric(
-    "Dinero que podría perder en 20 años si no optimiza su pensión",
+    "Dinero que podría perder en 20 años",
     f"${perdida_20_anios:,.0f} MXN"
 )
 
@@ -123,7 +131,7 @@ st.warning(
 )
 
 # -------------------------
-# GRAFICA COMPARATIVA
+# GRAFICA
 # -------------------------
 
 st.markdown("---")
@@ -131,6 +139,7 @@ st.markdown("---")
 st.subheader("Comparativa de escenarios")
 
 labels = ["Normal", "Optimizada"]
+
 valores = [pension_normal, pension_mejorada]
 
 fig, ax = plt.subplots()
@@ -142,22 +151,20 @@ ax.set_ylabel("Pensión mensual estimada")
 st.pyplot(fig)
 
 # -------------------------
-# BLOQUE VERSION PRO
+# VERSION PRO
 # -------------------------
 
 st.markdown("---")
 
 st.markdown("""
-### 🔒 Versión PRO disponible
+### 🔒 Funciones disponibles en versión PRO
 
-La versión profesional de **Optipension 73** incluye:
-
-✅ Optimización avanzada de pensión  
-✅ Estrategia Modalidad 40  
-✅ Simulación con inflación anual  
-✅ Análisis ROI del plan de pensión  
-✅ Comparativa de múltiples escenarios  
-✅ Reporte financiero completo
+✔ Optimización Modalidad 40  
+✔ Estrategia de pensión óptima  
+✔ Simulación con inflación  
+✔ ROI del plan de pensión  
+✔ Comparativa de múltiples escenarios  
+✔ Reporte financiero completo
 """)
 
 st.link_button(
@@ -177,13 +184,13 @@ st.markdown("""
 <b>Optipension 73 - Simulador DEMO</b><br><br>
 
 Este simulador tiene fines exclusivamente informativos y educativos.  
-Los resultados mostrados son estimaciones basadas en modelos matemáticos y no constituyen asesoría financiera, legal o previsional.<br><br>
+Los resultados mostrados son estimaciones basadas en modelos matemáticos y no constituyen asesoría financiera ni legal.<br><br>
 
-Las pensiones reales pueden variar conforme a la legislación vigente del IMSS, reformas futuras y condiciones individuales del asegurado.<br><br>
+Las pensiones reales pueden variar conforme a la legislación vigente del IMSS y condiciones individuales del asegurado.<br><br>
 
-<b>Términos y Condiciones:</b> El uso de este simulador implica la aceptación de que los cálculos presentados son aproximaciones y no garantizan resultados finales.<br><br>
+<b>Términos y Condiciones:</b> El uso de este simulador implica aceptación de que los cálculos son aproximaciones.<br><br>
 
-<b>Privacidad de Datos:</b> Esta aplicación DEMO no almacena información personal. Los datos ingresados se utilizan únicamente para generar cálculos temporales.<br><br>
+<b>Privacidad de Datos:</b> Esta aplicación DEMO no almacena información personal.<br><br>
 
 © 2026 <b>Ing. Roberto Villarreal Glz.</b><br>
 Derechos Reservados.<br>
