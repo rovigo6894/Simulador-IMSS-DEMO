@@ -1,6 +1,6 @@
-# calculos.py
+# calculo_demo.py
 # ============================================
-# TODOS LOS CÁLCULOS DE PENSIONES
+# TODOS LOS CÁLCULOS DE PENSIONES - VERSIÓN CORREGIDA
 # ============================================
 
 def calcular_pension_demo(edad, salario, semanas=1315, edad_retiro=60):
@@ -12,11 +12,22 @@ def calcular_pension_demo(edad, salario, semanas=1315, edad_retiro=60):
     años_para_retiro = max(0, edad_retiro - edad)
     semanas_totales = semanas + (52 * años_para_retiro)
     
+    # Cálculo base Ley 73
     cuantia_basica = salario * 0.13 * 365
     años_extra = max(0, (semanas_totales - 500) / 52)
     incremento = salario * 0.0245 * 365 * años_extra
-    cuantia_total = (cuantia_basica + incremento) * 1.15 * 1.11 * 1.2166
-    pension_mensual = cuantia_total * factores[edad_retiro] / 12
+    
+    # Total antes de ajustes
+    total = cuantia_basica + incremento
+    
+    # Ajustes calibrados
+    total = total * 1.15   # Asignación esposa
+    total = total * 1.11    # Decreto Fox
+    total = total * 1.10    # Factor de ajuste final
+    
+    # Aplicar factor por edad
+    pension_anual = total * factores[edad_retiro]
+    pension_mensual = pension_anual / 12
     
     return round(pension_mensual, 2)
 
