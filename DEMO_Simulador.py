@@ -102,8 +102,4 @@ st.link_button(
     "https://wa.me/528715791810?text=Hola%2C%20quiero%20información%20sobre%20la%20versión%20PRO%20de%20Optipensión%2073",
     use_container_width=True
 )
-
-© 2026 Optipensión 73 · Versión {VERSION} · Última actualización: {datetime.now().strftime('%d/%m/%Y')}
-
-</div>
 """, unsafe_allow_html=True)
