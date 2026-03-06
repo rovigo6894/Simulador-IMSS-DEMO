@@ -23,7 +23,7 @@ hide_streamlit_style = """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
 # ============================================
-# CSS PROFESIONAL
+# CSS PROFESIONAL (con letras más oscuras)
 # ============================================
 st.markdown("""
 <style>
@@ -37,6 +37,29 @@ st.markdown("""
         background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
     }
     
+    /* Títulos y textos más oscuros */
+    h1, h2, h3, h4, h5, h6 {
+        color: #0f172a !important;
+        font-weight: 600;
+    }
+    
+    p, li, .stCaption {
+        color: #1e293b !important;
+    }
+    
+    /* Labels de inputs más oscuros */
+    .stNumberInput label, .stSelectbox label {
+        color: #0f172a !important;
+        font-weight: 500;
+    }
+    
+    /* Valores de inputs */
+    .stNumberInput input, .stSelectbox select {
+        color: #0f172a !important;
+        background: white !important;
+        border: 1px solid #cbd5e1 !important;
+    }
+    
     /* Tarjetas de métricas */
     div[data-testid="metric-container"] {
         background: white;
@@ -45,6 +68,15 @@ st.markdown("""
         box-shadow: 0 10px 25px -10px rgba(0,0,0,0.1);
         border: 1px solid #e9eef3;
         transition: transform 0.2s;
+    }
+    
+    div[data-testid="metric-container"] label {
+        color: #475569 !important;
+    }
+    
+    div[data-testid="metric-container"] div {
+        color: #0f172a !important;
+        font-weight: 700;
     }
     
     div[data-testid="metric-container"]:hover {
@@ -63,14 +95,14 @@ st.markdown("""
     }
     
     .result-label {
-        color: rgba(255,255,255,0.7);
+        color: rgba(255,255,255,0.7) !important;
         font-size: 0.9rem;
         text-transform: uppercase;
         letter-spacing: 1px;
     }
     
     .result-number {
-        color: white;
+        color: white !important;
         font-size: 3.5rem;
         font-weight: 700;
         line-height: 1.2;
@@ -99,23 +131,24 @@ st.markdown("""
     /* Footer */
     .footer-text {
         text-align: center;
-        color: #94a3b8;
+        color: #475569 !important;
         font-size: 0.75rem;
         line-height: 1.6;
     }
     
     .footer-text a {
-        color: #64748b;
+        color: #1e4b6a !important;
         text-decoration: none;
     }
     
     .footer-text a:hover {
-        color: #1e4b6a;
+        color: #0f2b3d !important;
+        text-decoration: underline;
     }
     
-    /* Botón PRO */
+    /* Botón principal */
     .stButton > button {
-        background: linear-gradient(135deg, #f97316, #fb923c) !important;
+        background: linear-gradient(135deg, #1e4b6a, #0f2b3d) !important;
         color: white !important;
         border: none !important;
         border-radius: 2rem !important;
@@ -126,7 +159,22 @@ st.markdown("""
     
     .stButton > button:hover {
         transform: translateY(-2px);
-        box-shadow: 0 10px 20px -8px #f97316 !important;
+        box-shadow: 0 10px 20px -8px #0f2b3d !important;
+    }
+    
+    /* Botón PRO */
+    .stLinkButton > button {
+        background: linear-gradient(135deg, #f97316, #fb923c) !important;
+        color: white !important;
+        border: none !important;
+        border-radius: 2rem !important;
+        padding: 0.8rem 2rem !important;
+        font-weight: 600 !important;
+    }
+    
+    /* Caption más oscuro */
+    .stCaption {
+        color: #475569 !important;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -137,13 +185,13 @@ st.markdown("""
 col1, col2 = st.columns([1, 5])
 
 with col1:
-    st.image("https://raw.githubusercontent.com/rovigo6894/Simulador-IMSS-DEMO/main/image.jpg", width=90)
+    st.image("https://raw.githubusercontent.com/rovigo6894/Simulador-IMSS-DEMO/main/imagen.jpg", width=90)
 
 with col2:
     st.markdown("""
     <div style='margin-top: 10px;'>
         <h1 style='margin-bottom: 0;'>Optipensión 73</h1>
-        <p style='color: #64748b;'>Simulador Estratégico de Pensión IMSS Ley 73</p>
+        <p style='color: #1e293b;'>Simulador Estratégico de Pensión IMSS Ley 73</p>
     </div>
     """, unsafe_allow_html=True)
 
@@ -209,11 +257,11 @@ st.markdown("""
 
 st.markdown("""
 <div style='background: white; border-radius: 1.5rem; padding: 1.5rem; border: 1px solid #e9eef3; margin: 1rem 0;'>
-    <p style='margin: 0.5rem 0;'>✅ <strong>Modalidad 40</strong> - Cálculo exacto de inversión y ROI</p>
-    <p style='margin: 0.5rem 0;'>✅ <strong>Comparativa de edades</strong> - 60 vs 65 años</p>
-    <p style='margin: 0.5rem 0;'>✅ <strong>Proyección con inflación</strong> - Valor real futuro</p>
-    <p style='margin: 0.5rem 0;'>✅ <strong>Reporte PDF</strong> - Listo para presentar</p>
-    <p style='margin: 0.5rem 0;'>✅ <strong>Asesoría personalizada</strong> - Vía WhatsApp</p>
+    <p style='margin: 0.5rem 0; color: #0f172a;'>✅ <strong>Modalidad 40</strong> - Cálculo exacto de inversión y ROI</p>
+    <p style='margin: 0.5rem 0; color: #0f172a;'>✅ <strong>Comparativa de edades</strong> - 60 vs 65 años</p>
+    <p style='margin: 0.5rem 0; color: #0f172a;'>✅ <strong>Proyección con inflación</strong> - Valor real futuro</p>
+    <p style='margin: 0.5rem 0; color: #0f172a;'>✅ <strong>Reporte PDF</strong> - Listo para presentar</p>
+    <p style='margin: 0.5rem 0; color: #0f172a;'>✅ <strong>Asesoría personalizada</strong> - Vía WhatsApp</p>
 </div>
 """, unsafe_allow_html=True)
 
